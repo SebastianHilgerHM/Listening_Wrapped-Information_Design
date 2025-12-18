@@ -5,12 +5,12 @@
   import { rawData } from './stores/dataStore.js';
   
   import RightPanel from './components/RightPanel.svelte';
+  import TimeframeButtons from './components/TimeframeButtons.svelte';
   
   // Placeholder for future component imports
   // import VinylScene from './components/VinylScene.svelte';
   // import CircleGraph from './components/CircleGraph.svelte';
   // import LineGraph from './components/LineGraph.svelte';
-  // import TimeframeButtons from './components/TimeframeButtons.svelte';
   
   let scrollY = 0;
   let innerHeight = 0;
@@ -38,6 +38,9 @@
 <main>
   <!-- Navbar -->
   <Navbar />
+  
+  <!-- Timeframe Buttons (visible in flat view) -->
+  <TimeframeButtons />
   
   <!-- Hero Section with Vinyl -->
   <section class="hero">
