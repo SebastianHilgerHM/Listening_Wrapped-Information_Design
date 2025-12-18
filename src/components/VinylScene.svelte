@@ -8,11 +8,13 @@
   let scene, camera, renderer;
   let vinylGroup;
   let animationId;
+  let raycaster, mouse;
   
   // Drag rotation state (horizontal spin only)
   let dragStartX = 0;
   let rotationY = 0;
   let targetRotationY = 0;
+  let isDraggingModel = false; // Track if actually grabbing the model
   
   // Subscribe to scroll progress
   let currentScrollProgress = 0;
@@ -152,6 +154,10 @@
     renderer.shadowMap.enabled = true;
     container.appendChild(renderer.domElement);
     
+    // Raycasting for detecting clicks on the model
+    raycaster = new THREE.Raycaster();
+    mouse = new THREE.Vector2();
+    
     // Lights - closely match Blender default lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
     scene.add(ambientLight);
@@ -191,12 +197,36 @@
     
     // Mouse drag handlers (horizontal spin only)
     const handleMouseDown = (e) => {
-      dragStartX = e.clientX;
-      isDragging.set(true);
+      // Calculate mouse position in normalized device coordinates
+      const rect = renderer.domElement.getBoundingClientRect();
+      mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      
+      // Raycast to see if clicking on the vinyl
+      raycaster.setFromCamera(mouse, camera);
+      const intersects = raycaster.intersectObject(vinylGroup, true);
+      
+      if (intersects.length > 0) {
+        isDraggingModel = true;
+        isDragging.set(true);
+        dragStartX = e.clientX;
+        renderer.domElement.style.cursor = 'grabbing';
+      }
     };
     
     const handleMouseMove = (e) => {
-      if (!currentIsDragging) return;
+      if (!isDraggingModel) {
+        // Update hover state for grab cursor
+        const rect = renderer.domElement.getBoundingClientRect();
+        mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+        
+        raycaster.setFromCamera(mouse, camera);
+        const intersects = raycaster.intersectObject(vinylGroup, true);
+        
+        renderer.domElement.style.cursor = intersects.length > 0 ? 'grab' : 'default';
+        return;
+      }
       
       const deltaX = e.clientX - dragStartX;
       targetRotationY += deltaX * 0.01; // Sensitivity control
@@ -204,17 +234,32 @@
     };
     
     const handleMouseUp = () => {
+      isDraggingModel = false;
       isDragging.set(false);
+      renderer.domElement.style.cursor = 'default';
     };
     
     // Touch handlers (horizontal spin only)
     const handleTouchStart = (e) => {
-      dragStartX = e.touches[0].clientX;
-      isDragging.set(true);
+      // Calculate touch position in normalized device coordinates
+      const rect = renderer.domElement.getBoundingClientRect();
+      const touch = e.touches[0];
+      mouse.x = ((touch.clientX - rect.left) / rect.width) * 2 - 1;
+      mouse.y = -((touch.clientY - rect.top) / rect.height) * 2 + 1;
+      
+      // Raycast to see if touching the vinyl
+      raycaster.setFromCamera(mouse, camera);
+      const intersects = raycaster.intersectObject(vinylGroup, true);
+      
+      if (intersects.length > 0) {
+        isDraggingModel = true;
+        isDragging.set(true);
+        dragStartX = e.touches[0].clientX;
+      }
     };
     
     const handleTouchMove = (e) => {
-      if (!currentIsDragging) return;
+      if (!isDraggingModel) return;
       
       const deltaX = e.touches[0].clientX - dragStartX;
       targetRotationY += deltaX * 0.01;
@@ -222,6 +267,7 @@
     };
     
     const handleTouchEnd = () => {
+      isDraggingModel = false;
       isDragging.set(false);
     };
     
@@ -231,6 +277,10 @@
     document.addEventListener('touchstart', handleTouchStart);
     document.addEventListener('touchmove', handleTouchMove);
     document.addEventListener('touchend', handleTouchEnd);
+    
+    // Keep canvas behind all other elements and non-interactive for scrolling/UI
+    renderer.domElement.style.pointerEvents = 'none';
+    renderer.domElement.style.zIndex = '-1';
     
     // Animation loop
     const animate = () => {
@@ -296,13 +346,9 @@
   .vinyl-scene {
     width: 100vw;
     height: 100vh;
-    cursor: grab;
+    cursor: default;
     position: fixed;
     top: 0;
     left: 0;
-  }
-  
-  .vinyl-scene:active {
-    cursor: grabbing;
   }
 </style>
