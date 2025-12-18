@@ -141,7 +141,7 @@
     // Camera - at eye level for proper edge-on view
     const aspect = width / height;
     camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 100);
-    camera.position.set(0, 0, 5);
+    camera.position.set(0, 0, 8);
     camera.lookAt(0, 0, 0);
     
     // Renderer
@@ -298,6 +298,22 @@
         // Apply rotations: X for scroll tilt, Z for drag spin
         vinylGroup.rotation.x = currentTilt;
         vinylGroup.rotation.z = rotationY;
+        
+        // Continuous transition: move left as you scroll
+        const scale = 2.5 - currentScrollProgress * 1.5; // 2.5 to 1
+        const posX = -currentScrollProgress * 4.5; // 0 to -4.5, pushing it further left to show only right 50%
+        
+        vinylGroup.scale.set(12 * scale, 12 * scale, 12 * scale);
+        vinylGroup.position.x = posX;
+        vinylGroup.position.y = -0.3;
+        vinylGroup.position.z = -1;
+        
+        // Move camera closer as you scroll (8 to 3, making model appear bigger but not too extreme)
+        const cameraZ = 8 - currentScrollProgress * 5;
+        // Move camera slightly left but not as much as model (0 to -1)
+        const cameraX = -currentScrollProgress * 1;
+        camera.position.z = cameraZ;
+        camera.position.x = cameraX;
       }
       
       renderer.render(scene, camera);

@@ -11,7 +11,6 @@
 <nav class="navbar">
   <div class="nav-left">
     <button class="logo" on:click={scrollToTop}>
-      <span class="logo-icon">🎵</span>
       <span class="logo-text">Listening Wrapped</span>
     </button>
   </div>

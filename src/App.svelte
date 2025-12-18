@@ -52,16 +52,6 @@
     <p class="hero-hint">Drag to rotate • Scroll to explore</p>
   </section>
   
-  <!-- Graph Section -->
-  <section class="graph-section">
-    <div class="graph-container">
-      <div class="graph-placeholder">
-        <p>📊 Graph visualization will appear here</p>
-        <p class="subtext">Circle graph transforms to line graph on scroll</p>
-      </div>
-    </div>
-  </section>
-  
   <!-- Right Panel -->
   <RightPanel />
 </main>
@@ -69,7 +59,7 @@
 <style>
   main {
     width: 100%;
-    min-height: 300vh;
+    min-height: 200vh;
     position: relative;
   }
   
@@ -104,42 +94,5 @@
   /* Vinyl Container (removed, now fullscreen) */
   .vinyl-container {
     display: none;
-  }
-  
-  /* Graph Section */
-  .graph-section {
-    margin-top: 100vh;
-    min-height: 100vh;
-    padding: 60px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: white;
-    position: relative;
-    z-index: 100;
-  }
-  
-  .graph-container {
-    max-width: 800px;
-    width: 100%;
-  }
-  
-  .graph-placeholder {
-    background: #f5f5f5;
-    border-radius: 16px;
-    padding: 60px;
-    text-align: center;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-  }
-  
-  .graph-placeholder p {
-    font-size: 18px;
-    color: #666;
-  }
-  
-  .subtext {
-    font-size: 14px !important;
-    color: #999 !important;
-    margin-top: 8px;
   }
 </style>
