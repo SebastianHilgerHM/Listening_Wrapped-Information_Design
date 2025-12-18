@@ -1,8 +1,10 @@
 <script>
   import { onMount } from 'svelte';
+  import Navbar from './components/Navbar.svelte';
+  import { loadCSV } from './utils/parseCSV.js';
+  import { rawData } from './stores/dataStore.js';
   
   // Placeholder for future component imports
-  // import Navbar from './components/Navbar.svelte';
   // import VinylScene from './components/VinylScene.svelte';
   // import CircleGraph from './components/CircleGraph.svelte';
   // import LineGraph from './components/LineGraph.svelte';
@@ -16,8 +18,17 @@
   // Calculate scroll progress (0 to 1) for animations
   $: scrollProgress = Math.min(scrollY / innerHeight, 1);
   
-  onMount(() => {
+  onMount(async () => {
     console.log('🎵 Listening Wrapped initialized');
+    
+    // Load CSV data
+    try {
+      const data = await loadCSV('/weekly_summary.csv');
+      rawData.set(data);
+      console.log(`📊 Loaded ${data.length} weeks of data`);
+    } catch (err) {
+      console.error('Failed to load CSV:', err);
+    }
   });
 </script>
 
@@ -25,14 +36,7 @@
 
 <main>
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="nav-left">
-      <span class="logo">🎵 Listening Wrapped</span>
-    </div>
-    <div class="nav-right">
-      <button class="nav-icon" title="Info">ℹ️</button>
-    </div>
-  </nav>
+  <Navbar />
   
   <!-- Hero Section with Vinyl -->
   <section class="hero">
