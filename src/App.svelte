@@ -4,11 +4,12 @@
   import { loadCSV } from './utils/parseCSV.js';
   import { rawData } from './stores/dataStore.js';
   
+  import RightPanel from './components/RightPanel.svelte';
+  
   // Placeholder for future component imports
   // import VinylScene from './components/VinylScene.svelte';
   // import CircleGraph from './components/CircleGraph.svelte';
   // import LineGraph from './components/LineGraph.svelte';
-  // import RightPanel from './components/RightPanel.svelte';
   // import TimeframeButtons from './components/TimeframeButtons.svelte';
   
   let scrollY = 0;
@@ -62,24 +63,8 @@
     </div>
   </section>
   
-  <!-- Right Panel (placeholder) -->
-  <aside class="right-panel">
-    <div class="panel-section">
-      <h3>Value Type</h3>
-      <div class="button-group vertical">
-        <button class="active">Highest</button>
-        <button>Lowest</button>
-        <button>Average</button>
-      </div>
-    </div>
-    <div class="panel-section">
-      <h3>Category</h3>
-      <div class="button-group horizontal">
-        <button class="active">Tempo</button>
-        <button>Danceability</button>
-      </div>
-    </div>
-  </aside>
+  <!-- Right Panel -->
+  <RightPanel />
   
   <!-- Debug info -->
   <div class="debug">
@@ -239,63 +224,6 @@
     margin-top: 8px;
   }
   
-  /* Right Panel */
-  .right-panel {
-    position: fixed;
-    right: 24px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 160px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .panel-section h3 {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #888;
-    margin-bottom: 12px;
-  }
-  
-  .button-group {
-    display: flex;
-    gap: 6px;
-  }
-  
-  .button-group.vertical {
-    flex-direction: column;
-  }
-  
-  .button-group button {
-    padding: 10px 14px;
-    font-size: 13px;
-    font-weight: 500;
-    background: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  
-  .button-group button:hover {
-    background: rgba(0, 0, 0, 0.03);
-  }
-  
-  .button-group button.active {
-    background: #1a1a1a;
-    color: white;
-    border-color: #1a1a1a;
-  }
-  
   /* Debug */
   .debug {
     position: fixed;
@@ -308,30 +236,5 @@
     font-size: 12px;
     font-family: monospace;
     z-index: 1000;
-  }
-  
-  /* Mobile responsiveness */
-  @media (max-width: 768px) {
-    .right-panel {
-      position: fixed;
-      right: 0;
-      left: 0;
-      top: auto;
-      bottom: 0;
-      transform: none;
-      width: 100%;
-      border-radius: 20px 20px 0 0;
-      flex-direction: row;
-      padding: 16px 20px;
-    }
-    
-    .panel-section {
-      flex: 1;
-    }
-    
-    .button-group.vertical {
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
   }
 </style>
