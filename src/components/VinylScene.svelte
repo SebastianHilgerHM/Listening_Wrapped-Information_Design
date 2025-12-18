@@ -2,11 +2,13 @@
   import { onMount, onDestroy } from 'svelte';
   import * as THREE from 'three';
   import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-  import { scrollProgress, isDragging } from '../stores/uiStore.js';
+  import { scrollProgress, isDragging, selectedMetric, selectedCategory } from '../stores/uiStore.js';
+  import { rawData } from '../stores/dataStore.js';
   
   let container;
   let scene, camera, renderer;
   let vinylGroup;
+  let dataPointsGroup;
   let animationId;
   let raycaster, mouse;
   
@@ -19,6 +21,8 @@
   // Subscribe to scroll progress
   let currentScrollProgress = 0;
   let currentIsDragging = false;
+  let currentMetric = 'average';
+  let currentCategory = 'tempo';
   
   const unsubscribeScroll = scrollProgress.subscribe(value => {
     currentScrollProgress = value;
@@ -26,6 +30,16 @@
   
   const unsubscribeDrag = isDragging.subscribe(value => {
     currentIsDragging = value;
+  });
+  
+  const unsubscribeMetric = selectedMetric.subscribe(value => {
+    currentMetric = value;
+    if (dataPointsGroup) updateDataPoints();
+  });
+  
+  const unsubscribeCategory = selectedCategory.subscribe(value => {
+    currentCategory = value;
+    if (dataPointsGroup) updateDataPoints();
   });
   
   async function loadVinylModel() {
@@ -64,6 +78,93 @@
         }
       );
     });
+  }
+  
+  function updateDataPoints() {
+    if (!dataPointsGroup) return;
+    if (!$rawData || $rawData.length === 0) {
+      console.warn('No data available for points');
+      return;
+    }
+    
+    console.log('Updating data points with', $rawData.length, 'weeks');
+    console.log('Sample data:', $rawData[0]); // Log structure
+    
+    // Clear existing points
+    while (dataPointsGroup.children.length > 0) {
+      dataPointsGroup.remove(dataPointsGroup.children[0]);
+    }
+    
+    const count = $rawData.length;
+    const angleSlice = (Math.PI * 2) / count;
+    
+    const positions = [];
+    
+    $rawData.forEach((week, i) => {
+      const angle = angleSlice * i - Math.PI / 2;
+      
+      // Get metric value based on category and metric type
+      let metricValue = 0;
+      
+      if (currentCategory === 'tempo') {
+        if (currentMetric === 'average') metricValue = week.avgTempo;
+        else if (currentMetric === 'highest') metricValue = week.highestTempo;
+        else if (currentMetric === 'lowest') metricValue = week.lowestTempo;
+      } else {
+        if (currentMetric === 'average') metricValue = week.avgDanceability;
+        else if (currentMetric === 'highest') metricValue = week.highestDanceability;
+        else if (currentMetric === 'lowest') metricValue = week.lowestDanceability;
+      }
+      
+      if (!metricValue || isNaN(metricValue)) {
+        metricValue = 0;
+      }
+      
+      // Normalize value
+      const maxValue = currentCategory === 'tempo' ? 200 : 1;
+      const normalizedValue = Math.max(0, Math.min(1, metricValue / maxValue));
+      const r = 1.5 + normalizedValue * 1.5; // 1.5 to 3 from center
+      
+      const x = r * Math.cos(angle);
+      const y = 1.5; // Float above vinyl
+      const z = r * Math.sin(angle);
+      
+      if (isNaN(x) || isNaN(y) || isNaN(z)) {
+        console.warn(`Invalid position at ${i}:`, { x, y, z, r, angle, metricValue });
+        return;
+      }
+      
+      positions.push(x, y, z);
+      
+      // Create point sphere
+      const geometry = new THREE.SphereGeometry(0.12, 16, 16);
+      const material = new THREE.MeshStandardMaterial({
+        color: new THREE.Color().setHSL(i / count, 0.7, 0.5),
+        emissive: new THREE.Color().setHSL(i / count, 0.7, 0.3),
+        metalness: 0.2,
+        roughness: 0.3,
+      });
+      const sphere = new THREE.Mesh(geometry, material);
+      sphere.position.set(x, y, z);
+      dataPointsGroup.add(sphere);
+    });
+    
+    // Create connecting line
+    if (positions.length > 0) {
+      const linePositions = [...positions, positions[0], positions[1], positions[2]];
+      const lineGeometry = new THREE.BufferGeometry();
+      lineGeometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(linePositions), 3));
+      
+      const lineMaterial = new THREE.LineBasicMaterial({
+        color: 0x1DB954,
+        linewidth: 2,
+        opacity: 0.7,
+      });
+      const line = new THREE.Line(lineGeometry, lineMaterial);
+      dataPointsGroup.add(line);
+    }
+    
+    console.log('Created', dataPointsGroup.children.length, 'visual elements');
   }
   
   function createVinylRecord() {
@@ -182,8 +283,19 @@
     } catch (error) {
       console.error('Failed to initialize vinyl scene:', error);
       return;
-    }
+    }    
+    // Create data points group
+    dataPointsGroup = new THREE.Group();
+    // Tilt the data points away from camera (less than vinyl's angle)
+    dataPointsGroup.rotation.x = THREE.MathUtils.degToRad(30);
+    scene.add(dataPointsGroup);
     
+    // Wait a tick for data to be available
+    setTimeout(() => {
+      if ($rawData && $rawData.length > 0) {
+        updateDataPoints();
+      }
+    }, 100);    
     // Handle resize
     const handleResize = () => {
       const newWidth = window.innerWidth;
@@ -338,6 +450,8 @@
   onDestroy(() => {
     unsubscribeScroll();
     unsubscribeDrag();
+    unsubscribeMetric();
+    unsubscribeCategory();
     
     if (animationId) {
       cancelAnimationFrame(animationId);
