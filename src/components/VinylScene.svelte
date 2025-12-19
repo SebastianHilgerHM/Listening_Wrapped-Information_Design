@@ -181,6 +181,7 @@
         emissiveIntensity: 0.8,
         metalness: 0.2,
         roughness: 0.3,
+        transparent: true,
       });
       const sphere = new THREE.Mesh(geometry, material);
       sphere.position.set(x, y, z);
@@ -202,6 +203,7 @@
         color: 0x1DB954,
         linewidth: 2,
         opacity: 0.7,
+        transparent: true,
       });
       const line = new THREE.Line(lineGeometry, lineMaterial);
       dataPointsGroup.add(line);
@@ -470,6 +472,13 @@
         
         // Apply same Y rotation to data points so they spin with the vinyl
         dataPointsGroup.rotation.y = rotationY;
+        
+        // Fade out data points as you scroll (very fast fadeout)
+        dataPointsGroup.traverse((child) => {
+          if (child.material) {
+            child.material.opacity = Math.max(0, 1 - currentScrollProgress * 4);
+          }
+        });
         
         // Continuous transition: move left as you scroll
         const scale = 2.5 - currentScrollProgress * 1.5; // 2.5 to 1
