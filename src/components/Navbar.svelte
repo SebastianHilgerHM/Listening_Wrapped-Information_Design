@@ -165,7 +165,8 @@
     padding: 32px;
     max-width: 400px;
     width: 90%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.06);
   }
 
   .info-modal h2 {
@@ -218,18 +219,19 @@
   .close-btn {
     width: 100%;
     padding: 14px;
-    background: #1a1a1a;
-    color: white;
-    border: none;
+    background: #f5f5f5;
+    color: #1a1a1a;
+    border: 1px solid #e0e0e0;
     border-radius: 10px;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.2s;
   }
 
   .close-btn:hover {
-    background: #333;
+    background: #efefef;
+    border-color: #d0d0d0;
   }
 
   @media (max-width: 480px) {

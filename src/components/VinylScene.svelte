@@ -2,11 +2,15 @@
   import { onMount, onDestroy } from 'svelte';
   import * as THREE from 'three';
   import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+  import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+  import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+  import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
   import { scrollProgress, isDragging, selectedMetric, selectedCategory } from '../stores/uiStore.js';
   import { rawData } from '../stores/dataStore.js';
   
   let container;
   let scene, camera, renderer;
+  let composer;
   let vinylGroup;
   let dataPointsGroup;
   let animationId;
@@ -88,65 +92,104 @@
     }
     
     console.log('Updating data points with', $rawData.length, 'weeks');
-    console.log('Sample data:', $rawData[0]); // Log structure
     
     // Clear existing points
     while (dataPointsGroup.children.length > 0) {
       dataPointsGroup.remove(dataPointsGroup.children[0]);
     }
     
-    const count = $rawData.length;
-    const angleSlice = (Math.PI * 2) / count;
+    // Group data into 4-week chunks and aggregate
+    const groupSize = 4;
+    const groupedData = [];
     
-    const positions = [];
-    
-    $rawData.forEach((week, i) => {
-      const angle = angleSlice * i - Math.PI / 2;
-      
-      // Get metric value based on category and metric type
+    for (let i = 0; i < $rawData.length; i += groupSize) {
+      const group = $rawData.slice(i, i + groupSize);
       let metricValue = 0;
       
       if (currentCategory === 'tempo') {
-        if (currentMetric === 'average') metricValue = week.avgTempo;
-        else if (currentMetric === 'highest') metricValue = week.highestTempo;
-        else if (currentMetric === 'lowest') metricValue = week.lowestTempo;
+        const values = group.map(week => {
+          if (currentMetric === 'average') return week.avgTempo;
+          else if (currentMetric === 'highest') return week.highestTempo;
+          else return week.lowestTempo;
+        });
+        
+        if (currentMetric === 'average') {
+          metricValue = values.reduce((a, b) => a + b, 0) / values.length;
+        } else if (currentMetric === 'highest') {
+          metricValue = Math.max(...values);
+        } else {
+          metricValue = Math.min(...values);
+        }
       } else {
-        if (currentMetric === 'average') metricValue = week.avgDanceability;
-        else if (currentMetric === 'highest') metricValue = week.highestDanceability;
-        else if (currentMetric === 'lowest') metricValue = week.lowestDanceability;
+        const values = group.map(week => {
+          if (currentMetric === 'average') return week.avgDanceability;
+          else if (currentMetric === 'highest') return week.highestDanceability;
+          else return week.lowestDanceability;
+        });
+        
+        if (currentMetric === 'average') {
+          metricValue = values.reduce((a, b) => a + b, 0) / values.length;
+        } else if (currentMetric === 'highest') {
+          metricValue = Math.max(...values);
+        } else {
+          metricValue = Math.min(...values);
+        }
       }
+      
+      groupedData.push(metricValue);
+    }
+    
+    const count = groupedData.length;
+    const angleSlice = (Math.PI * 2) / count;
+    const positions = [];
+    
+    // Calculate min/max of actual data for dynamic normalization
+    const minValue = Math.min(...groupedData);
+    const maxValue = Math.max(...groupedData);
+    const dataRange = maxValue - minValue || 1; // Avoid division by zero
+    
+    groupedData.forEach((metricValue, i) => {
+      const angle = angleSlice * i - Math.PI / 2;
       
       if (!metricValue || isNaN(metricValue)) {
         metricValue = 0;
       }
       
-      // Normalize value
-      const maxValue = currentCategory === 'tempo' ? 200 : 1;
-      const normalizedValue = Math.max(0, Math.min(1, metricValue / maxValue));
-      const r = 1.5 + normalizedValue * 1.5; // 1.5 to 3 from center
+      // Normalize based on actual data range, not fixed ranges
+      const normalizedValue = dataRange > 0 
+        ? (metricValue - minValue) / dataRange 
+        : 0;
+      
+      const r = 1 + normalizedValue * 1.5; // 1 to 2.5 from center (smaller circle)
       
       const x = r * Math.cos(angle);
       const y = 1.5; // Float above vinyl
       const z = r * Math.sin(angle);
       
       if (isNaN(x) || isNaN(y) || isNaN(z)) {
-        console.warn(`Invalid position at ${i}:`, { x, y, z, r, angle, metricValue });
         return;
       }
       
       positions.push(x, y, z);
       
       // Create point sphere
-      const geometry = new THREE.SphereGeometry(0.12, 16, 16);
+      const geometry = new THREE.SphereGeometry(0.06, 16, 16);
+      const color = new THREE.Color().setHSL(i / count, 0.7, 0.5);
       const material = new THREE.MeshStandardMaterial({
-        color: new THREE.Color().setHSL(i / count, 0.7, 0.5),
-        emissive: new THREE.Color().setHSL(i / count, 0.7, 0.3),
+        color: color,
+        emissive: color,
+        emissiveIntensity: 0.8,
         metalness: 0.2,
         roughness: 0.3,
       });
       const sphere = new THREE.Mesh(geometry, material);
       sphere.position.set(x, y, z);
       dataPointsGroup.add(sphere);
+      
+      // Add point light for glow effect with very small radius
+      const light = new THREE.PointLight(color, 0.8, 1.2);
+      light.position.copy(sphere.position);
+      dataPointsGroup.add(light);
     });
     
     // Create connecting line
@@ -164,7 +207,7 @@
       dataPointsGroup.add(line);
     }
     
-    console.log('Created', dataPointsGroup.children.length, 'visual elements');
+    console.log('Created', dataPointsGroup.children.length, 'visual elements from', count, '4-week groups');
   }
   
   function createVinylRecord() {
@@ -237,7 +280,7 @@
     
     // Scene
     scene = new THREE.Scene();
-    scene.background = null; // Transparent
+    scene.background = new THREE.Color(0xfafafa); // Light background
     
     // Camera - at eye level for proper edge-on view
     const aspect = width / height;
@@ -253,24 +296,38 @@
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
+    renderer.toneMappingExposure = 1;
     container.appendChild(renderer.domElement);
+    
+    // Post-processing bloom effect
+    composer = new EffectComposer(renderer);
+    const renderPass = new RenderPass(scene, camera);
+    composer.addPass(renderPass);
+    
+    const bloomPass = new UnrealBloomPass(
+      new THREE.Vector2(width, height),
+      0.1, // strength - minimal bloom
+      0.1, // radius - very tight
+      0.99 // threshold - only absolute brightest pixels
+    );
+    composer.addPass(bloomPass);
     
     // Raycasting for detecting clicks on the model
     raycaster = new THREE.Raycaster();
     mouse = new THREE.Vector2();
     
-    // Lights - closely match Blender default lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+    // Lights - proper scene lighting with minimal glow from data points
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
     scene.add(ambientLight);
     
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
     directionalLight.position.set(5, 10, 7);
     directionalLight.castShadow = true;
     directionalLight.shadow.mapSize.width = 2048;
     directionalLight.shadow.mapSize.height = 2048;
     scene.add(directionalLight);
     
-    const fillLight = new THREE.DirectionalLight(0xccccff, 0.5);
+    const fillLight = new THREE.DirectionalLight(0xccccff, 0.3);
     fillLight.position.set(-5, 3, -8);
     scene.add(fillLight);
     
@@ -411,6 +468,9 @@
         vinylGroup.rotation.x = currentTilt;
         vinylGroup.rotation.z = rotationY;
         
+        // Apply same Y rotation to data points so they spin with the vinyl
+        dataPointsGroup.rotation.y = rotationY;
+        
         // Continuous transition: move left as you scroll
         const scale = 2.5 - currentScrollProgress * 1.5; // 2.5 to 1
         const posX = -currentScrollProgress * 4.5; // 0 to -4.5, pushing it further left to show only right 50%
@@ -428,7 +488,7 @@
         camera.position.x = cameraX;
       }
       
-      renderer.render(scene, camera);
+      composer.render();
     };
     animate();
     
@@ -480,5 +540,6 @@
     position: fixed;
     top: 0;
     left: 0;
+    background: #fafafa;
   }
 </style>
