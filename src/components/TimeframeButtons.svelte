@@ -3,7 +3,6 @@
   import { fly, fade } from 'svelte/transition';
   
   const timeframes = [
-    { id: '1w', label: '1W' },
     { id: '1m', label: '1M' },
     { id: '3m', label: '3M' },
     { id: '6m', label: '6M' },

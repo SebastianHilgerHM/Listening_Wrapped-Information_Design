@@ -7,11 +7,8 @@
   import RightPanel from './components/RightPanel.svelte';
   import TimeframeButtons from './components/TimeframeButtons.svelte';
   import VinylScene from './components/VinylScene.svelte';
+  import LineGraph from './components/LineGraph.svelte';
   import { scrollProgress as scrollProgressStore } from './stores/uiStore.js';
-  
-  // Placeholder for future component imports
-  // import CircleGraph from './components/CircleGraph.svelte';
-  // import LineGraph from './components/LineGraph.svelte';
   
   let scrollY = 0;
   let innerHeight = 0;
@@ -46,6 +43,9 @@
   
   <!-- Timeframe Buttons (visible in flat view) -->
   <TimeframeButtons />
+  
+  <!-- Line Graph (overlay on vinyl) -->
+  <LineGraph />
   
   <!-- Hero Section Hint -->
   <section class="hero">
