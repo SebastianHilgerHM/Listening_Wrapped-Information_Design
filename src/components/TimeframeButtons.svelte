@@ -45,10 +45,10 @@
     display: flex;
     gap: 4px;
     padding: 4px;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(49, 59, 68, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 12px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
   }
 
   .timeframe-btn {
@@ -59,19 +59,19 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    color: #666;
+    color: #AAABAD;
     transition: all 0.2s ease;
   }
 
   .timeframe-btn:hover {
-    background: rgba(0, 0, 0, 0.05);
-    color: #333;
+    background: rgba(230, 40, 21, 0.1);
+    color: #E62815;
   }
 
   .timeframe-btn.active {
-    background: #1a1a1a;
+    background: #E62815;
     color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 8px rgba(230, 40, 21, 0.4);
   }
 
   @media (max-width: 768px) {

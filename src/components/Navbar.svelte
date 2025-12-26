@@ -79,10 +79,10 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 24px;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(49, 59, 68, 0.95);
     backdrop-filter: blur(10px);
     z-index: 1000;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(230, 40, 21, 0.1);
   }
 
   .nav-left {
@@ -103,7 +103,7 @@
   }
 
   .logo:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(230, 40, 21, 0.1);
   }
 
   .logo-icon {
@@ -113,7 +113,7 @@
   .logo-text {
     font-size: 18px;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #E62815;
   }
 
   .nav-right {
@@ -124,7 +124,7 @@
 
   .nav-stat {
     font-size: 13px;
-    color: #666;
+    color: #AAABAD;
     font-weight: 500;
   }
 
@@ -138,13 +138,13 @@
     border: none;
     cursor: pointer;
     border-radius: 50%;
-    color: #666;
+    color: #AAABAD;
     transition: all 0.2s;
   }
 
   .nav-icon:hover {
-    background: rgba(0, 0, 0, 0.05);
-    color: #1a1a1a;
+    background: rgba(230, 40, 21, 0.1);
+    color: #E62815;
   }
 
   /* Info Modal */
@@ -160,23 +160,24 @@
   }
 
   .info-modal {
-    background: white;
+    background: #313B44;
     border-radius: 20px;
     padding: 32px;
     max-width: 400px;
     width: 90%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(230, 40, 21, 0.2);
   }
 
   .info-modal h2 {
     font-size: 20px;
     font-weight: 600;
     margin: 0 0 12px 0;
+    color: #E62815;
   }
 
   .info-modal p {
-    color: #666;
+    color: #AAABAD;
     font-size: 14px;
     line-height: 1.6;
     margin: 0 0 20px 0;
@@ -192,7 +193,7 @@
   .stat {
     text-align: center;
     padding: 16px;
-    background: #f5f5f5;
+    background: #1C1D22;
     border-radius: 12px;
   }
 
@@ -200,12 +201,12 @@
     display: block;
     font-size: 24px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #E62815;
   }
 
   .stat-label {
     font-size: 12px;
-    color: #888;
+    color: #AAABAD;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
@@ -213,15 +214,15 @@
   .date-range {
     text-align: center;
     font-size: 13px;
-    color: #888;
+    color: #AAABAD;
   }
 
   .close-btn {
     width: 100%;
     padding: 14px;
-    background: #f5f5f5;
-    color: #1a1a1a;
-    border: 1px solid #e0e0e0;
+    background: #E62815;
+    color: white;
+    border: 1px solid #E62815;
     border-radius: 10px;
     font-size: 14px;
     font-weight: 500;
@@ -230,8 +231,8 @@
   }
 
   .close-btn:hover {
-    background: #efefef;
-    border-color: #d0d0d0;
+    background: #8B4944;
+    border-color: #8B4944;
   }
 
   @media (max-width: 480px) {

@@ -65,10 +65,10 @@
     transform: translateY(-50%);
     width: 180px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(49, 59, 68, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
     z-index: 100;
     display: flex;
     flex-direction: column;
@@ -86,7 +86,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: #888;
+    color: #AAABAD;
     margin: 0;
   }
 
@@ -104,22 +104,23 @@
     font-size: 14px;
     font-weight: 500;
     background: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(170, 171, 173, 0.3);
     border-radius: 10px;
     cursor: pointer;
-    color: #666;
+    color: #AAABAD;
     transition: all 0.2s ease;
     text-align: left;
   }
 
   .metric-btn:hover {
-    background: rgba(0, 0, 0, 0.03);
-    border-color: rgba(0, 0, 0, 0.12);
+    background: rgba(230, 40, 21, 0.1);
+    border-color: #E62815;
+    color: #E62815;
   }
 
   .metric-btn.active {
-    background: #1a1a1a;
-    border-color: #1a1a1a;
+    background: #E62815;
+    border-color: #E62815;
     color: white;
   }
 
@@ -138,7 +139,7 @@
 
   .category-toggle {
     display: flex;
-    background: rgba(0, 0, 0, 0.04);
+    background: rgba(170, 171, 173, 0.1);
     border-radius: 10px;
     padding: 4px;
   }
@@ -152,41 +153,41 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    color: #666;
+    color: #AAABAD;
     transition: all 0.2s ease;
   }
 
   .category-btn:hover {
-    color: #333;
+    color: #E62815;
   }
 
   .category-btn.active {
-    background: white;
-    color: #1a1a1a;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: #1C1D22;
+    color: #E62815;
+    box-shadow: 0 2px 8px rgba(230, 40, 21, 0.2);
   }
 
   .panel-info {
     padding-top: 16px;
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    border-top: 1px solid rgba(170, 171, 173, 0.2);
   }
 
   .info-label {
     font-size: 11px;
-    color: #888;
+    color: #AAABAD;
     margin: 0 0 4px 0;
   }
 
   .info-value {
     font-size: 14px;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #E62815;
     margin: 0;
   }
 
   .info-unit {
     font-size: 12px;
-    color: #aaa;
+    color: #606467;
     margin: 4px 0 0 0;
   }
 

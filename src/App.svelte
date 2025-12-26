@@ -80,7 +80,7 @@
   .hero-hint {
     position: absolute;
     bottom: 40px;
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(170, 171, 173, 0.7);
     font-size: 14px;
     animation: pulse 2s ease-in-out infinite;
     pointer-events: auto;

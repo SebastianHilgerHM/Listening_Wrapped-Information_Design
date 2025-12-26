@@ -282,7 +282,7 @@
     
     // Scene
     scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xfafafa); // Light background
+    scene.background = new THREE.Color(0x1C1D22); // Dark background
     
     // Camera - at eye level for proper edge-on view
     const aspect = width / height;
@@ -319,17 +319,17 @@
     mouse = new THREE.Vector2();
     
     // Lights - proper scene lighting with minimal glow from data points
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
     
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.4);
     directionalLight.position.set(5, 10, 7);
     directionalLight.castShadow = true;
     directionalLight.shadow.mapSize.width = 2048;
     directionalLight.shadow.mapSize.height = 2048;
     scene.add(directionalLight);
     
-    const fillLight = new THREE.DirectionalLight(0xccccff, 0.3);
+    const fillLight = new THREE.DirectionalLight(0xccccff, 0.2);
     fillLight.position.set(-5, 3, -8);
     scene.add(fillLight);
     
@@ -549,6 +549,6 @@
     position: fixed;
     top: 0;
     left: 0;
-    background: #fafafa;
+    background: #1C1D22;
   }
 </style>

@@ -119,16 +119,16 @@
       .attr('x2', innerWidth)
       .attr('y1', d => yScale(d))
       .attr('y2', d => yScale(d))
-      .attr('stroke', '#d0d0d0')
+      .attr('stroke', '#606467')
       .attr('stroke-dasharray', '4')
-      .attr('opacity', '0.6');
+      .attr('opacity', '0.4');
     
     // Add line path
     mainGroup.append('path')
       .datum(data)
       .attr('class', 'line')
       .attr('fill', 'none')
-      .attr('stroke', '#1DB954')
+      .attr('stroke', '#E62815')
       .attr('stroke-width', 2)
       .attr('d', line);
     
@@ -141,8 +141,8 @@
       .attr('cx', d => xScale(d.date))
       .attr('cy', d => yScale(d.value))
       .attr('r', 3)
-      .attr('fill', '#1DB954')
-      .attr('stroke', 'white')
+      .attr('fill', '#E62815')
+      .attr('stroke', '#1C1D22')
       .attr('stroke-width', 1);
     
     // Y-axis
@@ -153,7 +153,7 @@
       .attr('transform', `translate(${margin.left},${margin.top})`)
       .call(yAxis)
       .style('font-size', '12px')
-      .style('color', '#333');
+      .style('color', '#AAABAD');
     
     // X-axis with date formatting
     const xAxis = d3.axisBottom(xScale)
@@ -164,7 +164,7 @@
       .attr('transform', `translate(${margin.left},${margin.top + innerHeight})`)
       .call(xAxis)
       .style('font-size', '12px')
-      .style('color', '#333');
+      .style('color', '#AAABAD');
   }
   
   function handleResize() {
@@ -222,7 +222,8 @@
   }
   
   :global(.y-axis line) {
-    stroke: #e0e0e0;
+    stroke: #606467;
+    opacity: 0.4;
   }
   
   :global(.x-axis path) {
@@ -230,6 +231,7 @@
   }
   
   :global(.x-axis line) {
-    stroke: #e0e0e0;
+    stroke: #606467;
+    opacity: 0.4;
   }
 </style>
