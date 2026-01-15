@@ -146,7 +146,7 @@
       .attr('stroke-width', 1);
     
     // Y-axis
-    const yAxis = d3.axisLeft(yScale);
+    const yAxis = d3.axisLeft(yScale).ticks(5, 'd');
     svg.selectAll('.y-axis').remove();
     svg.append('g')
       .attr('class', 'y-axis')
@@ -200,16 +200,16 @@
 <style>
   .line-graph-container {
     position: fixed;
-    top: 160px;
-    left: 0px;
-    width: 80%;
-    max-width: 1000px;
+    top: 80px;
+    left: calc(35% - 160px);
+    width: 65%;
+    max-width: 1100px;
     background: transparent;
     border-radius: 12px;
     box-shadow: none;
     padding: 0px;
     z-index: 50;
-    pointer-events: auto;
+    pointer-events: none;
   }
   
   :global(.line-graph-container svg) {

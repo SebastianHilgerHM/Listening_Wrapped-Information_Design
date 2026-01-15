@@ -16,6 +16,11 @@
   let animationId;
   let raycaster, mouse;
   
+  // Tooltip state
+  let tooltipData = null;
+  let tooltipPosition = { x: 0, y: 0 };
+  let dataPointsArray = []; // Store data points for raycasting
+  
   // Drag rotation state (horizontal spin only)
   let dragStartX = 0;
   let rotationY = 0;
@@ -93,50 +98,76 @@
     
     console.log('Updating data points with', $rawData.length, 'weeks');
     
-    // Clear existing points
+    // Clear existing points and array
     while (dataPointsGroup.children.length > 0) {
       dataPointsGroup.remove(dataPointsGroup.children[0]);
     }
-    
+    dataPointsArray = [];
     // Group data into 4-week chunks and aggregate
     const groupSize = 4;
     const groupedData = [];
     
     for (let i = 0; i < $rawData.length; i += groupSize) {
       const group = $rawData.slice(i, i + groupSize);
+      const firstWeek = group[0]; // Get first week for date reference
       let metricValue = 0;
+      let mostFittingSong = '';
+      let mostFittingArtist = '';
+      let totalPlays = 0;
       
       if (currentCategory === 'tempo') {
-        const values = group.map(week => {
-          if (currentMetric === 'average') return week.avgTempo;
-          else if (currentMetric === 'highest') return week.highestTempo;
-          else return week.lowestTempo;
+        const values = group.map((week, idx) => {
+          totalPlays += week.weekPlays || 0;
+          if (currentMetric === 'average') {
+            return { value: week.avgTempo, song: week.topSong, artist: week.topSongArtist, idx };
+          } else if (currentMetric === 'highest') {
+            return { value: week.highestTempo, song: week.highestTempoSong, artist: week.topSongArtist, idx };
+          } else {
+            return { value: week.lowestTempo, song: week.lowestTempoSong, artist: week.topSongArtist, idx };
+          }
         });
         
         if (currentMetric === 'average') {
-          metricValue = values.reduce((a, b) => a + b, 0) / values.length;
+          metricValue = values.reduce((a, b) => a + b.value, 0) / values.length;
         } else if (currentMetric === 'highest') {
-          metricValue = Math.max(...values);
+          const highestItem = values.reduce((max, curr) => curr.value > max.value ? curr : max);
+          metricValue = highestItem.value;
+          mostFittingSong = highestItem.song;
+          mostFittingArtist = highestItem.artist;
         } else {
-          metricValue = Math.min(...values);
+          const lowestItem = values.reduce((min, curr) => curr.value < min.value ? curr : min);
+          metricValue = lowestItem.value;
+          mostFittingSong = lowestItem.song;
+          mostFittingArtist = lowestItem.artist;
         }
       } else {
-        const values = group.map(week => {
-          if (currentMetric === 'average') return week.avgDanceability;
-          else if (currentMetric === 'highest') return week.highestDanceability;
-          else return week.lowestDanceability;
+        const values = group.map((week, idx) => {
+          totalPlays += week.weekPlays || 0;
+          if (currentMetric === 'average') {
+            return { value: week.avgDanceability, song: week.topSong, artist: week.topSongArtist, idx };
+          } else if (currentMetric === 'highest') {
+            return { value: week.highestDanceability, song: week.highestDanceabilitySong, artist: week.topSongArtist, idx };
+          } else {
+            return { value: week.lowestDanceability, song: week.lowestDanceabilitySong, artist: week.topSongArtist, idx };
+          }
         });
         
         if (currentMetric === 'average') {
-          metricValue = values.reduce((a, b) => a + b, 0) / values.length;
+          metricValue = values.reduce((a, b) => a + b.value, 0) / values.length;
         } else if (currentMetric === 'highest') {
-          metricValue = Math.max(...values);
+          const highestItem = values.reduce((max, curr) => curr.value > max.value ? curr : max);
+          metricValue = highestItem.value;
+          mostFittingSong = highestItem.song;
+          mostFittingArtist = highestItem.artist;
         } else {
-          metricValue = Math.min(...values);
+          const lowestItem = values.reduce((min, curr) => curr.value < min.value ? curr : min);
+          metricValue = lowestItem.value;
+          mostFittingSong = lowestItem.song;
+          mostFittingArtist = lowestItem.artist;
         }
       }
       
-      groupedData.push(metricValue);
+      groupedData.push({ metricValue, firstWeek, mostFittingSong, mostFittingArtist, totalPlays });
     }
     
     const count = groupedData.length;
@@ -144,15 +175,16 @@
     const positions = [];
     
     // Calculate min/max of actual data for dynamic normalization
-    const minValue = Math.min(...groupedData);
-    const maxValue = Math.max(...groupedData);
+    const minValue = Math.min(...groupedData.map(d => d.metricValue));
+    const maxValue = Math.max(...groupedData.map(d => d.metricValue));
     const dataRange = maxValue - minValue || 1; // Avoid division by zero
     
-    groupedData.forEach((metricValue, i) => {
+    groupedData.forEach((dataItem, i) => {
+      const metricValue = dataItem.metricValue;
       const angle = angleSlice * i - Math.PI / 2;
       
       if (!metricValue || isNaN(metricValue)) {
-        metricValue = 0;
+        return; // Skip invalid values
       }
       
       // Normalize based on actual data range, not fixed ranges
@@ -185,7 +217,16 @@
       });
       const sphere = new THREE.Mesh(geometry, material);
       sphere.position.set(x, y, z);
+      sphere.userData = {
+        metricValue: groupedData[i].metricValue,
+        date: groupedData[i].firstWeek?.weekStart ? new Date(groupedData[i].firstWeek.weekStart) : null,
+        song: groupedData[i].mostFittingSong,
+        artist: groupedData[i].mostFittingArtist,
+        totalPlays: groupedData[i].totalPlays,
+        index: i
+      };
       dataPointsGroup.add(sphere);
+      dataPointsArray.push(sphere);
       
       // Add point light for glow effect with very small radius
       const light = new THREE.PointLight(color, 0.8, 1.2);
@@ -396,6 +437,37 @@
         const intersects = raycaster.intersectObject(vinylGroup, true);
         
         renderer.domElement.style.cursor = intersects.length > 0 ? 'grab' : 'default';
+        
+        // Check for data point hover (only in early scroll range for 0% view)
+        if (currentScrollProgress < 0.5) {
+          const dataPointIntersects = raycaster.intersectObjects(dataPointsArray);
+          if (dataPointIntersects.length > 0) {
+            const point = dataPointIntersects[0].object;
+            const dateObj = point.userData.date;
+            const dateStr = dateObj ? dateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : 'N/A';
+            
+            // Format category string (e.g., "Lowest Tempo")
+            const metricStr = currentMetric.charAt(0).toUpperCase() + currentMetric.slice(1);
+            const categoryStr = currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1);
+            const categoryLabel = `${metricStr} ${categoryStr}`;
+            
+            tooltipData = {
+              date: dateStr,
+              category: categoryLabel,
+              value: point.userData.metricValue.toFixed(2),
+              song: point.userData.song,
+              artist: point.userData.artist,
+              totalPlays: point.userData.totalPlays,
+              isAverage: currentMetric === 'average'
+            };
+            tooltipPosition = { x: e.clientX + 15, y: e.clientY + 15 };
+          } else {
+            tooltipData = null;
+          }
+        } else {
+          tooltipData = null;
+        }
+        
         return;
       }
       
@@ -541,6 +613,19 @@
 
 <div class="vinyl-scene" bind:this={container}></div>
 
+{#if tooltipData && currentScrollProgress < 0.5}
+  <div class="tooltip" style="left: {tooltipPosition.x}px; top: {tooltipPosition.y}px;">
+    <div class="tooltip-date">{tooltipData.date}</div>
+    <div class="tooltip-category">{tooltipData.category}</div>
+    <div class="tooltip-value">{tooltipData.value}</div>
+    {#if !tooltipData.isAverage && tooltipData.song}
+      <div class="tooltip-song">{tooltipData.song}</div>
+      <div class="tooltip-artist">{tooltipData.artist}</div>
+    {/if}
+    <div class="tooltip-plays">{tooltipData.totalPlays} plays</div>
+  </div>
+{/if}
+
 <style>
   .vinyl-scene {
     width: 100vw;
@@ -550,5 +635,59 @@
     top: 0;
     left: 0;
     background: #1C1D22;
+  }
+  
+  .tooltip {
+    position: fixed;
+    background: rgba(49, 59, 68, 0.95);
+    border: 1px solid #E62815;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    z-index: 200;
+    pointer-events: none;
+    backdrop-filter: blur(10px);
+    max-width: 200px;
+  }
+  
+  .tooltip-date {
+    color: #AAABAD;
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+  
+  .tooltip-category {
+    color: #AAABAD;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  
+  .tooltip-value {
+    color: #E62815;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  
+  .tooltip-song {
+    color: #E0E0E0;
+    font-size: 12px;
+    margin-bottom: 2px;
+    font-weight: 500;
+  }
+  
+  .tooltip-artist {
+    color: #AAABAD;
+    font-size: 11px;
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+  
+  .tooltip-plays {
+    color: #606467;
+    font-size: 11px;
+    border-top: 1px solid rgba(230, 40, 21, 0.2);
+    padding-top: 4px;
   }
 </style>

@@ -60,10 +60,10 @@
 <style>
   .right-panel {
     position: fixed;
-    right: 24px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 180px;
+    right: 0;
+    top: 80px;
+    transform: none;
+    width: 144px;
     padding: 20px;
     background: rgba(49, 59, 68, 0.95);
     backdrop-filter: blur(10px);
@@ -139,18 +139,20 @@
 
   .category-toggle {
     display: flex;
-    background: rgba(170, 171, 173, 0.1);
+    flex-direction: column;
+    gap: 6px;
+    background: transparent;
     border-radius: 10px;
-    padding: 4px;
+    padding: 0;
   }
 
   .category-btn {
-    flex: 1;
+    width: 100%;
     padding: 10px 12px;
     font-size: 13px;
     font-weight: 500;
     background: transparent;
-    border: none;
+    border: 1px solid rgba(170, 171, 173, 0.3);
     border-radius: 8px;
     cursor: pointer;
     color: #AAABAD;
@@ -168,6 +170,7 @@
   }
 
   .panel-info {
+    display: none;
     padding-top: 16px;
     border-top: 1px solid rgba(170, 171, 173, 0.2);
   }
