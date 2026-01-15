@@ -1,5 +1,5 @@
 <script>
-  import { selectedMetric, selectedCategory } from '../stores/uiStore.js';
+  import { selectedMetric, selectedCategory, hoveredPointData, scrollProgress } from '../stores/uiStore.js';
   
   const metrics = [
     { id: 'highest', label: 'Highest' },
@@ -13,9 +13,9 @@
   ];
 </script>
 
-<aside class="right-panel">
+<div class="right-panel-wrapper">
+  <aside class="right-panel">
   <div class="panel-section">
-    <h3 class="section-title">Value Type</h3>
     <div class="metric-buttons">
       {#each metrics as metric}
         <button
@@ -31,13 +31,13 @@
   </div>
   
   <div class="panel-section">
-    <h3 class="section-title">Data Category</h3>
     <div class="category-toggle">
       {#each categories as category}
         <button
           class="category-btn"
           class:active={$selectedCategory === category.id}
           on:click={() => selectedCategory.set(category.id)}
+          title={category.label}
         >
           {category.label}
         </button>
@@ -55,9 +55,57 @@
       {categories.find(c => c.id === $selectedCategory)?.unit}
     </p>
   </div>
-</aside>
+  </aside>
+
+  {#if $hoveredPointData}
+  <aside class="hovered-info-container">
+    <p class="info-label">Hovered Point</p>
+    <p class="hovered-date">{$hoveredPointData.date}</p>
+    <p class="hovered-category">{$hoveredPointData.category}</p>
+    <p class="hovered-value">{$hoveredPointData.value}</p>
+    {#if $hoveredPointData.song}
+      <p class="hovered-song">{$hoveredPointData.song}</p>
+    {/if}
+    {#if $hoveredPointData.artist}
+      <p class="hovered-artist">{$hoveredPointData.artist}</p>
+    {/if}
+    {#if $hoveredPointData.isMissing}
+      <p class="hovered-missing">No data (estimated)</p>
+    {/if}
+  </aside>
+{/if}
+</div>
 
 <style>
+  .right-panel-wrapper {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 16px;
+    z-index: 100;
+  }
+
+  .hovered-info-container {
+    width: 144px;
+    padding: 16px 20px;
+    background: rgba(49, 59, 68, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(230, 40, 21, 0.3);
+  }
+
+  .hovered-missing {
+    font-size: 10px;
+    font-style: italic;
+    color: #888;
+    margin: 4px 0 0 0;
+  }
+
   .right-panel {
     flex-shrink: 0;
     width: 144px;
@@ -188,6 +236,65 @@
     font-size: 12px;
     color: #606467;
     margin: 4px 0 0 0;
+  }
+
+  .hovered-info-container {
+    flex-shrink: 0;
+    width: 144px;
+    padding: 16px 20px;
+    margin-top: 16px;
+    background: rgba(49, 59, 68, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(230, 40, 21, 0.3);
+  }
+
+  .hovered-info {
+    padding-top: 16px;
+    border-top: 1px solid rgba(230, 40, 21, 0.3);
+  }
+
+  .hovered-date {
+    font-size: 11px;
+    color: #AAABAD;
+    margin: 0 0 6px 0;
+  }
+
+  .hovered-category {
+    font-size: 12px;
+    font-weight: 500;
+    color: #AAABAD;
+    margin: 0 0 4px 0;
+  }
+
+  .hovered-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #E62815;
+    margin: 0 0 8px 0;
+  }
+
+  .hovered-song {
+    font-size: 12px;
+    font-weight: 500;
+    color: #E0E0E0;
+    margin: 0 0 2px 0;
+  }
+
+  .hovered-artist {
+    font-size: 11px;
+    font-style: italic;
+    color: #AAABAD;
+    margin: 0 0 6px 0;
+  }
+
+  .hovered-plays {
+    font-size: 11px;
+    color: #606467;
+    margin: 0;
+    padding-top: 4px;
+    border-top: 1px solid rgba(230, 40, 21, 0.2);
   }
 
   /* Mobile: Bottom bar */

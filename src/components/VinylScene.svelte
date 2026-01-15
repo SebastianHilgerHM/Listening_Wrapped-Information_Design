@@ -5,7 +5,7 @@
   import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
   import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
   import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
-  import { scrollProgress, isDragging, selectedMetric, selectedCategory } from '../stores/uiStore.js';
+  import { scrollProgress, isDragging, selectedMetric, selectedCategory, hoveredPointData } from '../stores/uiStore.js';
   import { rawData } from '../stores/dataStore.js';
   
   let container;

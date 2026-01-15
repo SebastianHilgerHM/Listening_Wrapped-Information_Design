@@ -1,8 +1,9 @@
 <script>
   import { onMount } from 'svelte';
+  import { fly, fade } from 'svelte/transition';
   import * as d3 from 'd3';
   import { rawData } from '../stores/dataStore.js';
-  import { selectedMetric, selectedCategory, selectedTimeframe, scrollProgress } from '../stores/uiStore.js';
+  import { selectedMetric, selectedCategory, selectedTimeframe, scrollProgress, hoveredPointData, isFlat } from '../stores/uiStore.js';
   
   let container;
   let svg;
@@ -60,18 +61,40 @@
     // Extract metric values
     const rawValues = filtered.map((week, i) => {
       let value = 0;
+      let song = '';
+      let artist = '';
       
       if (currentCategory === 'tempo') {
-        if (currentMetric === 'average') value = week.avgTempo;
-        else if (currentMetric === 'highest') value = week.highestTempo;
-        else value = week.lowestTempo;
+        if (currentMetric === 'average') {
+          value = week.avgTempo;
+          song = week.topSong;
+          artist = week.topSongArtist;
+        }
+        else if (currentMetric === 'highest') {
+          value = week.highestTempo;
+          song = week.highestTempoSong;
+        }
+        else {
+          value = week.lowestTempo;
+          song = week.lowestTempoSong;
+        }
       } else {
-        if (currentMetric === 'average') value = week.avgDanceability;
-        else if (currentMetric === 'highest') value = week.highestDanceability;
-        else value = week.lowestDanceability;
+        if (currentMetric === 'average') {
+          value = week.avgDanceability;
+          song = week.topSong;
+          artist = week.topSongArtist;
+        }
+        else if (currentMetric === 'highest') {
+          value = week.highestDanceability;
+          song = week.highestDanceabilitySong;
+        }
+        else {
+          value = week.lowestDanceability;
+          song = week.lowestDanceabilitySong;
+        }
       }
       
-      return { index: i, value: value || 0, date: new Date(week.weekStart), isMissing: !value || value === 0 };
+      return { index: i, value: value || 0, date: new Date(week.weekStart), isMissing: !value || value === 0, song, artist };
     });
     
     // Calculate average of valid values
@@ -172,7 +195,29 @@
       .attr('fill', d => d.isMissing ? '#606467' : '#E62815')
       .attr('stroke', '#1C1D22')
       .attr('stroke-width', 1)
-      .attr('opacity', d => d.isMissing ? 0.6 : 1);
+      .attr('opacity', d => d.isMissing ? 0.6 : 1)
+      .style('pointer-events', 'all')
+      .style('cursor', 'pointer')
+      .on('mouseenter', function(event, d) {
+        if (currentScrollProgress < 0.8) return;
+        d3.select(this).attr('r', 5);
+        const dateStr = d.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        const metricStr = currentMetric.charAt(0).toUpperCase() + currentMetric.slice(1);
+        const categoryStr = currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1);
+        hoveredPointData.set({
+          date: dateStr,
+          category: `${metricStr} ${categoryStr}`,
+          value: d.value.toFixed(2),
+          isMissing: d.isMissing,
+          song: d.song,
+          artist: d.artist
+        });
+      })
+      .on('mouseleave', function() {
+        if (currentScrollProgress < 0.8) return;
+        d3.select(this).attr('r', 3);
+        hoveredPointData.set(null);
+      });
     
     // Y-axis - use appropriate format based on category
     const yAxis = currentCategory === 'tempo' 
@@ -186,8 +231,16 @@
       .style('font-size', '12px')
       .style('color', '#AAABAD');
     
-    // X-axis with date formatting
+    // X-axis with date formatting - exactly 5 ticks
+    const minDate = d3.min(data, d => d.date);
+    const maxDate = d3.max(data, d => d.date);
+    const tickValues = d3.range(5).map((i) => {
+      const t = i / (5 - 1); // 0, 0.25, 0.5, 0.75, 1
+      return new Date(minDate.getTime() + t * (maxDate.getTime() - minDate.getTime()));
+    });
+    
     const xAxis = d3.axisBottom(xScale)
+      .tickValues(tickValues)
       .tickFormat(d3.timeFormat('%b %d, %Y'));
     svg.selectAll('.x-axis').remove();
     svg.append('g')
@@ -229,7 +282,13 @@
   });
 </script>
 
-<div class="line-graph-container" bind:this={container} style="opacity: {Math.max(0, (currentScrollProgress - 0.8) / 0.2)}; transition: opacity 0.3s ease;">
+<div 
+  class="line-graph-container" 
+  bind:this={container}
+  class:visible={$isFlat}
+  in:fly={{ y: -20, duration: 300, delay: 200 }}
+  out:fade={{ duration: 200 }}
+>
   <!-- D3 chart renders here -->
 </div>
 
@@ -239,12 +298,19 @@
     height: fit-content;
     flex-shrink: 0;
     margin-left: auto;
-    margin-right: 20px;
+    margin-right: calc(144px + 20px);
     background: transparent;
     border-radius: 0px;
     box-shadow: none;
     padding: 0px;
+    opacity: 0;
     pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .line-graph-container.visible {
+    opacity: 1;
+    pointer-events: auto;
   }
   
   :global(.line-graph-container svg) {

@@ -21,6 +21,9 @@ export const isDragging = writable(false);
 // Hovered data point index (for tooltips)
 export const hoveredIndex = writable(null);
 
+// Hovered data point data (for info panel)
+export const hoveredPointData = writable(null);
+
 /**
  * Number of weeks to show based on timeframe selection
  */
