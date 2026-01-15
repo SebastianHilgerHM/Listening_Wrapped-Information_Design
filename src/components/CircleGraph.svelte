@@ -32,15 +32,50 @@
     const count = $rawData.length;
     const angleSlice = (Math.PI * 2) / count;
     
-    return $rawData.map((week, i) => {
-      const angle = angleSlice * i - Math.PI / 2; // Start from top
-      const metricValue = currentCategory === 'tempo' 
-        ? week.tempo 
-        : week.danceability;
+    // First pass: extract raw values and identify missing ones
+    const rawPoints = $rawData.map((week, i) => {
+      let metricValue = 0;
       
-      // Normalize value to radius (0-1 range assumed for danceability, 0-200 for tempo)
-      const maxValue = currentCategory === 'tempo' ? 200 : 1;
-      const normalizedValue = Math.max(0, Math.min(1, metricValue / maxValue));
+      if (currentCategory === 'tempo') {
+        if (currentMetric === 'average') metricValue = week.avgTempo;
+        else if (currentMetric === 'highest') metricValue = week.highestTempo;
+        else metricValue = week.lowestTempo;
+      } else {
+        if (currentMetric === 'average') metricValue = week.avgDanceability;
+        else if (currentMetric === 'highest') metricValue = week.highestDanceability;
+        else metricValue = week.lowestDanceability;
+      }
+      
+      return {
+        index: i,
+        value: metricValue || 0,
+        isMissing: !metricValue || metricValue === 0
+      };
+    });
+    
+    // Calculate average of valid values
+    const validValues = rawPoints.filter(d => !d.isMissing).map(d => d.value);
+    const average = validValues.length > 0 ? validValues.reduce((a, b) => a + b, 0) / validValues.length : 0;
+    
+    // Second pass: replace missing values and calculate positions
+    return rawPoints.map((point, i) => {
+      const angle = angleSlice * i - Math.PI / 2; // Start from top
+      
+      let metricValue = point.value;
+      let isMissing = point.isMissing;
+      
+      if (isMissing) {
+        // Add randomness: ±18 BPM for tempo, ±0.05 for danceability
+        const randomOffset = currentCategory === 'tempo' 
+          ? (Math.random() - 0.5) * 36
+          : (Math.random() - 0.5) * 0.1;
+        metricValue = average + randomOffset;
+      }
+      
+      // Fixed scale: 50-230 for tempo, 0-1 for danceability
+      const minValue = currentCategory === 'tempo' ? 50 : 0;
+      const maxValue = currentCategory === 'tempo' ? 230 : 1;
+      const normalizedValue = Math.max(0, Math.min(1, (metricValue - minValue) / (maxValue - minValue)));
       const r = radius * 0.3 + (radius * 0.6) * normalizedValue; // Inner to outer radius range
       
       return {
@@ -49,7 +84,8 @@
         y: centerY + r * Math.sin(angle),
         value: metricValue,
         r,
-        week: i + 1
+        week: i + 1,
+        isMissing
       };
     });
   }
@@ -94,7 +130,10 @@
     };
   });
   
-  function getColor(i) {
+  function getColor(i, isMissing = false) {
+    if (isMissing) {
+      return '#606467'; // Gray for missing values
+    }
     const hue = (i / dataPoints.length) * 360;
     return `hsl(${hue}, 70%, 50%)`;
   }
@@ -125,15 +164,15 @@
           cx={point.x}
           cy={point.y}
           r="3"
-          fill={getColor(i)}
-          opacity="0.7"
+          fill={getColor(i, point.isMissing)}
+          opacity={point.isMissing ? 0.6 : 0.7}
           on:mouseenter={(e) => {
             e.target.setAttribute('r', '5');
             e.target.setAttribute('opacity', '1');
           }}
           on:mouseleave={(e) => {
             e.target.setAttribute('r', '3');
-            e.target.setAttribute('opacity', '0.7');
+            e.target.setAttribute('opacity', point.isMissing ? '0.6' : '0.7');
           }}
         />
       {/each}
