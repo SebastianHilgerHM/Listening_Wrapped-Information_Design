@@ -34,6 +34,11 @@
     if (svg) updateChart();
   });
   
+  // Update chart when rawData changes
+  $: if ($rawData && $rawData.length > 0 && svg) {
+    updateChart();
+  }
+  
   function getFilteredData() {
     if (!$rawData || $rawData.length === 0) return [];
     
@@ -169,8 +174,10 @@
       .attr('stroke-width', 1)
       .attr('opacity', d => d.isMissing ? 0.6 : 1);
     
-    // Y-axis
-    const yAxis = d3.axisLeft(yScale).ticks(5, 'd');
+    // Y-axis - use appropriate format based on category
+    const yAxis = currentCategory === 'tempo' 
+      ? d3.axisLeft(yScale).ticks(5)
+      : d3.axisLeft(yScale).ticks(5).tickFormat(d3.format('.1f'));
     svg.selectAll('.y-axis').remove();
     svg.append('g')
       .attr('class', 'y-axis')

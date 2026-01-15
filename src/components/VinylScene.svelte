@@ -540,12 +540,10 @@
         // Apply same Y rotation to data points so they spin with the vinyl
         dataPointsGroup.rotation.y = rotationY;
         
-        // Fade out data points as you scroll (very fast fadeout)
-        dataPointsGroup.traverse((child) => {
-          if (child.material) {
-            child.material.opacity = Math.max(0, 1 - currentScrollProgress * 4);
-          }
-        });
+        // Move data points down, back, and left as you scroll (instead of fading out)
+        dataPointsGroup.position.x = -currentScrollProgress * 3; // Move left by 3 units at full scroll
+        dataPointsGroup.position.y = -currentScrollProgress * 5; // Move down by 5 units at full scroll
+        dataPointsGroup.position.z = -currentScrollProgress * 3; // Move back by 3 units at full scroll
         
         // Keep model static - only camera moves
         vinylGroup.scale.set(30, 30, 30);
