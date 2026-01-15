@@ -53,7 +53,7 @@
     }
     
     // Extract metric values
-    return filtered.map((week, i) => {
+    const rawValues = filtered.map((week, i) => {
       let value = 0;
       
       if (currentCategory === 'tempo') {
@@ -66,7 +66,23 @@
         else value = week.lowestDanceability;
       }
       
-      return { index: i, value, date: new Date(week.weekStart) };
+      return { index: i, value: value || 0, date: new Date(week.weekStart), isMissing: !value || value === 0 };
+    });
+    
+    // Calculate average of valid values
+    const validValues = rawValues.filter(d => !d.isMissing).map(d => d.value);
+    const average = validValues.length > 0 ? validValues.reduce((a, b) => a + b, 0) / validValues.length : 0;
+    
+    // Replace missing values with average + randomness
+    return rawValues.map((d, i) => {
+      if (d.isMissing) {
+        // Add randomness: ±10% of the range for tempo, ±0.05 for danceability
+        const randomOffset = currentCategory === 'tempo' 
+          ? (Math.random() - 0.5) * 36 // ±18 BPM
+          : (Math.random() - 0.5) * 0.1; // ±0.05 danceability
+        return { ...d, value: average + randomOffset, isMissing: true };
+      }
+      return d;
     });
   }
   
@@ -84,12 +100,19 @@
       .domain([d3.min(data, d => d.date), d3.max(data, d => d.date)])
       .range([0, innerWidth]);
     
-    const yMin = Math.min(...data.map(d => d.value));
-    const yMax = Math.max(...data.map(d => d.value));
-    const yRange = yMax - yMin || 1;
+    // Fixed Y-axis scales based on category
+    let yMin, yMax;
+    if (currentCategory === 'tempo') {
+      yMin = 50;
+      yMax = 230;
+    } else {
+      // danceability
+      yMin = 0;
+      yMax = 1;
+    }
     
     const yScale = d3.scaleLinear()
-      .domain([yMin - yRange * 0.1, yMax + yRange * 0.1])
+      .domain([yMin, yMax])
       .range([innerHeight, 0]);
     
     const line = d3.line()
@@ -141,9 +164,10 @@
       .attr('cx', d => xScale(d.date))
       .attr('cy', d => yScale(d.value))
       .attr('r', 3)
-      .attr('fill', '#E62815')
+      .attr('fill', d => d.isMissing ? '#606467' : '#E62815')
       .attr('stroke', '#1C1D22')
-      .attr('stroke-width', 1);
+      .attr('stroke-width', 1)
+      .attr('opacity', d => d.isMissing ? 0.6 : 1);
     
     // Y-axis
     const yAxis = d3.axisLeft(yScale).ticks(5, 'd');
