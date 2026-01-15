@@ -35,14 +35,12 @@
 
 <style>
   .timeframe-container {
-    position: fixed;
-    top: 80px;
-    left: 24px;
-    z-index: 100;
+    flex-shrink: 0;
   }
 
   .timeframe-buttons {
     display: flex;
+    flex-direction: column;
     gap: 4px;
     padding: 4px;
     background: rgba(49, 59, 68, 0.95);

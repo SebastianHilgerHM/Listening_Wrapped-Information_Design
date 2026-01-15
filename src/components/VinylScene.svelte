@@ -179,6 +179,9 @@
     const maxValue = Math.max(...groupedData.map(d => d.metricValue));
     const dataRange = maxValue - minValue || 1; // Avoid division by zero
     
+    // Reuse single geometry for all spheres (optimization)
+    const sharedGeometry = new THREE.SphereGeometry(0.06, 16, 16);
+    
     groupedData.forEach((dataItem, i) => {
       const metricValue = dataItem.metricValue;
       const angle = angleSlice * i - Math.PI / 2;
@@ -204,8 +207,7 @@
       
       positions.push(x, y, z);
       
-      // Create point sphere
-      const geometry = new THREE.SphereGeometry(0.06, 16, 16);
+      // Create point sphere - reuse shared geometry, only material is unique per point
       const color = new THREE.Color().setHSL(i / count, 0.7, 0.5);
       const material = new THREE.MeshStandardMaterial({
         color: color,
@@ -215,7 +217,7 @@
         roughness: 0.3,
         transparent: true,
       });
-      const sphere = new THREE.Mesh(geometry, material);
+      const sphere = new THREE.Mesh(sharedGeometry, material);
       sphere.position.set(x, y, z);
       sphere.userData = {
         metricValue: groupedData[i].metricValue,
@@ -390,12 +392,10 @@
     dataPointsGroup.rotation.x = THREE.MathUtils.degToRad(30);
     scene.add(dataPointsGroup);
     
-    // Wait a tick for data to be available
-    setTimeout(() => {
-      if ($rawData && $rawData.length > 0) {
-        updateDataPoints();
-      }
-    }, 100);    
+    // Update data points immediately if data is available
+    if ($rawData && $rawData.length > 0) {
+      updateDataPoints();
+    }
     // Handle resize
     const handleResize = () => {
       const newWidth = window.innerWidth;

@@ -7,7 +7,7 @@
   let container;
   let svg;
   let width = 800;
-  let height = 300;
+  let height = 200;
   const margin = { top: 20, right: 30, bottom: 30, left: 60 };
   
   let currentMetric = 'average';
@@ -109,7 +109,7 @@
     let yMin, yMax;
     if (currentCategory === 'tempo') {
       yMin = 50;
-      yMax = 230;
+      yMax = 250;
     } else {
       // danceability
       yMin = 0;
@@ -201,11 +201,16 @@
   function handleResize() {
     if (!container) return;
     width = container.offsetWidth;
+    height = container.offsetHeight;
+    if (svg) {
+      svg.attr('width', width).attr('height', height);
+    }
     updateChart();
   }
   
   onMount(() => {
     width = container.offsetWidth;
+    height = container.offsetHeight || 320;
     
     svg = d3.select(container).append('svg')
       .attr('width', width)
@@ -230,22 +235,21 @@
 
 <style>
   .line-graph-container {
-    position: fixed;
-    top: 30vh;
-    left: calc(35% - 160px);
-    width: 65%;
-    max-width: 1100px;
+    width: 60vw;
+    height: fit-content;
+    flex-shrink: 0;
+    margin-left: auto;
+    margin-right: 20px;
     background: transparent;
-    border-radius: 12px;
+    border-radius: 0px;
     box-shadow: none;
     padding: 0px;
-    z-index: 50;
     pointer-events: none;
   }
   
   :global(.line-graph-container svg) {
+    display: block;
     width: 100%;
-    height: 80vh;
   }
   
   :global(.y-axis path) {

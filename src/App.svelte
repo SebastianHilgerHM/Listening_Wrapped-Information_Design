@@ -41,19 +41,17 @@
   <!-- Navbar -->
   <Navbar />
   
-  <!-- Timeframe Buttons (visible in flat view) -->
-  <TimeframeButtons />
-  
-  <!-- Line Graph (overlay on vinyl) -->
-  <LineGraph />
+  <!-- Top Controls Row (TimeframeButtons, LineGraph, RightPanel) -->
+  <div class="controls-row">
+    <TimeframeButtons />
+    <LineGraph />
+    <RightPanel />
+  </div>
   
   <!-- Hero Section Hint -->
   <section class="hero">
     <p class="hero-hint">Drag to rotate • Scroll to explore</p>
   </section>
-  
-  <!-- Right Panel -->
-  <RightPanel />
 </main>
 
 <style>
@@ -94,5 +92,22 @@
   /* Vinyl Container (removed, now fullscreen) */
   .vinyl-container {
     display: none;
+  }
+  
+  /* Controls Row - flexbox layout for top elements */
+  .controls-row {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    z-index: 100;
+    pointer-events: none;
+  }
+  
+  .controls-row > :global(*) {
+    pointer-events: auto;
   }
 </style>

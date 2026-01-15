@@ -3,8 +3,8 @@
   
   const metrics = [
     { id: 'highest', label: 'Highest' },
-    { id: 'lowest', label: 'Lowest' },
-    { id: 'average', label: 'Average' }
+    { id: 'average', label: 'Average' },
+    { id: 'lowest', label: 'Lowest' }
   ];
   
   const categories = [
@@ -59,17 +59,13 @@
 
 <style>
   .right-panel {
-    position: fixed;
-    right: 0;
-    top: 80px;
-    transform: none;
+    flex-shrink: 0;
     width: 144px;
     padding: 20px;
     background: rgba(49, 59, 68, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 16px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
-    z-index: 100;
     display: flex;
     flex-direction: column;
     gap: 24px;
