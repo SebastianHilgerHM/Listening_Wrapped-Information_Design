@@ -530,17 +530,12 @@
       animationId = requestAnimationFrame(animate);
       
       if (vinylGroup) {
-        // Smooth rotation interpolation
+        // Smooth rotation interpolation for drag spin only
         rotationY += (targetRotationY - rotationY) * 0.1;
         
-        // Base tilt angle (-70 degrees = -1.22 radians at start, 0 at flat)
-        // Negative = tilts towards camera
-        const baseTilt = -1.22;
-        const currentTilt = baseTilt * (1 - currentScrollProgress);
-        
-        // Apply rotations: X for scroll tilt, Z for drag spin
-        vinylGroup.rotation.x = currentTilt;
-        vinylGroup.rotation.z = rotationY;
+        // Model is static - tilted toward bottom of screen, only drag spin changes
+        vinylGroup.rotation.x = -1.22; // Fixed tilt (-70 degrees, angled toward bottom)
+        vinylGroup.rotation.z = rotationY; // Drag spin only
         
         // Apply same Y rotation to data points so they spin with the vinyl
         dataPointsGroup.rotation.y = rotationY;
@@ -552,21 +547,25 @@
           }
         });
         
-        // Continuous transition: move left as you scroll
-        const scale = 2.5 - currentScrollProgress * 1.5; // 2.5 to 1
-        const posX = -currentScrollProgress * 4.5; // 0 to -4.5, pushing it further left to show only right 50%
-        
-        vinylGroup.scale.set(12 * scale, 12 * scale, 12 * scale);
-        vinylGroup.position.x = posX;
+        // Keep model static - only camera moves
+        vinylGroup.scale.set(30, 30, 30);
+        vinylGroup.position.x = 0;
         vinylGroup.position.y = -0.3;
         vinylGroup.position.z = -1;
         
-        // Move camera closer as you scroll (8 to 3, making model appear bigger but not too extreme)
-        const cameraZ = 8 - currentScrollProgress * 5;
-        // Move camera slightly left but not as much as model (0 to -1)
-        const cameraX = -currentScrollProgress * 1;
-        camera.position.z = cameraZ;
-        camera.position.x = cameraX;
+        // Camera handles all scroll-based movement
+        // X: 0 to 5 (move right)
+        // Y: 0 to 5 (move up)
+        // Z: 8 to 5 (move forward/closer)
+        const cameraX = currentScrollProgress * 8;
+        const cameraY = currentScrollProgress * 8;
+        const cameraZ = 8 - currentScrollProgress * 4.5;
+        camera.position.set(cameraX, cameraY, cameraZ);
+        
+        // Tilt camera down as we scroll (0 to -60 degrees looking down)
+        camera.rotation.x = -currentScrollProgress * 1.05; // ~60 degrees in radians
+        camera.rotation.y = 0;
+        camera.rotation.z = 0;
       }
       
       composer.render();

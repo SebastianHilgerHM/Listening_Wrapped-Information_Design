@@ -200,7 +200,7 @@
 <style>
   .line-graph-container {
     position: fixed;
-    top: 80px;
+    top: 30vh;
     left: calc(35% - 160px);
     width: 65%;
     max-width: 1100px;
@@ -214,7 +214,7 @@
   
   :global(.line-graph-container svg) {
     width: 100%;
-    height: auto;
+    height: 80vh;
   }
   
   :global(.y-axis path) {
