@@ -3,7 +3,7 @@
   import { fly, fade } from 'svelte/transition';
   import * as d3 from 'd3';
   import { rawData } from '../stores/dataStore.js';
-  import { selectedMetric, selectedCategory, selectedTimeframe, scrollProgress, hoveredPointData, isFlat } from '../stores/uiStore.js';
+  import { selectedMetric, selectedCategory, selectedTimeframe, scrollProgress, hoveredPointData, isFlat, currentTrack } from '../stores/uiStore.js';
   
   let container;
   let svg;
@@ -217,6 +217,14 @@
         if (currentScrollProgress < 0.8) return;
         d3.select(this).attr('r', 3);
         hoveredPointData.set(null);
+      })
+      .on('click', function(event, d) {
+        if (d.song) {
+          currentTrack.set({
+            song: d.song,
+            artist: d.artist || ''
+          });
+        }
       });
     
     // Y-axis - use appropriate format based on category
@@ -297,8 +305,6 @@
     width: 60vw;
     height: fit-content;
     flex-shrink: 0;
-    margin-left: auto;
-    margin-right: calc(144px + 20px);
     background: transparent;
     border-radius: 0px;
     box-shadow: none;

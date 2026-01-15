@@ -75,3 +75,8 @@ export const uiState = derived(
     isFlat: $flat
   })
 );
+// Music player state
+export const currentTrack = writable(null); // { song: string, artist: string, uri?: string }
+export const isPlaying = writable(false);
+export const currentTime = writable(0); // in seconds
+export const duration = writable(0); // in seconds

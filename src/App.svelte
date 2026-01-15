@@ -8,6 +8,7 @@
   import TimeframeButtons from './components/TimeframeButtons.svelte';
   import VinylScene from './components/VinylScene.svelte';
   import LineGraph from './components/LineGraph.svelte';
+  import MusicPlayer from './components/MusicPlayer.svelte';
   import { scrollProgress as scrollProgressStore } from './stores/uiStore.js';
   
   let scrollY = 0;
@@ -41,10 +42,13 @@
   <!-- Navbar -->
   <Navbar />
   
-  <!-- Top Controls Row (TimeframeButtons, LineGraph, RightPanel) -->
+  <!-- Top Controls Row (TimeframeButtons, LineGraph+MusicPlayer, RightPanel) -->
   <div class="controls-row">
     <TimeframeButtons />
-    <LineGraph />
+    <div class="graph-player-column">
+      <LineGraph />
+      <MusicPlayer />
+    </div>
     <RightPanel />
   </div>
   
@@ -109,5 +113,15 @@
   
   .controls-row > :global(*) {
     pointer-events: auto;
+  }
+  
+  /* Graph + Player Column */
+  .graph-player-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-left: auto;
+    margin-right: 164px;
+    flex-shrink: 0;
   }
 </style>
