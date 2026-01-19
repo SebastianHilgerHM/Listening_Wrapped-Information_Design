@@ -18,6 +18,13 @@ export const timelineOffset = writable(0);
 // Is user currently dragging the vinyl/timeline
 export const isDragging = writable(false);
 
+// Time window offset in weeks (shifts the viewing window when spinning vinyl in flat view)
+// Positive values shift forward in time, negative values shift backward
+export const timeWindowOffset = writable(0);
+
+// Vinyl rotation value (for tracking spin in flat view)
+export const vinylRotationValue = writable(0);
+
 // Hovered data point index (for tooltips)
 export const hoveredIndex = writable(null);
 

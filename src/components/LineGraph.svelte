@@ -3,7 +3,7 @@
   import { fly, fade } from 'svelte/transition';
   import * as d3 from 'd3';
   import { rawData } from '../stores/dataStore.js';
-  import { selectedMetric, selectedCategory, selectedTimeframe, scrollProgress, hoveredPointData, isFlat, currentTrack } from '../stores/uiStore.js';
+  import { selectedMetric, selectedCategory, selectedTimeframe, scrollProgress, hoveredPointData, isFlat, currentTrack, timeWindowOffset } from '../stores/uiStore.js';
   
   let container;
   let svg;
@@ -15,6 +15,7 @@
   let currentCategory = 'tempo';
   let currentTimeframe = 'all';
   let currentScrollProgress = 0;
+  let currentTimeWindowOffset = 0;
   
   const unsubscribeScroll = scrollProgress.subscribe(value => {
     currentScrollProgress = value;
@@ -32,9 +33,16 @@
   
   const unsubscribeTimeframe = selectedTimeframe.subscribe(value => {
     currentTimeframe = value;
+    // Reset time window offset when changing timeframe
+    timeWindowOffset.set(0);
     if (svg) updateChart();
   });
-  
+
+  const unsubscribeTimeWindowOffset = timeWindowOffset.subscribe(value => {
+    currentTimeWindowOffset = value;
+    if (svg && currentTimeframe !== 'all') updateChart();
+  });
+
   // Update chart when rawData changes
   $: if ($rawData && $rawData.length > 0 && svg) {
     updateChart();
@@ -45,7 +53,7 @@
     
     let filtered = $rawData;
     
-    // Filter by timeframe
+    // Filter by timeframe with optional offset
     if (currentTimeframe !== 'all') {
       const weeks = {
         '1w': 1,
@@ -55,7 +63,28 @@
         '1y': 52
       };
       const weekCount = weeks[currentTimeframe] || 52;
-      filtered = filtered.slice(-weekCount);
+      const totalWeeks = $rawData.length;
+      
+      // Calculate the offset-adjusted start and end indices
+      // currentTimeWindowOffset shifts the window (positive = forward in time)
+      const offsetWeeks = Math.round(currentTimeWindowOffset);
+      
+      // Default end is at the end of data (most recent)
+      // With offset, we shift the window
+      let endIndex = totalWeeks - offsetWeeks;
+      let startIndex = endIndex - weekCount;
+      
+      // Clamp to valid range
+      if (startIndex < 0) {
+        startIndex = 0;
+        endIndex = Math.min(weekCount, totalWeeks);
+      }
+      if (endIndex > totalWeeks) {
+        endIndex = totalWeeks;
+        startIndex = Math.max(0, endIndex - weekCount);
+      }
+      
+      filtered = $rawData.slice(startIndex, endIndex);
     }
     
     // Extract metric values
@@ -286,6 +315,7 @@
       unsubscribeMetric();
       unsubscribeCategory();
       unsubscribeTimeframe();
+      unsubscribeTimeWindowOffset();
     };
   });
 </script>
