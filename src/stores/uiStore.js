@@ -46,7 +46,7 @@ export const isFlat = derived(scrollProgress, ($progress) => $progress > 0.9);
 
 /**
  * Vinyl rotation angle in degrees based on scroll
- * Starts at 20° (tilted toward viewer), ends at 90° (edge-on)
+ * Starts at 20� (tilted toward viewer), ends at 90� (edge-on)
  */
 export const vinylRotation = derived(scrollProgress, ($progress) => {
   return 20 + ($progress * 70);
@@ -72,11 +72,12 @@ export const uiState = derived(
     category: $category,
     timeframe: $timeframe,
     scroll: $scroll,
-    isFlat: $flat
+    isFlat: $flat 
   })
 );
+
 // Music player state
-export const currentTrack = writable(null); // { song: string, artist: string, uri?: string }
+export const currentTrack = writable(null);
 export const isPlaying = writable(false);
-export const currentTime = writable(0); // in seconds
-export const duration = writable(0); // in seconds
+export const currentTime = writable(0);
+export const duration = writable(0);

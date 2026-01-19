@@ -8,12 +8,14 @@
   function togglePlayPause() {
     if (!$currentTrack) return;
     
-    if (audioElement.paused) {
-      audioElement.play().catch(err => console.error('Playback error:', err));
-      isPlaying.set(true);
-    } else {
-      audioElement.pause();
-      isPlaying.set(false);
+    if (audioElement) {
+      if (audioElement.paused) {
+        audioElement.play().catch(err => console.error('Playback error:', err));
+        isPlaying.set(true);
+      } else {
+        audioElement.pause();
+        isPlaying.set(false);
+      }
     }
   }
   
@@ -48,7 +50,7 @@
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   }
   
-  // Update playing state when track changes
+  // Reset player state when track changes
   $: if ($currentTrack) {
     isPlaying.set(false);
     currentTime.set(0);
