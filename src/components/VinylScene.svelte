@@ -424,10 +424,12 @@
       const intersects = raycaster.intersectObject(vinylGroup, true);
       
       if (intersects.length > 0) {
+        e.preventDefault(); // Prevent text selection
         isDraggingModel = true;
         isDragging.set(true);
         dragStartX = e.clientX;
         renderer.domElement.style.cursor = 'grabbing';
+        document.body.classList.add('dragging');
       }
     };
     
@@ -476,40 +478,19 @@
         return;
       }
       
+      e.preventDefault(); // Prevent text selection while dragging
       const deltaX = e.clientX - dragStartX;
       targetRotationY += deltaX * 0.01; // Sensitivity control
       dragStartX = e.clientX;
       
-      // When scrolled down (flat view) and not on 'all' timeframe, spinning shifts the time window
-      if (currentScrollProgress > 0.8 && currentTimeframe !== 'all') {
-        // Convert rotation delta to week offset (adjust sensitivity as needed)
-        // Positive deltaX (spin right) = move backward in time, negative = move forward
-        const weekDelta = deltaX * 0.05; // 0.05 weeks per pixel of drag
-        
-        // Calculate bounds based on timeframe and data length
-        const totalWeeks = $rawData?.length || 0;
-        const timeframeWeeks = {
-          '1w': 1,
-          '1m': 4,
-          '3m': 12,
-          '6m': 26,
-          '1y': 52
-        };
-        const windowSize = timeframeWeeks[currentTimeframe] || 52;
-        const maxOffset = Math.max(0, totalWeeks - windowSize);
-        
-        timeWindowOffset.update(current => {
-          const newOffset = current + weekDelta;
-          // Clamp to valid range: 0 (most recent) to maxOffset (oldest possible window)
-          return Math.max(0, Math.min(maxOffset, newOffset));
-        });
-      }
+      // Time window offset is now updated in the animation loop based on vinyl momentum
     };
     
     const handleMouseUp = () => {
       isDraggingModel = false;
       isDragging.set(false);
       renderer.domElement.style.cursor = 'default';
+      document.body.classList.remove('dragging');
     };
     
     // Touch handlers (horizontal spin only)
@@ -525,45 +506,29 @@
       const intersects = raycaster.intersectObject(vinylGroup, true);
       
       if (intersects.length > 0) {
+        e.preventDefault(); // Prevent scrolling/selection
         isDraggingModel = true;
         isDragging.set(true);
         dragStartX = e.touches[0].clientX;
+        document.body.classList.add('dragging');
       }
     };
     
     const handleTouchMove = (e) => {
       if (!isDraggingModel) return;
+      e.preventDefault(); // Prevent scrolling/selection while dragging
       
       const deltaX = e.touches[0].clientX - dragStartX;
       targetRotationY += deltaX * 0.01;
       dragStartX = e.touches[0].clientX;
       
-      // When scrolled down (flat view) and not on 'all' timeframe, spinning shifts the time window
-      if (currentScrollProgress > 0.8 && currentTimeframe !== 'all') {
-        const weekDelta = deltaX * 0.05;
-        
-        // Calculate bounds based on timeframe and data length
-        const totalWeeks = $rawData?.length || 0;
-        const timeframeWeeks = {
-          '1w': 1,
-          '1m': 4,
-          '3m': 12,
-          '6m': 26,
-          '1y': 52
-        };
-        const windowSize = timeframeWeeks[currentTimeframe] || 52;
-        const maxOffset = Math.max(0, totalWeeks - windowSize);
-        
-        timeWindowOffset.update(current => {
-          const newOffset = current + weekDelta;
-          return Math.max(0, Math.min(maxOffset, newOffset));
-        });
-      }
+      // Time window offset is now updated in the animation loop based on vinyl momentum
     };
     
     const handleTouchEnd = () => {
       isDraggingModel = false;
       isDragging.set(false);
+      document.body.classList.remove('dragging');
     };
     
     document.addEventListener('mousedown', handleMouseDown);
@@ -582,8 +547,35 @@
       animationId = requestAnimationFrame(animate);
       
       if (vinylGroup) {
+        // Calculate rotation delta before applying it
+        const rotationDelta = (targetRotationY - rotationY) * 0.1;
+        
         // Smooth rotation interpolation for drag spin only
-        rotationY += (targetRotationY - rotationY) * 0.1;
+        rotationY += rotationDelta;
+        
+        // Update time window offset based on vinyl momentum (when scrolled down and not 'all')
+        if (currentScrollProgress > 0.8 && currentTimeframe !== 'all' && Math.abs(rotationDelta) > 0.0001) {
+          // Convert rotation delta to week offset (same ratio as drag: 0.01 rad per pixel, 0.05 weeks per pixel)
+          // So: rotationDelta / 0.01 * 0.05 = rotationDelta * 5
+          const weekDelta = rotationDelta * 5;
+          
+          // Calculate bounds
+          const totalWeeks = $rawData?.length || 0;
+          const timeframeWeeks = {
+            '1w': 1,
+            '1m': 4,
+            '3m': 12,
+            '6m': 26,
+            '1y': 52
+          };
+          const windowSize = timeframeWeeks[currentTimeframe] || 52;
+          const maxOffset = Math.max(0, totalWeeks - windowSize);
+          
+          timeWindowOffset.update(current => {
+            const newOffset = current + weekDelta;
+            return Math.max(0, Math.min(maxOffset, newOffset));
+          });
+        }
         
         // Model is static - tilted toward bottom of screen, only drag spin changes
         vinylGroup.rotation.x = -1.22; // Fixed tilt (-70 degrees, angled toward bottom)
@@ -685,6 +677,15 @@
     top: 0;
     left: 0;
     background: #1C1D22;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  
+  /* Prevent selection globally when dragging */
+  :global(body.dragging) {
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: grabbing !important;
   }
   
   .tooltip {
