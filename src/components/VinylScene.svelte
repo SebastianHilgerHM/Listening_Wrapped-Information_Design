@@ -21,8 +21,9 @@
   let tooltipPosition = { x: 0, y: 0 };
   let dataPointsArray = []; // Store data points for raycasting
   
-  // Drag rotation state (horizontal spin only)
+  // Drag rotation state (horizontal spin in vinyl view, vertical spin in line graph view)
   let dragStartX = 0;
+  let dragStartY = 0;
   let rotationY = 0;
   let targetRotationY = 0;
   let isDraggingModel = false; // Track if actually grabbing the model
@@ -126,9 +127,9 @@
           if (currentMetric === 'average') {
             return { value: week.avgTempo, song: week.topSong, artist: week.topSongArtist, idx };
           } else if (currentMetric === 'highest') {
-            return { value: week.highestTempo, song: week.highestTempoSong, artist: week.topSongArtist, idx };
+            return { value: week.highestTempo, song: week.highestTempoSong, artist: week.highestTempoArtist, idx };
           } else {
-            return { value: week.lowestTempo, song: week.lowestTempoSong, artist: week.topSongArtist, idx };
+            return { value: week.lowestTempo, song: week.lowestTempoSong, artist: week.lowestTempoArtist, idx };
           }
         });
         
@@ -151,9 +152,9 @@
           if (currentMetric === 'average') {
             return { value: week.avgDanceability, song: week.topSong, artist: week.topSongArtist, idx };
           } else if (currentMetric === 'highest') {
-            return { value: week.highestDanceability, song: week.highestDanceabilitySong, artist: week.topSongArtist, idx };
+            return { value: week.highestDanceability, song: week.highestDanceabilitySong, artist: week.highestDanceabilityArtist, idx };
           } else {
-            return { value: week.lowestDanceability, song: week.lowestDanceabilitySong, artist: week.topSongArtist, idx };
+            return { value: week.lowestDanceability, song: week.lowestDanceabilitySong, artist: week.lowestDanceabilityArtist, idx };
           }
         });
         
@@ -428,6 +429,7 @@
         isDraggingModel = true;
         isDragging.set(true);
         dragStartX = e.clientX;
+        dragStartY = e.clientY;
         renderer.domElement.style.cursor = 'grabbing';
         document.body.classList.add('dragging');
       }
@@ -479,9 +481,17 @@
       }
       
       e.preventDefault(); // Prevent text selection while dragging
-      const deltaX = e.clientX - dragStartX;
-      targetRotationY += deltaX * 0.01; // Sensitivity control
-      dragStartX = e.clientX;
+      
+      // Use vertical drag when in line graph view (scrolled down), horizontal otherwise
+      if (currentScrollProgress >= 0.5) {
+        const deltaY = e.clientY - dragStartY;
+        targetRotationY += deltaY * 0.01; // Sensitivity control
+        dragStartY = e.clientY;
+      } else {
+        const deltaX = e.clientX - dragStartX;
+        targetRotationY += deltaX * 0.01; // Sensitivity control
+        dragStartX = e.clientX;
+      }
       
       // Time window offset is now updated in the animation loop based on vinyl momentum
     };
@@ -510,6 +520,7 @@
         isDraggingModel = true;
         isDragging.set(true);
         dragStartX = e.touches[0].clientX;
+        dragStartY = e.touches[0].clientY;
         document.body.classList.add('dragging');
       }
     };
@@ -518,9 +529,16 @@
       if (!isDraggingModel) return;
       e.preventDefault(); // Prevent scrolling/selection while dragging
       
-      const deltaX = e.touches[0].clientX - dragStartX;
-      targetRotationY += deltaX * 0.01;
-      dragStartX = e.touches[0].clientX;
+      // Use vertical drag when in line graph view (scrolled down), horizontal otherwise
+      if (currentScrollProgress >= 0.5) {
+        const deltaY = e.touches[0].clientY - dragStartY;
+        targetRotationY += deltaY * 0.01;
+        dragStartY = e.touches[0].clientY;
+      } else {
+        const deltaX = e.touches[0].clientX - dragStartX;
+        targetRotationY += deltaX * 0.01;
+        dragStartX = e.touches[0].clientX;
+      }
       
       // Time window offset is now updated in the animation loop based on vinyl momentum
     };
@@ -548,16 +566,15 @@
       
       if (vinylGroup) {
         // Calculate rotation delta before applying it
-        const rotationDelta = (targetRotationY - rotationY) * 0.1;
+        const rotationDelta = (targetRotationY - rotationY) * 0.05; // Lower = less friction/slower deceleration
         
         // Smooth rotation interpolation for drag spin only
         rotationY += rotationDelta;
         
         // Update time window offset based on vinyl momentum (when scrolled down and not 'all')
         if (currentScrollProgress > 0.8 && currentTimeframe !== 'all' && Math.abs(rotationDelta) > 0.0001) {
-          // Convert rotation delta to week offset (same ratio as drag: 0.01 rad per pixel, 0.05 weeks per pixel)
-          // So: rotationDelta / 0.01 * 0.05 = rotationDelta * 5
-          const weekDelta = rotationDelta * 5;
+          // Convert rotation delta to week offset - higher multiplier = faster scrolling
+          const weekDelta = rotationDelta * 15;
           
           // Calculate bounds
           const totalWeeks = $rawData?.length || 0;

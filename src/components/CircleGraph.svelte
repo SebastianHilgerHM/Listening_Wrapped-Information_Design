@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import * as d3 from 'd3';
   import { rawData } from '../stores/dataStore.js';
-  import { selectedMetric, selectedCategory } from '../stores/uiStore.js';
+  import { selectedMetric, selectedCategory, hoveredPointData } from '../stores/uiStore.js';
   
   let container;
   let svgWidth = 400;
@@ -16,15 +16,6 @@
   let currentMetric = 'average';
   let currentCategory = 'tempo';
   
-  // Subscribe to stores
-  const unsubscribeMetric = selectedMetric.subscribe(value => {
-    currentMetric = value;
-  });
-  
-  const unsubscribeCategory = selectedCategory.subscribe(value => {
-    currentCategory = value;
-  });
-  
   // Generate circle graph data
   function generateGraphData() {
     if (!$rawData || $rawData.length === 0) return [];
@@ -35,21 +26,46 @@
     // First pass: extract raw values and identify missing ones
     const rawPoints = $rawData.map((week, i) => {
       let metricValue = 0;
+      let song = '';
+      let artist = '';
       
       if (currentCategory === 'tempo') {
-        if (currentMetric === 'average') metricValue = week.avgTempo;
-        else if (currentMetric === 'highest') metricValue = week.highestTempo;
-        else metricValue = week.lowestTempo;
+        if (currentMetric === 'average') {
+          metricValue = week.avgTempo;
+          song = week.topSong;
+          artist = week.topSongArtist;
+        } else if (currentMetric === 'highest') {
+          metricValue = week.highestTempo;
+          song = week.highestTempoSong;
+          artist = week.highestTempoArtist;
+        } else {
+          metricValue = week.lowestTempo;
+          song = week.lowestTempoSong;
+          artist = week.lowestTempoArtist;
+        }
       } else {
-        if (currentMetric === 'average') metricValue = week.avgDanceability;
-        else if (currentMetric === 'highest') metricValue = week.highestDanceability;
-        else metricValue = week.lowestDanceability;
+        if (currentMetric === 'average') {
+          metricValue = week.avgDanceability;
+          song = week.topSong;
+          artist = week.topSongArtist;
+        } else if (currentMetric === 'highest') {
+          metricValue = week.highestDanceability;
+          song = week.highestDanceabilitySong;
+          artist = week.highestDanceabilityArtist;
+        } else {
+          metricValue = week.lowestDanceability;
+          song = week.lowestDanceabilitySong;
+          artist = week.lowestDanceabilityArtist;
+        }
       }
       
       return {
         index: i,
         value: metricValue || 0,
-        isMissing: !metricValue || metricValue === 0
+        isMissing: !metricValue || metricValue === 0,
+        song,
+        artist,
+        date: new Date(week.weekStart)
       };
     });
     
@@ -85,7 +101,11 @@
         value: metricValue,
         r,
         week: i + 1,
-        isMissing
+        index: point.index,
+        isMissing,
+        song: point.song,
+        artist: point.artist,
+        date: point.date
       };
     });
   }
@@ -105,9 +125,21 @@
     return line(closedData);
   }
   
-  // Reactive updates
-  $: if ($rawData) {
+  // Reactive updates - regenerate when rawData, metric, or category changes
+  $: if ($rawData && $selectedMetric && $selectedCategory) {
+    currentMetric = $selectedMetric;
+    currentCategory = $selectedCategory;
     dataPoints = generateGraphData();
+    // Debug: log first data point to check song/artist
+    if (dataPoints.length > 0) {
+      console.log('CircleGraph data point 0:', {
+        metric: currentMetric,
+        category: currentCategory,
+        song: dataPoints[0].song,
+        artist: dataPoints[0].artist,
+        rawWeek: $rawData[0]
+      });
+    }
   }
   
   onMount(() => {
@@ -125,8 +157,6 @@
     
     return () => {
       window.removeEventListener('resize', handleResize);
-      unsubscribeMetric();
-      unsubscribeCategory();
     };
   });
   
@@ -136,6 +166,41 @@
     }
     const hue = (i / dataPoints.length) * 360;
     return `hsl(${hue}, 70%, 50%)`;
+  }
+
+  // Get song and artist info fresh from rawData for a given index
+  function getSongArtistInfo(index) {
+    if (!$rawData || !$rawData[index]) return { song: '', artist: '' };
+    const week = $rawData[index];
+    
+    let song = '';
+    let artist = '';
+    
+    if (currentCategory === 'tempo') {
+      if (currentMetric === 'average') {
+        song = week.topSong;
+        artist = week.topSongArtist;
+      } else if (currentMetric === 'highest') {
+        song = week.highestTempoSong;
+        artist = week.highestTempoArtist;
+      } else {
+        song = week.lowestTempoSong;
+        artist = week.lowestTempoArtist;
+      }
+    } else {
+      if (currentMetric === 'average') {
+        song = week.topSong;
+        artist = week.topSongArtist;
+      } else if (currentMetric === 'highest') {
+        song = week.highestDanceabilitySong;
+        artist = week.highestDanceabilityArtist;
+      } else {
+        song = week.lowestDanceabilitySong;
+        artist = week.lowestDanceabilityArtist;
+      }
+    }
+    
+    return { song, artist };
   }
 </script>
 
@@ -169,10 +234,23 @@
           on:mouseenter={(e) => {
             e.target.setAttribute('r', '5');
             e.target.setAttribute('opacity', '1');
+            const dateStr = point.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+            const metricStr = currentMetric.charAt(0).toUpperCase() + currentMetric.slice(1);
+            const categoryStr = currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1);
+            const showSongInfo = currentMetric !== 'average';
+            hoveredPointData.set({
+              date: dateStr,
+              category: `${metricStr} ${categoryStr}`,
+              value: point.value.toFixed(2),
+              isMissing: point.isMissing,
+              song: showSongInfo ? point.song : null,
+              artist: showSongInfo ? point.artist : null
+            });
           }}
           on:mouseleave={(e) => {
             e.target.setAttribute('r', '3');
             e.target.setAttribute('opacity', point.isMissing ? '0.6' : '0.7');
+            hoveredPointData.set(null);
           }}
         />
       {/each}

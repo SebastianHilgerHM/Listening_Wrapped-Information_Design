@@ -102,10 +102,12 @@
         else if (currentMetric === 'highest') {
           value = week.highestTempo;
           song = week.highestTempoSong;
+          artist = week.highestTempoArtist;
         }
         else {
           value = week.lowestTempo;
           song = week.lowestTempoSong;
+          artist = week.lowestTempoArtist;
         }
       } else {
         if (currentMetric === 'average') {
@@ -116,10 +118,12 @@
         else if (currentMetric === 'highest') {
           value = week.highestDanceability;
           song = week.highestDanceabilitySong;
+          artist = week.highestDanceabilityArtist;
         }
         else {
           value = week.lowestDanceability;
           song = week.lowestDanceabilitySong;
+          artist = week.lowestDanceabilityArtist;
         }
       }
       
@@ -160,8 +164,8 @@
     // Fixed Y-axis scales based on category
     let yMin, yMax;
     if (currentCategory === 'tempo') {
-      yMin = 50;
-      yMax = 250;
+      yMin = 40;
+      yMax = 240;
     } else {
       // danceability
       yMin = 0;
@@ -190,8 +194,11 @@
     // Add background - removed for transparent look
     
     // Add grid lines
+    const gridTickValues = currentCategory === 'tempo' 
+      ? [40, 80, 120, 160, 200, 240]  // Increments of 40 for BPM
+      : [0, 0.2, 0.4, 0.6, 0.8, 1.0];
     mainGroup.selectAll('.grid-line')
-      .data(yScale.ticks(5))
+      .data(gridTickValues)
       .enter()
       .append('line')
       .attr('class', 'grid-line')
@@ -233,13 +240,16 @@
         const dateStr = d.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
         const metricStr = currentMetric.charAt(0).toUpperCase() + currentMetric.slice(1);
         const categoryStr = currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1);
+        // Only show song/artist for highest and lowest metrics, not average
+        const showSongInfo = currentMetric !== 'average';
+        console.log('LineGraph hover:', { date: dateStr, metric: currentMetric, song: d.song, artist: d.artist, value: d.value });
         hoveredPointData.set({
           date: dateStr,
           category: `${metricStr} ${categoryStr}`,
           value: d.value.toFixed(2),
           isMissing: d.isMissing,
-          song: d.song,
-          artist: d.artist
+          song: showSongInfo ? d.song : null,
+          artist: showSongInfo ? d.artist : null
         });
       })
       .on('mouseleave', function() {
@@ -258,7 +268,7 @@
     
     // Y-axis - use appropriate format based on category
     const yAxis = currentCategory === 'tempo' 
-      ? d3.axisLeft(yScale).ticks(5)
+      ? d3.axisLeft(yScale).tickValues([40, 80, 120, 160, 200, 240])
       : d3.axisLeft(yScale).ticks(5).tickFormat(d3.format('.1f'));
     svg.selectAll('.y-axis').remove();
     svg.append('g')

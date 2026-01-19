@@ -59,7 +59,6 @@
 
   {#if $hoveredPointData}
   <aside class="hovered-info-container">
-    <p class="info-label">Hovered Point</p>
     <p class="hovered-date">{$hoveredPointData.date}</p>
     <p class="hovered-category">{$hoveredPointData.category}</p>
     <p class="hovered-value">{$hoveredPointData.value}</p>

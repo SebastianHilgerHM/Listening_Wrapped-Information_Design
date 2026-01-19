@@ -1,245 +1,245 @@
-Week Start,Top Song,Top Song Artist,Top Song Minutes,Total Minutes Played,Avg Tempo (Weighted),Avg Danceability (Weighted),Lowest Tempo Song,Lowest Tempo,Lowest Danceability Song,Lowest Danceability,Highest Tempo Song,Highest Tempo,Highest Danceability Song,Highest Danceability,Tracks With Features,Total Tracks
-2018-06-04,Wolke 4,Philipp Dittberner,23.41,248.34,129.0,0.653,Hör auf deine Freunde,75.01,Before You Go,0.358,Schockverliebt,179.73,Vultures,0.881,53,70
-2018-06-11,Eure Mädchen,Kraftklub,52.1,675.17,146.77,0.556,Hör auf deine Freunde,75.01,Alles war aus Gold,0.396,Alles war aus Gold,203.91,Shape of You,0.825,28,38
-2018-06-18,My Way,Royal Republic,21.51,109.23,155.75,0.536,Shape of You,95.98,Scheissindiedisko,0.475,My Way,171.92,Shape of You,0.825,13,18
-2018-06-25,I Am Believing,CraftBattleDuty,4.84,33.26,131.53,0.58,Hör auf deine Freunde,75.01,Ritalin/Medikinet,0.43,Scheissindiedisko,160.99,Cake By The Ocean,0.774,9,11
-2018-07-02,Rainbows in the Dark,Rockit Music,55.02,199.2,156.31,0.534,Hör auf deine Freunde,75.01,Ritalin/Medikinet,0.43,Schockverliebt,179.73,Shape of You,0.825,18,23
-2018-07-09,My Way,Royal Republic,22.83,50.77,168.72,0.505,Eure Mädchen,163.01,Eure Mädchen,0.479,My Way,171.92,My Way,0.519,2,3
-2018-07-16,My Way,Royal Republic,32.16,94.55,169.2,0.502,Eure Mädchen,163.01,Eure Mädchen,0.479,Beyblade auf der ganzen Welt (Beyblade),184.03,My Way,0.519,3,9
-2018-07-23,Rainbows in the Dark,Rockit Music,32.6,197.65,156.82,0.507,High Times,94.96,Gefahr,0.325,Gefahr,220.04,High Times,0.7,38,41
-2018-09-03,Kyouran Hey Kids!!,THE ORAL CIGARETTES,10.74,22.22,143.34,0.455,"Rising Rainbow (from ""Food Wars: Shokugeki no Soma"")",97.34,"Kibou no Uta (from ""Shokugeki no Soma: FOOD WARS!"")",0.173,Beyblade auf der ganzen Welt (Beyblade),184.03,"Kyouran Hey Kids (De ""Noragami Aragoto"")",0.534,7,11
-2018-09-10,Kyouran Hey Kids!!,THE ORAL CIGARETTES,0.5,0.5,142.02,0.526,Kyouran Hey Kids!!,142.02,Kyouran Hey Kids!!,0.526,Kyouran Hey Kids!!,142.02,Kyouran Hey Kids!!,0.526,1,1
-2018-09-24,Kyouran Hey Kids!!,THE ORAL CIGARETTES,5.55,48.68,133.27,0.567,Getting Along,94.01,Goya No Machiawase,0.406,Eure Mädchen,163.01,Cake By The Ocean,0.774,11,13
-2018-10-01,Kyouran Hey Kids!!,THE ORAL CIGARETTES,3.88,3.88,142.02,0.526,Kyouran Hey Kids!!,142.02,Kyouran Hey Kids!!,0.526,Kyouran Hey Kids!!,142.02,Kyouran Hey Kids!!,0.526,1,1
-2018-11-19,Deine Gang,Kraftklub,31.52,262.25,136.22,0.579,Hör auf deine Freunde,75.01,Goya No Machiawase,0.406,Get the Party Started,181.79,Cuphead Rap,0.902,25,35
-2018-11-26,Getting Along,Royal Republic,26.77,31.32,95.95,0.527,Getting Along,94.01,Kung Fu Lovin',0.468,My Little RnR,141.96,My Little RnR,0.593,3,6
-2018-12-03,Getting Along,Royal Republic,0.46,0.46,94.01,0.528,Getting Along,94.01,Getting Along,0.528,Getting Along,94.01,Getting Along,0.528,1,1
-2018-12-17,Getting Along,Royal Republic,64.64,90.39,108.46,0.527,Getting Along,94.01,Eure Mädchen,0.479,My Way,171.92,Deine Gang,0.606,4,5
-2018-12-24,Getting Along,Royal Republic,6.52,6.52,94.01,0.528,Getting Along,94.01,Getting Along,0.528,Getting Along,94.01,Getting Along,0.528,1,1
-2019-01-14,Deine Gang,Kraftklub,17.97,61.47,141.08,0.548,Getting Along,94.01,Eure Mädchen,0.479,My Way,171.92,Deine Gang,0.606,4,5
-2019-01-21,Deine Gang,Kraftklub,4.12,23.62,112.08,0.613,Become Legend (Destiny Rap),85.38,My Way,0.519,My Way,171.92,High Times,0.7,5,8
-2019-02-04,Galway Girl,Ed Sheeran,0.52,0.52,99.94,0.624,Galway Girl,99.94,Galway Girl,0.624,Galway Girl,99.94,Galway Girl,0.624,1,1
-2019-02-11,Don't Stop (Color on the Walls),Foster The People,2.92,3.31,132.18,0.619,Waste,125.98,Don't Stop (Color on the Walls),0.611,Don't Stop (Color on the Walls),133.0,Waste,0.681,2,2
-2019-02-25,Don't Stop (Color on the Walls),Foster The People,6.2,6.2,133.0,0.611,Don't Stop (Color on the Walls),133.0,Don't Stop (Color on the Walls),0.611,Don't Stop (Color on the Walls),133.0,Don't Stop (Color on the Walls),0.611,1,1
-2019-03-11,Looking Like This,Lyre Le Temps,32.09,109.93,111.71,0.714,Goodbye,87.72,Rock'n Roll,0.519,Rock'n Roll,154.03,Word Up,0.79,9,9
-2019-03-25,Deine Gang,Kraftklub,4.05,12.31,145.15,0.54,Getting Along,94.01,Eure Mädchen,0.479,My Way,171.92,Deine Gang,0.606,4,4
-2019-04-08,Six Shooter,Coyote Kisses,67.92,67.92,161.92,0.515,Six Shooter,161.92,Six Shooter,0.515,Six Shooter,161.92,Six Shooter,0.515,1,1
-2019-04-22,All Star,Smash Mouth,99.29,106.93,104.79,0.729,All Star,104.02,Six Shooter,0.515,Six Shooter,161.92,All Star,0.731,3,4
-2019-04-29,"Take Me Home, Country Roads - Rerecorded",John Denver,92.31,92.31,,,,,,,,,,,0,1
-2019-05-20,"Take Me Home, Country Roads - Rerecorded",John Denver,2.78,2.78,,,,,,,,,,,0,1
-2019-07-29,All Falls Down (feat. Juliander),Alan Walker,3.31,11.63,123.85,0.634,On My Way,68.51,On My Way,0.372,The Spectre,127.96,The Spectre,0.654,2,5
-2019-08-26,Allein zu Haus,Julien Bam,5.89,20.77,,,,,,,,,,,0,9
-2019-09-02,Warum warum (Supraland Credits Song),Con Fetti Pesto,6.4,6.4,,,,,,,,,,,0,1
-2019-10-14,The Wolf,SIAMES,3.11,7.2,105.03,0.557,Gimme Some Sweet,79.93,B.I.T.M.,0.373,The Cave,140.03,Mr. Fear,0.638,9,9
-2020-03-09,Bad Apple!!,RichaadEB,3.76,3.76,,,,,,,,,,,0,1
-2020-04-06,The Quiet Earth,Thomas Barrandon,0.51,0.51,95.51,0.42,The Quiet Earth,95.51,The Quiet Earth,0.42,The Quiet Earth,95.51,The Quiet Earth,0.42,1,1
-2020-08-10,BRN,AViVA,0.36,0.36,79.9,0.573,BRN,79.9,BRN,0.573,BRN,79.9,BRN,0.573,1,1
-2021-07-26,Haben wir noch Pepps?,j1mbo,0.64,0.64,128.02,0.751,Haben wir noch Pepps?,128.02,Haben wir noch Pepps?,0.751,Haben wir noch Pepps?,128.02,Haben wir noch Pepps?,0.751,1,1
-2021-12-20,Sex Party,Ferdinand fka Left Boy,122.91,1179.04,134.79,0.658,They Don't Care About Us,60.51,"Soldier, Poet, King",0.347,Alastor's Game,200.08,The Real Slim Shady,0.949,70,94
-2021-12-27,Go Godzilla On Ya Frikkn City,TJ_beastboy,39.66,784.17,130.25,0.686,"AN ALLE, DIE DAS FÜHLEN",72.94,"Soldier, Poet, King",0.347,Morirò da Re,193.79,The Real Slim Shady,0.949,60,83
-2022-01-03,Vampire,Ferdinand fka Left Boy,37.96,598.37,131.34,0.709,DEAD BEATS,75.43,"Soldier, Poet, King",0.347,Morirò da Re,193.79,The Real Slim Shady,0.949,72,94
-2022-01-10,Superstar,Ferdinand fka Left Boy,51.4,951.21,126.79,0.684,They Don't Care About Us,60.51,"Soldier, Poet, King",0.347,Morirò da Re,193.79,The Real Slim Shady,0.949,75,100
-2022-01-17,I'm Not Cool,Sohodolls,58.8,1173.3,122.41,0.697,DEAD BEATS,75.43,"Soldier, Poet, King",0.347,Morirò da Re,193.79,The Real Slim Shady,0.949,89,121
-2022-01-24,Sweet Goodbye,Ferdinand fka Left Boy,32.52,1323.81,132.08,0.678,DEAD BEATS,75.43,"Soldier, Poet, King",0.347,Morirò da Re,193.79,The Real Slim Shady,0.949,78,117
-2022-01-31,"wanting, getting, wanting",DEMONDICE,144.89,992.8,119.42,0.713,DEAD BEATS,75.43,"Soldier, Poet, King",0.347,Morirò da Re,193.79,The Real Slim Shady,0.949,79,117
-2022-02-07,fake ass gold,DEMONDICE,50.67,1674.74,125.37,0.693,DEAD BEATS,75.43,Back In Black,0.31,Morirò da Re,193.79,The Real Slim Shady,0.949,99,157
-2022-02-14,Crazy Rap (Colt 45 & 2 Zig Zags),Afroman,167.55,1413.51,119.3,0.709,DEAD BEATS,75.43,"Soldier, Poet, King",0.347,Morirò da Re,193.79,Palmdale,0.974,101,145
-2022-02-21,We Don't Talk About Bruno,Carolina Gaitán,50.81,1107.56,120.29,0.723,Bloody Well Right,75.5,We Shall Sail Together - Original Game Soundtrack,0.441,I Want You Back,196.61,The Real Slim Shady,0.949,104,150
-2022-02-28,(Stay) True,Lars Eriksson,126.44,788.09,120.1,0.721,"We All Lift Together (From ""Warframe"")",67.18,"Steal from the Rich, Give to Myself",0.471,Morirò da Re,193.79,The Real Slim Shady,0.949,98,135
-2022-03-07,Hot,Confetti,132.46,1034.85,133.54,0.737,"We All Lift Together (From ""Warframe"")",67.18,Eure Mädchen,0.479,Red,175.81,No Hope (The Frog Song),0.939,61,85
-2022-03-14,Rob A Bank,Confetti,107.74,1499.14,129.81,0.692,"We All Lift Together (From ""Warframe"")",67.18,Love,0.307,Morirò da Re,193.79,No Hope (The Frog Song),0.939,76,93
-2022-03-21,Dear God,Confetti,84.98,1187.79,124.75,0.697,They Don't Care About Us,60.51,They Don't Care About Us,0.459,Morirò da Re,193.79,No Hope (The Frog Song),0.939,65,79
-2022-03-28,Guilty Pleasures,Confetti,127.28,1269.12,117.99,0.707,"We All Lift Together (From ""Warframe"")",67.18,Eure Mädchen,0.479,Morirò da Re,193.79,No Hope (The Frog Song),0.939,57,72
-2022-04-04,The Bidding,Tally Hall,154.94,927.85,133.93,0.655,Dangerous,79.14,Eure Mädchen,0.479,Morirò da Re,193.79,No Hope (The Frog Song),0.939,50,69
-2022-04-11,Tom's Diner,AnnenMayKantereit,32.58,704.66,127.56,0.682,DEAD BEATS,75.43,"Soldier, Poet, King",0.347,Morirò da Re,193.79,The Real Slim Shady,0.949,111,150
-2022-04-18,Rhythm Kitchen (feat. D Smoke),Rare Americans,31.06,560.3,128.87,0.715,"We All Lift Together (From ""Warframe"")",67.18,Eure Mädchen,0.479,Fireflies,180.11,No Hope (The Frog Song),0.939,45,60
-2022-04-25,Boof Pack,Lord Aethelstan,622.23,1007.81,139.79,0.778,take the bait,77.96,Kickstart My Heart,0.363,Fireflies,180.11,No More ?'s,0.935,37,46
-2022-05-02,Disco! in the Panic Room,Bug Hunter,1292.55,1927.81,95.2,0.765,Point to Prove (I Was an Ugly Kid),73.97,Eure Mädchen,0.479,Fireflies,180.11,No More ?'s,0.935,38,49
-2022-05-09,踊,Ado,168.74,1287.88,125.4,0.654,/ / // / /,65.08,千両役者,0.33,テレキャスタービーボーイ(long ver.),182.0,No Hope (The Frog Song),0.939,96,128
-2022-05-16,It's a Monday,Lolnein,1013.54,2193.6,126.83,0.721,DEAD BEATS,75.43,Sun//Eater,0.245,Sunset,203.83,No Hope (The Frog Song),0.939,95,127
-2022-05-23,1975,Silent Child,691.39,3002.13,111.92,0.683,Clouds,62.99,"Soldier, Poet, King",0.347,Sunset,203.83,The Real Slim Shady,0.949,144,203
-2022-05-30,Mind Brand,Kuraiinu,71.95,393.17,114.63,0.705,"We All Lift Together (From ""Warframe"")",67.18,"Soldier, Poet, King",0.347,Sunset,203.83,No Hope (The Frog Song),0.939,31,37
-2022-06-06,The Moss,Cosmo Sheldrake,20.23,829.05,130.32,0.681,"We All Lift Together (From ""Warframe"")",67.18,"Soldier, Poet, King",0.347,Sunset,203.83,The Real Slim Shady,0.949,114,157
-2022-06-13,Beichte,Julien Bam,148.51,1238.01,125.15,0.718,"We All Lift Together (From ""Warframe"")",67.18,"Soldier, Poet, King",0.347,Sunset,203.83,The Real Slim Shady,0.949,130,173
-2022-06-20,Break My Heart,Dua Lipa,96.0,768.01,124.9,0.717,"We All Lift Together (From ""Warframe"")",67.18,Boku no Sensou,0.473,Sunset,203.83,The Real Slim Shady,0.949,112,144
-2022-06-27,Bruises,Fox Stevenson,493.27,2384.22,144.75,0.607,"We All Lift Together (From ""Warframe"")",67.18,I'm Not Ok,0.397,Hate Myself,204.0,The Real Slim Shady,0.949,200,261
-2022-07-04,Bloodshot,Sam Tinnesz,113.89,748.04,135.28,0.647,Dangerous,79.14,Happy Face,0.417,Happy Face,177.55,Another One Bites The Dust - Remastered 2011,0.933,23,32
-2022-07-11,Balloons,Confetti,121.13,574.0,123.1,0.688,1975,74.95,Welcome to the Black Parade,0.217,Morirò da Re,193.79,Boof Pack,0.912,95,119
-2022-07-18,Ballroom Blitz,The Struts,85.84,1255.73,128.21,0.641,The Makings of You,76.45,All Die Young,0.269,The Ketchup Song (Aserejé) - Spanish Version,184.98,Another One Bites The Dust - Remastered 2011,0.933,58,73
-2022-07-25,Major Tom (Coming Home),Peter Schilling,33.65,540.67,132.04,0.648,Ganja Smoka,82.02,No More Heroes - 1996 Remaster,0.293,Call Me When You Want Call Me When You Need,178.96,No More ?'s,0.935,70,88
-2022-08-01,Blue Monday,Prismo,196.78,858.14,126.35,0.623,Klick,80.03,Open Up Your Eyes,0.259,Tough Guy,191.33,Cool,0.936,77,104
-2022-08-08,ERROR143,kroh,638.71,1262.16,140.41,0.647,1975,74.95,Back In Black,0.31,Back In Black,188.39,No Hope (The Frog Song),0.939,81,102
-2022-08-15,Problems,Jake Daniels,224.95,1254.79,129.25,0.681,1975,74.95,I Won't,0.387,Lily Womp Womp,203.72,No Hope (The Frog Song),0.939,60,89
-2022-08-22,Problems,Jake Daniels,180.2,2029.64,125.77,0.67,"We All Lift Together (From ""Warframe"")",67.18,Pour Some Sugar On Me - Remastered 2017,0.267,Sunset,203.83,The Real Slim Shady,0.949,187,249
-2022-08-29,Stella,Julien Bam,132.65,3025.67,131.99,0.688,"We All Lift Together (From ""Warframe"")",67.18,Freaks,0.345,Sunset,203.83,The Real Slim Shady,0.949,219,294
-2022-09-05,Greedy (Altair Arrange),Interlunium,374.36,3089.46,129.05,0.667,"We All Lift Together (From ""Warframe"")",67.18,"For Those About to Rock (We Salute You) - Live Tushino Airfield, Moscow, Sept. 28, 1991",0.157,Sunset,203.83,The Real Slim Shady,0.949,192,270
-2022-09-12,Anxiety,Julien Bam,114.67,2748.99,129.98,0.668,"We All Lift Together (From ""Warframe"")",67.18,Send Me An Angel,0.153,Sunset,203.83,The Real Slim Shady,0.949,241,322
-2022-09-19,W.I.T.C.H.,Devon Cole,457.31,3095.84,136.34,0.664,Street Brawling Millionaire,73.0,Suicider,0.205,Sunset,203.83,Cool,0.936,120,172
-2022-09-26,Liar,Jake Daniels,465.22,2962.24,122.18,0.681,Street Brawling Millionaire,73.0,Scavenger Hunt,0.288,Morirò da Re,193.79,Cool,0.936,78,110
-2022-10-03,Bad Ones,Call Me Karizma,683.9,3600.7,127.28,0.648,Street Brawling Millionaire,73.0,Patience,0.309,Morirò da Re,193.79,GIGA MODE,0.935,61,82
-2022-10-10,Eismann,GReeeN,712.26,3386.71,145.08,0.698,Didn't You,58.42,Death in Color,0.369,The Show,204.06,No Hope (The Frog Song),0.939,142,185
-2022-10-17,SIMPLE (feat. I DONT KNOW HOW BUT THEY FOUND ME),DE'WAYNE,424.67,2975.74,124.79,0.704,Street Brawling Millionaire,73.0,Dread,0.309,Green: SSD,190.08,Gönn dir Parodie (Schluck Schluck),0.945,86,128
-2022-10-24,The Dino Club,Ethan Bortnick,288.18,2013.76,118.91,0.706,Street Brawling Millionaire,73.0,12,0.283,Call Me When You Want Call Me When You Need,178.96,Gönn dir Parodie (Schluck Schluck),0.945,73,101
-2022-10-31,SUPERHERO,Aim Vision,292.82,2037.22,118.86,0.685,Baby Queen,75.01,Puppet,0.367,Sinking Sand,196.18,GET USED TO ME,0.961,51,70
-2022-11-07,Have You Seen The Moon Tonight?,Aim Vision,569.2,2241.35,125.43,0.691,Mothman,74.94,Poison Pop,0.409,Eismann,178.05,GET USED TO ME,0.961,69,94
-2022-11-14,Serotonin,Call Me Karizma,118.26,1177.6,118.43,0.659,Fool's Gold,72.58,Fool's Gold,0.3,The Drummer,174.9,GET USED TO ME,0.961,58,89
-2022-11-21,Illuminati,ONICKS,371.55,2031.09,120.66,0.717,Serotonin,77.76,Dread,0.309,Sinking Sand,196.18,Climate Crisis Love Song,0.977,80,100
-2022-11-28,Dead Body,Call Me Karizma,243.05,1877.32,134.41,0.646,1975,74.95,I Really Want to Stay at Your House - Metal Version,0.3,Sinking Sand,196.18,Climate Crisis Love Song,0.977,121,169
-2022-12-05,Untouchable (feat. Call Me Karizma),Futuristic,276.41,1617.79,136.97,0.596,Make Monsters Make Saints,77.6,Side Effect,0.376,Morirò da Re,193.79,No Hope (The Frog Song),0.939,66,106
-2022-12-12,Die Happy,DREAMERS,201.52,1593.0,119.47,0.686,Soda,74.92,Hayloft II,0.326,Depressing Summer,191.97,Climate Crisis Love Song,0.977,116,167
-2022-12-19,SPIT IN MY FACE!,ThxSoMch,566.85,1447.39,109.08,0.729,Street Brawling Millionaire,73.0,Hayloft II,0.326,Kill The Insanity,192.13,not exactly happy.,0.975,72,102
-2022-12-26,villains,PmBata,423.3,1836.35,111.43,0.72,"Hawatari Nioku Centi (From ""Chainsaw Man"")",74.22,Running Blind,0.267,Hayloft II,178.18,not exactly happy.,0.975,62,93
-2023-01-02,i know,Hairu Tokyo,534.29,1503.7,109.99,0.751,villains,81.94,It's Going Bad?,0.515,Losers,178.03,Players,0.948,16,34
-2023-01-09,SLEEP PARALYSIS,Cemetery Drive,320.8,976.45,102.14,0.709,touch grass,77.53,Deja Vu,0.355,chaotic,172.14,Rambo,0.809,21,34
-2023-01-16,The Hanging Tree,James Newton Howard,137.67,975.53,122.02,0.678,touch grass,77.53,Side Effect,0.376,Side Effect,186.44,not exactly happy.,0.975,61,100
-2023-01-23,BABY SAID,Måneskin,544.41,1836.23,132.39,0.625,"Hawatari Nioku Centi (From ""Chainsaw Man"")",74.22,Descent into the Rift,0.197,Sunset,203.83,DEATH,0.965,53,76
-2023-01-30,Sunsets,Biting Elbows,508.27,1359.36,146.8,0.592,Verbatim,78.01,This fffire - New Version,0.442,Sunset,203.83,Climate Crisis Love Song,0.977,70,97
-2023-02-06,Mini Golf,Puddles!,346.99,1131.03,128.98,0.726,Street Brawling Millionaire,73.0,Hey,0.311,Anime Dream Queen,194.16,Feel 4 Free,0.907,56,79
-2023-02-13,Bored to Death,8 Graves,130.16,1053.43,127.76,0.682,"Hawatari Nioku Centi (From ""Chainsaw Man"")",74.22,Danny Break-up Bad,0.327,Depressing Summer,191.97,not exactly happy.,0.975,117,165
-2023-02-20,ADHD,Silent Child,138.39,574.85,130.25,0.719,touch grass,77.53,HOLOGRAM,0.367,Morirò da Re,193.79,DEATH,0.965,76,106
-2023-02-27,Good Luck,Abhi The Nomad,200.78,758.68,124.69,0.741,sheluvme,82.36,In My Head,0.266,Depressing Summer,191.97,Yuck.,0.954,65,90
-2023-03-06,Ferris Bueller,Emei,80.15,690.5,123.91,0.706,Misty,52.3,Hayloft II,0.326,Sunset,203.83,Climate Crisis Love Song,0.977,96,118
-2023-03-13,Hotel Sex,Call Me Karizma,47.85,727.01,126.17,0.675,1975,74.95,Dream On,0.392,prism,182.11,Climate Crisis Love Song,0.977,162,215
-2023-03-20,Toca Toca,Fly Project,60.33,860.71,131.25,0.689,1975,74.95,Sigh on a Hurricane,0.292,Morirò da Re,193.79,Climate Crisis Love Song,0.977,167,238
-2023-03-27,The Law - Zardonic Remix,Reach,47.75,622.93,128.59,0.706,Street Brawling Millionaire,73.0,Hayloft II,0.326,Depressing Summer,191.97,Climate Crisis Love Song,0.977,126,173
-2023-04-03,I AM,Hairu Tokyo,164.18,1022.12,126.9,0.728,"We All Lift Together (From ""Warframe"")",67.18,Digital Silence,0.312,Sunset,203.83,Climate Crisis Love Song,0.977,150,209
-2023-04-10,DON'T TRIP!,Atwood,77.23,680.87,121.58,0.629,1975,74.95,Digital Silence,0.312,Depressing Summer,191.97,Gönn dir Parodie (Schluck Schluck),0.945,88,130
-2023-04-17,Nightmares,Hairu Tokyo,33.54,619.94,125.77,0.664,UNBELIEVABLE,69.99,Digital Silence,0.312,A While Ago,194.58,Gönn dir Parodie (Schluck Schluck),0.945,115,166
-2023-04-24,Drones,grandson,85.85,507.86,127.68,0.667,"We All Lift Together (From ""Warframe"")",67.18,Digital Silence,0.312,Sinking Sand,196.18,not exactly happy.,0.975,95,136
-2023-05-01,"Goodbye, Babe",Joachim,122.28,742.36,128.24,0.643,Get Puffer'd,74.99,Digital Silence,0.312,Butterscotch,199.93,Containment Breach,0.929,129,196
-2023-05-08,Date Myself,Your Favorite Martian,113.0,1105.67,124.26,0.702,Street Brawling Millionaire,73.0,Flujo De Ruido,0.143,Sunset,203.83,Climate Crisis Love Song,0.977,200,301
-2023-05-15,White,Hairu Tokyo,226.72,799.68,137.18,0.666,HI MY NAME IS,80.96,Digital Silence,0.312,Mini Golf,175.94,GET USED TO ME,0.961,63,95
-2023-05-22,All the Time in the World,Kiltro,10.67,406.24,125.76,0.683,1975,74.95,Digital Silence,0.312,Sunset,203.83,DEATH,0.965,92,128
-2023-05-29,MONEY ON THE DASH,Elley Duhé,31.34,671.78,132.91,0.66,World A Music,74.1,Signore dei Lupi - from Arknights,0.304,Sunset,203.83,GET USED TO ME,0.961,117,181
-2023-06-05,Suic*de,Ren,149.21,829.65,132.69,0.604,Igowallah,79.98,golden hour,0.239,Hangman Flows,202.07,worth my weight in gold,0.849,63,97
-2023-06-12,Every day is trash it hurts,たかやん,127.77,619.98,107.1,0.655,Sleeping On The Ceiling,74.96,EVAC,0.343,Hangman Flows,202.07,Cool,0.936,65,83
-2023-06-19,Nightmares,Hairu Tokyo,14.71,281.11,120.41,0.69,Street Brawling Millionaire,73.0,Monster,0.279,Hangman Flows,202.07,Climate Crisis Love Song,0.977,74,97
-2023-06-26,Preacher,Roe Kapara,265.59,674.4,120.65,0.545,Sleeping On The Ceiling,74.96,Crazy? I Was Crazy Once...,0.286,Hangman Flows,202.07,not exactly happy.,0.975,50,74
-2023-07-03,fick dich,moi,455.61,684.51,119.19,0.623,tied up,74.99,save me,0.436,Fantasy,180.04,Cool,0.936,47,69
-2023-07-10,fick dich,moi,18.12,288.61,124.3,0.687,1975,74.95,Signore dei Lupi - from Arknights,0.304,Hangman Flows,202.07,Climate Crisis Love Song,0.977,82,113
-2023-07-17,Five,Fai Laci,12.71,330.88,121.42,0.685,Serotonin,77.76,Dreamblur,0.329,Call Me When You Want Call Me When You Need,178.96,not exactly happy.,0.975,76,118
-2023-07-24,i'm so jealous of your bathroom mirror,Rudy Ayoub,16.85,313.16,122.6,0.659,Guts,73.86,Seven Nation Army,0.293,Sunset,203.83,Climate Crisis Love Song,0.977,65,102
-2023-07-31,Alliance,Yxng Davi,175.33,518.18,138.21,0.64,Maybe,84.96,Degrade Me,0.266,a Look in,179.91,megrim,0.894,38,64
-2023-08-07,The Cheaters Guide To The Galaxy,Warwick Smith,136.46,728.33,119.97,0.649,The Cheaters Guide To The Galaxy,75.02,Solomon Grundy,0.188,Comatose,177.85,ELEPHANT in the room,0.962,48,71
-2023-08-14,ADDICTED & EXCITED,Franco Aurelio,188.85,612.82,122.48,0.677,The Cheaters Guide To The Galaxy,75.02,The Hate Man,0.461,Alliance,174.13,I CAN'T WAIT,0.895,40,49
-2023-08-21,Tut uns leid,Julien Bam,276.35,994.79,128.65,0.641,The Cheaters Guide To The Galaxy,75.02,Idol - Metal Version,0.44,Hangman Flows,202.07,Climate Crisis Love Song,0.977,61,95
-2023-08-28,Payday,Thehiz,289.55,1040.06,118.36,0.643,cough drops,76.51,Seven Nation Army,0.293,I.LIKE.IT.RAW,174.78,Lil Bit,0.97,42,78
-2023-09-04,Ich will,Miksu / Macloud,227.96,755.34,117.92,0.654,Call ACab,75.51,Hate Thy Neighbour,0.428,Bounce,175.98,Hungry World,0.919,27,51
-2023-09-11,Ich will,Miksu / Macloud,90.17,367.58,119.17,0.704,tied up,74.99,Hate Thy Neighbour,0.428,Feed the Machine,176.01,Scatterbrain,0.938,56,81
-2023-09-18,The Therapist,Foreign Air,18.4,440.01,123.46,0.66,Sleeping On The Ceiling,74.96,Kid Midnight,0.355,Hated,192.07,Scatterbrain,0.938,102,151
-2023-09-25,Super Smash Bros.,BABY GRAVY,30.28,355.18,120.24,0.681,cough drops,76.51,Hate Thy Neighbour,0.428,Hated,192.07,Hungry World,0.919,46,64
-2023-10-02,Cosby Sweater,Marcapasos,38.04,529.22,127.41,0.663,The Cheaters Guide To The Galaxy,75.02,Degrade Me,0.266,Hated,192.07,Another One Bites The Dust - Remastered 2011,0.933,106,145
-2023-10-09,Numb Little Bug,Em Beihold,58.53,649.64,133.39,0.66,"We All Lift Together (From ""Warframe"")",67.18,I Won't,0.387,Hangman Flows,202.07,No Hope (The Frog Song),0.939,95,128
-2023-10-16,CITY OF ANGELS,24kGoldn,301.43,1268.44,132.85,0.653,Tongue Tied,72.02,Signore dei Lupi - from Arknights,0.304,Hangman Flows,202.07,Uninvited,0.956,83,113
-2023-10-23,I Wasn't Made to Fall in Love,Koko Love,156.38,1512.38,126.37,0.666,"We All Lift Together (From ""Warframe"")",67.18,A Way of Life,0.092,Bubble Gum,207.97,Climate Crisis Love Song,0.977,240,345
-2023-10-30,T.V.,Call Me Karizma,122.0,813.09,133.57,0.653,Scheide,73.57,Degrade Me,0.266,Hangman Flows,202.07,Another One Bites The Dust - Remastered 2011,0.933,124,167
-2023-11-06,AND IT SHOWS,Aim Vision,358.14,1786.6,122.05,0.698,BRN,79.9,Diggy Diggy Hole,0.311,Fire,180.98,not exactly happy.,0.975,50,70
-2023-11-13,BITTERSWEET,LG4 Trey,258.79,1666.04,130.19,0.678,DEAD BEATS,75.43,"Soldier, Poet, King",0.347,Morirò da Re,193.79,BlindLife,0.959,140,180
-2023-11-20,PSYCHO,Pertinence,990.4,2212.32,104.36,0.698,Street Brawling Millionaire,73.0,Seven Nation Army,0.293,Sunset,203.83,Uninvited,0.956,190,292
-2023-11-27,Wasted,Migs718,359.6,1843.38,132.42,0.716,"We All Lift Together (From ""Warframe"")",67.18,Degrade Me,0.266,Don't Cut Your Hair,210.04,Climate Crisis Love Song,0.977,215,294
-2023-12-04,guillotine,Hairu Tokyo,307.71,1779.28,132.98,0.665,Street Brawling Millionaire,73.0,Love The Day,0.247,Lucky Bruto,197.6,BlindLife,0.959,102,134
-2023-12-11,mojo jojo,skooters,332.48,2055.01,139.64,0.686,PSYCHO,75.12,Digital Silence,0.312,Hated,192.07,DEATH,0.965,146,203
-2023-12-18,Chainsaw Man,Yungmon,92.04,1024.52,125.53,0.672,Mountain Vibes,64.9,lofi rain,0.336,Side Effect,186.44,BlindLife,0.959,141,200
-2023-12-25,Revolution,Ray Goren,305.87,1141.01,117.83,0.718,DEAD BEATS,75.43,fleabag,0.236,Morirò da Re,193.79,Another One Bites The Dust - Remastered 2011,0.933,91,105
-2024-01-01,The Sheriff,Puddles!,342.63,1316.46,124.35,0.693,boy for the weekend,67.96,Hey Beautiful,0.457,Great Race,177.88,Be Your Own,0.93,109,156
-2024-01-08,LIES (REMIX),CANCEL CULTURE,134.04,1664.87,114.59,0.733,meant nothing to me,73.6,Nomu,0.319,Pretty,184.1,Hoboken,0.974,133,184
-2024-01-15,Not Tonight,Follies & Vices,95.29,1046.33,119.84,0.724,tied up,74.99,September,0.401,Depressing Summer,191.97,Stop Writing Me Love Letters,0.979,143,197
-2024-01-22,Bang Bang,K'NAAN,408.03,1330.57,121.69,0.677,The Cheaters Guide To The Galaxy,75.02,Hayloft II,0.326,Hayloft II,178.18,Uninvited,0.956,102,135
-2024-01-29,LIES (REMIX),CANCEL CULTURE,182.81,1498.87,123.41,0.715,PSYCHO,75.12,what if it's not enough?,0.406,loving me is really hard,186.92,BlindLife,0.959,85,124
-2024-02-05,Troublemaker (feat. Flo Rida),Olly Murs,649.34,2533.09,119.59,0.744,Burn,66.6,Change (In the House of Flies),0.269,loving me is really hard,186.92,i'll just dance,0.9,64,97
-2024-02-12,Play,austenyo,695.71,2074.33,122.74,0.777,Mountain Ascent,69.83,Green Noise - Ocean Breeze,0.131,93 'Til Infinity,206.25,Gasoline,0.936,79,119
-2024-02-19,Cocoa Butter Kisses,Su Lee,190.79,1311.32,129.71,0.651,PSYCHO,75.12,Free Bird,0.249,loving me is really hard,186.92,Cocoa Butter Kisses,0.946,106,132
-2024-02-26,Paranoid - 2009 Remaster,Black Sabbath,350.72,1882.33,130.08,0.689,CONTROL,75.08,Paradise City,0.268,Morirò da Re,193.79,Uninvited,0.956,156,207
-2024-03-04,Pressure,Ellie Dixon,386.56,1561.72,102.48,0.738,MAMBO,76.03,Bad Moon Rising,0.508,I'm So Excited,184.35,Thank You (Falettinme Be Mice Elf Agin) - Single Version,0.9,54,75
-2024-03-11,White Noise Boys,Airways,197.67,821.93,126.26,0.765,Gameboy,75.95,Landslide,0.415,Eszett,179.9,Cocoa Butter Kisses,0.946,18,28
-2024-03-18,Moon Girl,Ark Woods,592.86,1331.41,103.43,0.708,These Words (Again),74.9,Lonely,0.486,Morirò da Re,193.79,Cocoa Butter Kisses,0.946,48,60
-2024-03-25,鬼ノ宴,友成空,961.66,2117.13,139.78,0.655,Moon Girl,81.0,point street,0.516,point street,165.02,Something in the Moon,0.916,15,24
-2024-04-01,Capybara,Bunny Clogs,414.44,2604.65,137.35,0.694,I Wanna Be Yours,67.53,Premier Inn,0.324,Morirò da Re,193.79,Cocoa Butter Kisses,0.946,108,151
-2024-04-08,Green Honda,BENEE,341.25,1220.24,133.24,0.743,MAMBO,76.03,STILL TALKIN,0.498,Capybara,170.1,Something in the Moon,0.916,60,95
-2024-04-15,Black Cherri,Suzi Wu,430.74,2044.14,148.09,0.638,touch grass,77.53,Hayloft II,0.326,goner,199.84,GET USED TO ME,0.961,159,210
-2024-04-22,Anarchist - Demo,The Valla,248.28,2135.13,129.58,0.652,If I Ever Build a House,56.7,Digital Silence,0.312,Hangman Flows,202.07,not exactly happy.,0.975,276,372
-2024-04-29,Fantasy,Mitchell Zia,336.49,3057.95,131.42,0.677,"Hawatari Nioku Centi (From ""Chainsaw Man"")",74.22,Kiss The Go-Goat,0.195,Saltwater,204.22,DEATH,0.965,312,411
-2024-05-06,Too Sweet,Hozier,280.83,3745.11,124.77,0.693,Go Fuck Yourself,74.93,Degrade Me,0.266,Sunset,203.83,Uninvited,0.956,328,426
-2024-05-13,hotline,bby,277.09,2864.44,132.27,0.674,"We All Lift Together (From ""Warframe"")",67.18,Seven Nation Army,0.293,Hangman Flows,202.07,Climate Crisis Love Song,0.977,282,376
-2024-05-20,Guava Jelly,Royce Fisherman,242.71,2054.74,130.98,0.679,Dream On,78.03,I Won't Hold My Breath,0.284,Wild Boy,183.86,Lottery,0.899,112,130
-2024-05-27,Hello,HEYKRIS,438.23,2658.15,127.66,0.648,My Own Summer (Shove It),71.84,Change (In the House of Flies),0.269,goner,199.84,Jamming,0.941,151,185
-2024-06-03,Zittern,Yu,161.53,2246.98,127.53,0.67,"We All Lift Together (From ""Warframe"")",67.18,Degrade Me,0.266,Sunset,203.83,GET USED TO ME,0.961,381,500
-2024-06-10,Story,ghstpunk,418.21,3070.46,118.52,0.716,Mountain Vibes,64.9,I Won't Hold My Breath,0.284,candyflips!,190.2,Don't Forget the T,0.938,227,306
-2024-06-17,I Need A Break,Ryan King,191.57,2984.43,130.86,0.71,Sexist,60.6,Firestarters,0.309,d e a d,182.15,DO WHAT I DO,0.945,74,95
-2024-06-24,All For You,Kiksio,433.49,2637.84,128.23,0.7,THE PROBLEM,72.14,Degrade Me,0.266,Sinking Sand,196.18,Climate Crisis Love Song,0.977,314,430
-2024-07-01,Like A Bullet,Stefanie Heinzmann,107.61,1475.98,129.68,0.703,"We All Lift Together (From ""Warframe"")",67.18,Side Effect,0.376,Hangman Flows,202.07,GET USED TO ME,0.961,254,329
-2024-07-08,Like A Bullet,Stefanie Heinzmann,369.75,1867.55,130.42,0.744,THE PROBLEM,72.14,I Won't Hold My Breath,0.284,Morirò da Re,193.79,Climate Crisis Love Song,0.977,207,279
-2024-07-15,Save Our Breath,Jonny Lucas,198.03,1326.9,122.76,0.695,THE PROBLEM,72.14,Autopilot,0.408,Sunset,203.83,Climate Crisis Love Song,0.977,227,310
-2024-07-22,Chronic,Levi Evans,521.76,1224.04,129.7,0.718,"Hawatari Nioku Centi (From ""Chainsaw Man"")",74.22,Into The Otherside,0.377,Sunset,203.83,Cocoa Butter Kisses,0.946,79,107
-2024-07-29,little miss misogyny,audalei,177.09,1719.33,127.68,0.707,Street Brawling Millionaire,73.0,Digital Silence,0.312,Morirò da Re,193.79,DEATH,0.965,320,429
-2024-08-05,BACKSTEP(backstab),LeGrand,72.03,994.39,127.48,0.689,"We All Lift Together (From ""Warframe"")",67.18,"Soldier, Poet, King",0.347,Life In America,205.98,Scatterbrain,0.938,197,272
-2024-08-12,WOT?,Cody Frost,87.33,1003.98,128.47,0.682,PSYCHO,75.12,Degrade Me,0.266,Never Ever,181.93,not exactly happy.,0.975,214,287
-2024-08-19,WOT?,Cody Frost,49.0,865.28,132.27,0.677,PSYCHO,75.12,Degrade Me,0.266,Hated,192.07,Crazy Rap (Colt 45 & 2 Zig Zags),0.927,183,258
-2024-08-26,Praying Mantis,Jazz Alonso,192.97,1728.61,137.3,0.664,ITLL BE OKAY,75.02,I Won't Hold My Breath,0.284,Lay in Bed,207.73,Uninvited,0.956,350,462
-2024-09-02,D.M.S,The Million,109.83,1538.17,127.86,0.664,THE PROBLEM,72.14,Hayloft II,0.326,Sinking Sand,196.18,DEATH,0.965,219,319
-2024-09-09,seeker missile,dynastic,95.84,1796.73,124.68,0.67,Street Brawling Millionaire,73.0,Poison,0.28,Sunset,203.83,DEATH,0.965,336,470
-2024-09-16,Everywhere I Go,Hollywood Undead,93.25,1688.7,126.23,0.713,YOU HAUNT ME,71.75,Bad Medicine,0.243,Sunset,203.83,BlindLife,0.959,357,479
-2024-09-23,rusty,Layto,154.58,1871.59,127.08,0.679,YOU HAUNT ME,71.75,I Won't Hold My Breath,0.284,Sunset,203.83,GET USED TO ME,0.961,240,331
-2024-09-30,Dirty Harry,Gorillaz,137.28,2156.48,132.11,0.683,YOU HAUNT ME,71.75,Degrade Me,0.266,AFTER DARK,201.97,Climate Crisis Love Song,0.977,261,351
-2024-10-07,Breakdown,Archi,486.21,1948.99,139.1,0.707,Urban Downunder,66.81,The Sacred And The Profane,0.153,AFTER DARK,201.97,My Turn,0.97,66,77
-2024-10-14,What Am I To Do?,Oliver Malcolm,300.76,1248.96,122.48,0.611,"We All Lift Together (From ""Warframe"")",67.18,Enemy,0.354,My Ordinary Life,175.95,Why's this dealer?,0.91,62,92
-2024-10-21,I hope you hate me.,Dead Poet Society,307.7,1710.97,128.5,0.678,"We All Lift Together (From ""Warframe"")",67.18,Degrade Me,0.266,AFTER DARK,201.97,Climate Crisis Love Song,0.977,307,412
-2024-10-28,It's Cool,First in Flight,122.74,1399.76,131.11,0.679,THE PROBLEM,72.14,Vulture Culture,0.293,Sunset,203.83,Climate Crisis Love Song,0.977,281,362
-2024-11-04,Da Da Da - 甜妹版,芊芊龍,190.64,1574.07,127.53,0.739,1975,74.95,Hayloft II,0.326,Down The Rabbit Hole,209.96,5:20AM,0.947,207,271
-2024-11-11,I Wish U Didn't Hate Me So Much,Kit Major,118.06,1646.69,131.83,0.676,YOU HAUNT ME,71.75,Acid Hologram,0.151,Sunset,203.83,not exactly happy.,0.975,347,455
-2024-11-18,Beach Boulevard,London Mars,107.62,1293.97,127.67,0.676,Supernova,56.3,Seven Nation Army,0.293,Sunset,203.83,Climate Crisis Love Song,0.977,244,326
-2024-11-25,UH YEAH [WAHNSiNN 01],TJ_beastboy,264.99,1545.25,139.83,0.685,PRETTY BOI,77.42,Digital Silence,0.312,Sunset,203.83,The Real Slim Shady,0.949,276,391
-2024-12-02,Luvly,Belaganas,115.23,1895.81,126.49,0.705,YOU HAUNT ME,71.75,I Won't Hold My Breath,0.284,Sunset,203.83,not exactly happy.,0.975,350,469
-2024-12-09,Rosaroter Tee,bac,288.23,1193.43,119.95,0.723,Street Brawling Millionaire,73.0,Digital Silence,0.312,Hangman Flows,202.07,DEATH,0.965,180,242
-2024-12-16,Where's Your Head At,Basement Jaxx,40.0,2184.78,131.17,0.719,THE PROBLEM,72.14,I Won't Hold My Breath,0.284,MUGGLE,195.97,not exactly happy.,0.975,296,388
-2024-12-23,Willy Wishbone,Cody Lawless,444.97,1033.58,138.73,0.685,Hate Thy Neighbour,78.61,SPINE,0.415,HEARTSTICKY!,195.94,not exactly happy.,0.975,35,48
-2024-12-30,Rosaroter Tee,bac,41.29,1529.09,129.56,0.675,YOU HAUNT ME,71.75,Degrade Me,0.266,HEARTSTICKY!,195.94,Climate Crisis Love Song,0.977,310,416
-2025-01-06,Lady Parts and Mannequins,mehro,116.25,2518.76,128.96,0.673,Superstar Sh*t,70.03,Ancient Flame,0.25,Sunset,203.83,not exactly happy.,0.975,474,636
-2025-01-13,Arbitrage,Modern Alibi,126.25,2206.33,125.34,0.691,YOU HAUNT ME,71.75,Monopoly Money,0.29,Monopoly Money,207.9,Climate Crisis Love Song,0.977,399,526
-2025-01-20,Liberate Me,DYLYN,144.41,1670.64,132.5,0.682,YOU HAUNT ME,71.75,Degrade Me,0.266,Monopoly Money,207.9,Climate Crisis Love Song,0.977,298,376
-2025-01-27,Healthy Sex Drive,Die Shiny,303.44,1466.85,123.29,0.734,Compare Myself To You,65.28,Compare Myself To You,0.231,Monopoly Money,207.9,GET USED TO ME,0.961,206,282
-2025-02-03,ANYTHING 4 U,Naethan Apollo,155.78,837.98,123.82,0.726,Terry's Taxidermy,62.0,Monopoly Money,0.29,Monopoly Money,207.9,Cocoa Butter Kisses,0.946,193,234
-2025-02-10,Hell Breaks Loose,Dalton Deschain & the Traveling Show,106.36,2487.36,128.38,0.673,memories we memories we share,52.98,Monopoly Money,0.29,Shades of Grey,218.44,Uninvited,0.956,232,289
-2025-02-17,A N X I E T Y (feat. Doechii),Sleepy Hallow,39.3,1582.44,133.26,0.677,YOU HAUNT ME,71.75,Monopoly Money,0.29,Monopoly Money,207.9,MICHELIN CLUB,0.953,155,199
-2025-02-24,deep dream,Sick Joy,144.66,1325.29,125.62,0.654,Call Me Devil,62.47,Monopoly Money,0.29,Monopoly Money,207.9,BlindLife,0.959,205,266
-2025-03-03,You Don't Know Me (feat. RAYE),Jax Jones,52.24,1610.36,129.55,0.683,YOU HAUNT ME,71.75,Monopoly Money,0.29,Monopoly Money,207.9,Climate Crisis Love Song,0.977,304,389
-2025-03-10,Anxiety,Doechii,96.97,1255.74,127.27,0.691,I Don't Mind It,74.96,Monopoly Money,0.29,Monopoly Money,207.9,My Doctor,0.93,110,133
-2025-03-17,Running Around,Ely Oaks,306.03,1511.78,140.02,0.67,1975,74.95,Monopoly Money,0.29,Monopoly Money,207.9,Climate Crisis Love Song,0.977,196,259
-2025-03-24,Flip The Bird,Downsyde,257.64,1116.15,120.95,0.709,THE PROBLEM,72.14,Hayloft II,0.326,Hangman Flows,202.07,GET USED TO ME,0.961,201,255
-2025-03-31,Now It's Over,Dogpark,151.32,1631.61,127.31,0.684,Street Brawling Millionaire,73.0,Eternal Waltz,0.176,Sunset,203.83,DEATH,0.965,289,372
-2025-04-07,Monster,YOASOBI,35.15,1343.8,126.96,0.686,YOU HAUNT ME,71.75,Degrade Me,0.266,Sunset,203.83,not exactly happy.,0.975,296,390
-2025-04-14,Runaway,witchgang,166.55,1371.21,121.52,0.675,YOU HAUNT ME,71.75,I Won't Hold My Breath,0.284,Sinking Sand,196.18,ICON KILLER,0.958,257,349
-2025-04-21,No Care,Daughter,154.11,1760.16,129.52,0.7,MAMBO,76.03,Kinda Scary,0.426,goner,199.84,MICHELIN CLUB,0.953,149,198
-2025-04-28,Get Movin' (Feet Don't Fail Me Now),Cut Capers,123.74,1534.63,126.72,0.673,I Don't Mind It,74.96,Monopoly Money,0.29,Monopoly Money,207.9,Climate Crisis Love Song,0.977,215,278
-2025-05-05,No Hat No Play,Playlunch,71.23,1244.46,128.98,0.689,1975,74.95,Degrade Me,0.266,Monopoly Money,207.9,Me Too,0.934,292,380
-2025-05-12,NEWSGIRL,Logan Levi,55.57,1516.18,128.22,0.665,Man Made Myth,51.06,Signore dei Lupi - from Arknights,0.304,National Treasure,205.98,not exactly happy.,0.975,370,461
-2025-05-19,Vaitimbora,Mariana Froes,126.23,1795.76,125.33,0.691,Sleeping On The Ceiling,74.96,Villain,0.304,Sinking Sand,196.18,not exactly happy.,0.975,317,424
-2025-05-26,Planet X,Calimossa,177.93,1322.68,127.47,0.685,"We All Lift Together (From ""Warframe"")",67.18,Degrade Me,0.266,goner,199.84,DEATH,0.965,273,362
-2025-06-02,Planet X,Calimossa,123.95,1947.6,126.42,0.67,YOU HAUNT ME,71.75,Digital Silence,0.312,VERLASS MICH NICHT,202.05,The Real Slim Shady,0.949,310,409
-2025-06-09,Planet X,Calimossa,196.1,1193.45,132.79,0.662,tied up,74.99,Hayloft II,0.326,goner,199.84,Climate Crisis Love Song,0.977,114,136
-2025-06-16,NEWSGIRL,Logan Levi,68.07,1087.72,131.35,0.672,DEAD BEATS,75.43,Degrade Me,0.266,HEARTSTICKY!,195.94,Temperature,0.951,248,313
-2025-06-23,Church (feat. Teddy Verseti),T-Pain,95.66,1516.91,128.09,0.674,"We All Lift Together (From ""Warframe"")",67.18,Degrade Me,0.266,Hangman Flows,202.07,Hot,0.978,201,278
-2025-06-30,Hey You,C.U.T.,193.55,1317.12,125.61,0.696,Street Brawling Millionaire,73.0,Monopoly Money,0.29,Monopoly Money,207.9,Climate Crisis Love Song,0.977,277,362
-2025-07-07,discothèque with u,Tiavo,362.56,1324.53,144.26,0.605,"Hawatari Nioku Centi (From ""Chainsaw Man"")",74.22,Degrade Me,0.266,Sunset,203.83,DEATH,0.965,241,307
-2025-07-14,Sweet Sun,Milky Chance,160.03,2007.61,127.32,0.658,Dead Ends,74.94,Degrade Me,0.266,Monopoly Money,207.9,Climate Crisis Love Song,0.977,351,495
-2025-07-21,Sweet Sun,Milky Chance,52.95,622.89,123.15,0.702,THE PROBLEM,72.14,Monopoly Money,0.29,Monopoly Money,207.9,BlindLife,0.959,137,176
-2025-07-28,Grave Digger,Naethan Apollo,39.68,861.19,121.84,0.722,Oh No!!,79.99,Bad Attitude,0.385,BRAINROT,184.04,MICHELIN CLUB,0.953,68,94
-2025-08-04,Rich Girls in Destin,Swang,313.77,1553.85,125.41,0.747,THE PROBLEM,72.14,Monopoly Money,0.29,Monopoly Money,207.9,Wenn du tanzt,0.966,259,328
-2025-08-11,Rich Girls in Destin,Swang,273.67,1535.05,125.08,0.726,"Noch ein bisschen draußen (ich hoffe, das passt)",77.55,Mind Mischief,0.25,Let Em' Out,187.68,Haunted Juke Joint Jam,0.96,158,193
-2025-08-18,Ex Damages,Luca Malina,22.43,409.15,132.7,0.686,Daytoday,77.48,Change (In the House of Flies),0.269,Let Em' Out,187.68,not exactly happy.,0.975,85,110
-2025-08-25,Ear to Ear,ANIMA!,176.74,1511.25,126.67,0.697,"Hawatari Nioku Centi (From ""Chainsaw Man"")",74.22,violet,0.262,AFTER DARK,201.97,GET USED TO ME,0.961,328,415
-2025-09-01,Roadtrim Part 1,The Dead Pirates,62.02,622.53,137.03,0.685,Exoskeleton,82.46,Toccata,0.279,Sunset,203.83,Uninvited,0.956,67,82
-2025-09-08,Walkin' Blues,Howlin Jackson,38.35,527.04,135.07,0.665,Awakening,73.62,Awakening,0.271,s.w.i.m.,202.09,Rich Girls in Destin,0.938,89,108
-2025-09-15,Based,KAFVKA,153.89,1410.2,121.62,0.682,Street Brawling Millionaire,73.0,Animal,0.195,Morirò da Re,193.79,not exactly happy.,0.975,211,257
-2025-09-22,Kein Bock,Tancred,61.21,1379.06,124.99,0.691,Little Wing,70.78,Free Bird,0.249,Hell N Back,209.69,The Real Slim Shady,0.949,242,324
-2025-09-29,Kein Bock,Tancred,101.07,1975.32,125.27,0.718,Hand Me Downs,68.98,Come Back to Earth,0.272,s.w.i.m.,202.09,No Hope (The Frog Song),0.939,186,223
-2025-10-06,Rock & Roll,Oliver Malcolm,226.64,2329.28,129.73,0.671,"We All Lift Together (From ""Warframe"")",67.18,Degrade Me,0.266,Monopoly Money,207.9,The Real Slim Shady,0.949,278,352
-2025-10-13,Guava Jelly,Royce Fisherman,452.97,3246.06,124.85,0.716,YOU HAUNT ME,71.75,Toccata,0.279,Sunset,203.83,not exactly happy.,0.975,425,571
-2025-10-20,Wolke 4,Philipp Dittberner,63.6,1207.3,127.15,0.705,Say My Peace,74.5,Chandelier,0.331,HEARTSTICKY!,195.94,Rich Girls in Destin,0.938,198,264
-2025-10-27,Nein,MAS,120.06,1157.05,122.75,0.705,Fish on Land,66.01,Monopoly Money,0.29,Monopoly Money,207.9,DOOF DOOF,0.979,253,348
-2025-11-03,Fish on Land,Blood Red Sun,213.49,1316.09,113.7,0.691,Fish on Land,66.01,Toccata,0.279,Falling Before You,205.6,BlindLife,0.959,196,267
-2025-11-10,NOBODY,ZEP,194.21,1157.29,123.8,0.713,Fish on Land,66.01,Degrade Me,0.266,Show Me A Trick,200.89,Hold On,0.942,176,229
-2025-11-17,OFF MY NUTTT,The Skinner Brothers,164.72,934.34,127.21,0.762,Fish on Land,66.01,Monopoly Money,0.29,Monopoly Money,207.9,White Rabbit,0.937,55,72
-2025-11-24,No More Beer,Lipka,34.91,829.41,122.62,0.723,Fish on Land,66.01,jump the gun,0.372,BRAINROT,184.04,Little Lucille,0.964,77,101
-2025-12-01,MOMENTUM,Max Volante,170.12,1173.92,131.09,0.692,THE PROBLEM,72.14,jump the gun,0.372,Depressing Summer,191.97,Climate Crisis Love Song,0.977,237,315
-2025-12-08,Me No Evil,Abhi The Nomad,42.15,506.71,128.88,0.723,Fish on Land,66.01,Toccata,0.279,Monopoly Money,207.9,Lil Bit,0.97,123,163
+Week Start,Top Song,Top Song Artist,Top Song Minutes,Total Minutes Played,Avg Tempo (Weighted),Avg Danceability (Weighted),Lowest Tempo Song,Lowest Tempo Artist,Lowest Tempo,Lowest Danceability Song,Lowest Danceability Artist,Lowest Danceability,Highest Tempo Song,Highest Tempo Artist,Highest Tempo,Highest Danceability Song,Highest Danceability Artist,Highest Danceability,Tracks With Features,Total Tracks
+2018-06-04,Wolke 4,Philipp Dittberner,23.41,248.34,129.0,0.653,Hör auf deine Freunde,Montreal,75.01,Before You Go,ITCHY,0.358,Schockverliebt,Jennifer Rostock,179.73,Vultures,John Mayer,0.881,53,70
+2018-06-11,Eure Mädchen,Kraftklub,52.1,675.17,146.77,0.556,Hör auf deine Freunde,Montreal,75.01,Alles war aus Gold,Bakkushan,0.396,Alles war aus Gold,Bakkushan,203.91,Shape of You,Ed Sheeran,0.825,28,38
+2018-06-18,My Way,Royal Republic,21.51,109.23,155.75,0.536,Shape of You,Ed Sheeran,95.98,Scheissindiedisko,Kraftklub,0.475,My Way,Royal Republic,171.92,Shape of You,Ed Sheeran,0.825,13,18
+2018-06-25,I Am Believing,CraftBattleDuty,4.84,33.26,131.53,0.58,Hör auf deine Freunde,Montreal,75.01,Ritalin/Medikinet,Kraftklub,0.43,Scheissindiedisko,Kraftklub,160.99,Cake By The Ocean,DNCE,0.774,9,11
+2018-07-02,Rainbows in the Dark,Rockit Music,55.02,199.2,156.31,0.534,Hör auf deine Freunde,Montreal,75.01,Ritalin/Medikinet,Kraftklub,0.43,Schockverliebt,Jennifer Rostock,179.73,Shape of You,Ed Sheeran,0.825,18,23
+2018-07-09,My Way,Royal Republic,22.83,50.77,168.72,0.505,Eure Mädchen,Kraftklub,163.01,Eure Mädchen,Kraftklub,0.479,My Way,Royal Republic,171.92,My Way,Royal Republic,0.519,2,3
+2018-07-16,My Way,Royal Republic,32.16,94.55,169.2,0.502,Eure Mädchen,Kraftklub,163.01,Eure Mädchen,Kraftklub,0.479,Beyblade auf der ganzen Welt (Beyblade),Anime Allstars,184.03,My Way,Royal Republic,0.519,3,9
+2018-07-23,Rainbows in the Dark,Rockit Music,32.6,197.65,156.82,0.507,High Times,Royal Republic,94.96,Gefahr,Bakkushan,0.325,Gefahr,Bakkushan,220.04,High Times,Royal Republic,0.7,38,41
+2018-09-03,Kyouran Hey Kids!!,THE ORAL CIGARETTES,10.74,22.22,143.34,0.455,"Rising Rainbow (from ""Food Wars: Shokugeki no Soma"")",Jonathan Parecki,97.34,"Kibou no Uta (from ""Shokugeki no Soma: FOOD WARS!"")",Jonathan Parecki,0.173,Beyblade auf der ganzen Welt (Beyblade),Anime Allstars,184.03,"Kyouran Hey Kids (De ""Noragami Aragoto"")",Tragicômico,0.534,7,11
+2018-09-10,Kyouran Hey Kids!!,THE ORAL CIGARETTES,0.5,0.5,142.02,0.526,Kyouran Hey Kids!!,THE ORAL CIGARETTES,142.02,Kyouran Hey Kids!!,THE ORAL CIGARETTES,0.526,Kyouran Hey Kids!!,THE ORAL CIGARETTES,142.02,Kyouran Hey Kids!!,THE ORAL CIGARETTES,0.526,1,1
+2018-09-24,Kyouran Hey Kids!!,THE ORAL CIGARETTES,5.55,48.68,133.27,0.567,Getting Along,Royal Republic,94.01,Goya No Machiawase,Hello Sleepwalkers,0.406,Eure Mädchen,Kraftklub,163.01,Cake By The Ocean,DNCE,0.774,11,13
+2018-10-01,Kyouran Hey Kids!!,THE ORAL CIGARETTES,3.88,3.88,142.02,0.526,Kyouran Hey Kids!!,THE ORAL CIGARETTES,142.02,Kyouran Hey Kids!!,THE ORAL CIGARETTES,0.526,Kyouran Hey Kids!!,THE ORAL CIGARETTES,142.02,Kyouran Hey Kids!!,THE ORAL CIGARETTES,0.526,1,1
+2018-11-19,Deine Gang,Kraftklub,31.52,262.25,136.22,0.579,Hör auf deine Freunde,Montreal,75.01,Goya No Machiawase,Hello Sleepwalkers,0.406,Get the Party Started,Dick Brave & The Backbeats,181.79,Cuphead Rap,JT Music,0.902,25,35
+2018-11-26,Getting Along,Royal Republic,26.77,31.32,95.95,0.527,Getting Along,Royal Republic,94.01,Kung Fu Lovin',Royal Republic,0.468,My Little RnR,Danko Jones,141.96,My Little RnR,Danko Jones,0.593,3,6
+2018-12-03,Getting Along,Royal Republic,0.46,0.46,94.01,0.528,Getting Along,Royal Republic,94.01,Getting Along,Royal Republic,0.528,Getting Along,Royal Republic,94.01,Getting Along,Royal Republic,0.528,1,1
+2018-12-17,Getting Along,Royal Republic,64.64,90.39,108.46,0.527,Getting Along,Royal Republic,94.01,Eure Mädchen,Kraftklub,0.479,My Way,Royal Republic,171.92,Deine Gang,Kraftklub,0.606,4,5
+2018-12-24,Getting Along,Royal Republic,6.52,6.52,94.01,0.528,Getting Along,Royal Republic,94.01,Getting Along,Royal Republic,0.528,Getting Along,Royal Republic,94.01,Getting Along,Royal Republic,0.528,1,1
+2019-01-14,Deine Gang,Kraftklub,17.97,61.47,141.08,0.548,Getting Along,Royal Republic,94.01,Eure Mädchen,Kraftklub,0.479,My Way,Royal Republic,171.92,Deine Gang,Kraftklub,0.606,4,5
+2019-01-21,Deine Gang,Kraftklub,4.12,23.62,112.08,0.613,Become Legend (Destiny Rap),NemRaps,85.38,My Way,Royal Republic,0.519,My Way,Royal Republic,171.92,High Times,Royal Republic,0.7,5,8
+2019-02-04,Galway Girl,Ed Sheeran,0.52,0.52,99.94,0.624,Galway Girl,Ed Sheeran,99.94,Galway Girl,Ed Sheeran,0.624,Galway Girl,Ed Sheeran,99.94,Galway Girl,Ed Sheeran,0.624,1,1
+2019-02-11,Don't Stop (Color on the Walls),Foster The People,2.92,3.31,132.18,0.619,Waste,Foster The People,125.98,Don't Stop (Color on the Walls),Foster The People,0.611,Don't Stop (Color on the Walls),Foster The People,133.0,Waste,Foster The People,0.681,2,2
+2019-02-25,Don't Stop (Color on the Walls),Foster The People,6.2,6.2,133.0,0.611,Don't Stop (Color on the Walls),Foster The People,133.0,Don't Stop (Color on the Walls),Foster The People,0.611,Don't Stop (Color on the Walls),Foster The People,133.0,Don't Stop (Color on the Walls),Foster The People,0.611,1,1
+2019-03-11,Looking Like This,Lyre Le Temps,32.09,109.93,111.71,0.714,Goodbye,Lyre Le Temps,87.72,Rock'n Roll,Lyre Le Temps,0.519,Rock'n Roll,Lyre Le Temps,154.03,Word Up,Lyre Le Temps,0.79,9,9
+2019-03-25,Deine Gang,Kraftklub,4.05,12.31,145.15,0.54,Getting Along,Royal Republic,94.01,Eure Mädchen,Kraftklub,0.479,My Way,Royal Republic,171.92,Deine Gang,Kraftklub,0.606,4,4
+2019-04-08,Six Shooter,Coyote Kisses,67.92,67.92,161.92,0.515,Six Shooter,Coyote Kisses,161.92,Six Shooter,Coyote Kisses,0.515,Six Shooter,Coyote Kisses,161.92,Six Shooter,Coyote Kisses,0.515,1,1
+2019-04-22,All Star,Smash Mouth,99.29,106.93,104.79,0.729,All Star,Smash Mouth,104.02,Six Shooter,Coyote Kisses,0.515,Six Shooter,Coyote Kisses,161.92,All Star,Smash Mouth,0.731,3,4
+2019-04-29,"Take Me Home, Country Roads - Rerecorded",John Denver,92.31,92.31,,,,,,,,,,,,,,,0,1
+2019-05-20,"Take Me Home, Country Roads - Rerecorded",John Denver,2.78,2.78,,,,,,,,,,,,,,,0,1
+2019-07-29,All Falls Down (feat. Juliander),Alan Walker,3.31,11.63,123.85,0.634,On My Way,Illijah,68.51,On My Way,Illijah,0.372,The Spectre,Alan Walker,127.96,The Spectre,Alan Walker,0.654,2,5
+2019-08-26,Allein zu Haus,Julien Bam,5.89,20.77,,,,,,,,,,,,,,,0,9
+2019-09-02,Warum warum (Supraland Credits Song),Con Fetti Pesto,6.4,6.4,,,,,,,,,,,,,,,0,1
+2019-10-14,The Wolf,SIAMES,3.11,7.2,105.03,0.557,Gimme Some Sweet,SIAMES,79.93,B.I.T.M.,SIAMES,0.373,The Cave,SIAMES,140.03,Mr. Fear,SIAMES,0.638,9,9
+2020-03-09,Bad Apple!!,RichaadEB,3.76,3.76,,,,,,,,,,,,,,,0,1
+2020-04-06,The Quiet Earth,Thomas Barrandon,0.51,0.51,95.51,0.42,The Quiet Earth,Thomas Barrandon,95.51,The Quiet Earth,Thomas Barrandon,0.42,The Quiet Earth,Thomas Barrandon,95.51,The Quiet Earth,Thomas Barrandon,0.42,1,1
+2020-08-10,BRN,AViVA,0.36,0.36,79.9,0.573,BRN,AViVA,79.9,BRN,AViVA,0.573,BRN,AViVA,79.9,BRN,AViVA,0.573,1,1
+2021-07-26,Haben wir noch Pepps?,j1mbo,0.64,0.64,128.02,0.751,Haben wir noch Pepps?,j1mbo,128.02,Haben wir noch Pepps?,j1mbo,0.751,Haben wir noch Pepps?,j1mbo,128.02,Haben wir noch Pepps?,j1mbo,0.751,1,1
+2021-12-20,Sex Party,Ferdinand fka Left Boy,122.91,1179.04,134.79,0.658,They Don't Care About Us,Matty Carter + Ariel,60.51,"Soldier, Poet, King",The Oh Hellos,0.347,Alastor's Game,The Living Tombstone,200.08,The Real Slim Shady,Eminem,0.949,70,94
+2021-12-27,Go Godzilla On Ya Frikkn City,TJ_beastboy,39.66,784.17,130.25,0.686,"AN ALLE, DIE DAS FÜHLEN",TJ_beastboy,72.94,"Soldier, Poet, King",The Oh Hellos,0.347,Morirò da Re,Måneskin,193.79,The Real Slim Shady,Eminem,0.949,60,83
+2022-01-03,Vampire,Ferdinand fka Left Boy,37.96,598.37,131.34,0.709,DEAD BEATS,Mori Calliope,75.43,"Soldier, Poet, King",The Oh Hellos,0.347,Morirò da Re,Måneskin,193.79,The Real Slim Shady,Eminem,0.949,72,94
+2022-01-10,Superstar,Ferdinand fka Left Boy,51.4,951.21,126.79,0.684,They Don't Care About Us,Matty Carter + Ariel,60.51,"Soldier, Poet, King",The Oh Hellos,0.347,Morirò da Re,Måneskin,193.79,The Real Slim Shady,Eminem,0.949,75,100
+2022-01-17,I'm Not Cool,Sohodolls,58.8,1173.3,122.41,0.697,DEAD BEATS,Mori Calliope,75.43,"Soldier, Poet, King",The Oh Hellos,0.347,Morirò da Re,Måneskin,193.79,The Real Slim Shady,Eminem,0.949,89,121
+2022-01-24,Sweet Goodbye,Ferdinand fka Left Boy,32.52,1323.81,132.08,0.678,DEAD BEATS,Mori Calliope,75.43,"Soldier, Poet, King",The Oh Hellos,0.347,Morirò da Re,Måneskin,193.79,The Real Slim Shady,Eminem,0.949,78,117
+2022-01-31,"wanting, getting, wanting",DEMONDICE,144.89,992.8,119.42,0.713,DEAD BEATS,Mori Calliope,75.43,"Soldier, Poet, King",The Oh Hellos,0.347,Morirò da Re,Måneskin,193.79,The Real Slim Shady,Eminem,0.949,79,117
+2022-02-07,fake ass gold,DEMONDICE,50.67,1674.74,125.37,0.693,DEAD BEATS,Mori Calliope,75.43,Back In Black,AC/DC,0.31,Morirò da Re,Måneskin,193.79,The Real Slim Shady,Eminem,0.949,99,157
+2022-02-14,Crazy Rap (Colt 45 & 2 Zig Zags),Afroman,167.55,1413.51,119.3,0.709,DEAD BEATS,Mori Calliope,75.43,"Soldier, Poet, King",The Oh Hellos,0.347,Morirò da Re,Måneskin,193.79,Palmdale,Afroman,0.974,101,145
+2022-02-21,We Don't Talk About Bruno,Carolina Gaitán,50.81,1107.56,120.29,0.723,Bloody Well Right,Supertramp,75.5,We Shall Sail Together - Original Game Soundtrack,Sea of Thieves,0.441,I Want You Back,The Jackson 5,196.61,The Real Slim Shady,Eminem,0.949,104,150
+2022-02-28,(Stay) True,Lars Eriksson,126.44,788.09,120.1,0.721,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,"Steal from the Rich, Give to Myself",Simon Viklund,0.471,Morirò da Re,Måneskin,193.79,The Real Slim Shady,Eminem,0.949,98,135
+2022-03-07,Hot,Confetti,132.46,1034.85,133.54,0.737,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Eure Mädchen,Kraftklub,0.479,Red,Mori Calliope,175.81,No Hope (The Frog Song),Robert Grace,0.939,61,85
+2022-03-14,Rob A Bank,Confetti,107.74,1499.14,129.81,0.692,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Love,Physika,0.307,Morirò da Re,Måneskin,193.79,No Hope (The Frog Song),Robert Grace,0.939,76,93
+2022-03-21,Dear God,Confetti,84.98,1187.79,124.75,0.697,They Don't Care About Us,Matty Carter + Ariel,60.51,They Don't Care About Us,Matty Carter + Ariel,0.459,Morirò da Re,Måneskin,193.79,No Hope (The Frog Song),Robert Grace,0.939,65,79
+2022-03-28,Guilty Pleasures,Confetti,127.28,1269.12,117.99,0.707,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Eure Mädchen,Kraftklub,0.479,Morirò da Re,Måneskin,193.79,No Hope (The Frog Song),Robert Grace,0.939,57,72
+2022-04-04,The Bidding,Tally Hall,154.94,927.85,133.93,0.655,Dangerous,Royal Deluxe,79.14,Eure Mädchen,Kraftklub,0.479,Morirò da Re,Måneskin,193.79,No Hope (The Frog Song),Robert Grace,0.939,50,69
+2022-04-11,Tom's Diner,AnnenMayKantereit,32.58,704.66,127.56,0.682,DEAD BEATS,Mori Calliope,75.43,"Soldier, Poet, King",The Oh Hellos,0.347,Morirò da Re,Måneskin,193.79,The Real Slim Shady,Eminem,0.949,111,150
+2022-04-18,Rhythm Kitchen (feat. D Smoke),Rare Americans,31.06,560.3,128.87,0.715,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Eure Mädchen,Kraftklub,0.479,Fireflies,Owl City,180.11,No Hope (The Frog Song),Robert Grace,0.939,45,60
+2022-04-25,Boof Pack,Lord Aethelstan,622.23,1007.81,139.79,0.778,take the bait,DEMONDICE,77.96,Kickstart My Heart,Mötley Crüe,0.363,Fireflies,Owl City,180.11,No More ?'s,Eazy-E,0.935,37,46
+2022-05-02,Disco! in the Panic Room,Bug Hunter,1292.55,1927.81,95.2,0.765,Point to Prove (I Was an Ugly Kid),Bug Hunter,73.97,Eure Mädchen,Kraftklub,0.479,Fireflies,Owl City,180.11,No More ?'s,Eazy-E,0.935,38,49
+2022-05-09,踊,Ado,168.74,1287.88,125.4,0.654,/ / // / /,x0o0x_,65.08,千両役者,King Gnu,0.33,テレキャスタービーボーイ(long ver.),Chogakusei,182.0,No Hope (The Frog Song),Robert Grace,0.939,96,128
+2022-05-16,It's a Monday,Lolnein,1013.54,2193.6,126.83,0.721,DEAD BEATS,Mori Calliope,75.43,Sun//Eater,Lorna Shore,0.245,Sunset,Welyn,203.83,No Hope (The Frog Song),Robert Grace,0.939,95,127
+2022-05-23,1975,Silent Child,691.39,3002.13,111.92,0.683,Clouds,Ajmw,62.99,"Soldier, Poet, King",The Oh Hellos,0.347,Sunset,Welyn,203.83,The Real Slim Shady,Eminem,0.949,144,203
+2022-05-30,Mind Brand,Kuraiinu,71.95,393.17,114.63,0.705,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,"Soldier, Poet, King",The Oh Hellos,0.347,Sunset,Welyn,203.83,No Hope (The Frog Song),Robert Grace,0.939,31,37
+2022-06-06,The Moss,Cosmo Sheldrake,20.23,829.05,130.32,0.681,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,"Soldier, Poet, King",The Oh Hellos,0.347,Sunset,Welyn,203.83,The Real Slim Shady,Eminem,0.949,114,157
+2022-06-13,Beichte,Julien Bam,148.51,1238.01,125.15,0.718,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,"Soldier, Poet, King",The Oh Hellos,0.347,Sunset,Welyn,203.83,The Real Slim Shady,Eminem,0.949,130,173
+2022-06-20,Break My Heart,Dua Lipa,96.0,768.01,124.9,0.717,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Boku no Sensou,Shinsei Kamattechan,0.473,Sunset,Welyn,203.83,The Real Slim Shady,Eminem,0.949,112,144
+2022-06-27,Bruises,Fox Stevenson,493.27,2384.22,144.75,0.607,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,I'm Not Ok,Weathers,0.397,Hate Myself,Bryce Fox,204.0,The Real Slim Shady,Eminem,0.949,200,261
+2022-07-04,Bloodshot,Sam Tinnesz,113.89,748.04,135.28,0.647,Dangerous,Royal Deluxe,79.14,Happy Face,Jagwar Twin,0.417,Happy Face,Jagwar Twin,177.55,Another One Bites The Dust - Remastered 2011,Queen,0.933,23,32
+2022-07-11,Balloons,Confetti,121.13,574.0,123.1,0.688,1975,Silent Child,74.95,Welcome to the Black Parade,My Chemical Romance,0.217,Morirò da Re,Måneskin,193.79,Boof Pack,Lord Aethelstan,0.912,95,119
+2022-07-18,Ballroom Blitz,The Struts,85.84,1255.73,128.21,0.641,The Makings of You,Curtis Mayfield,76.45,All Die Young,Smith Westerns,0.269,The Ketchup Song (Aserejé) - Spanish Version,Las Ketchup,184.98,Another One Bites The Dust - Remastered 2011,Queen,0.933,58,73
+2022-07-25,Major Tom (Coming Home),Peter Schilling,33.65,540.67,132.04,0.648,Ganja Smoka,Benjie,82.02,No More Heroes - 1996 Remaster,The Stranglers,0.293,Call Me When You Want Call Me When You Need,DJ Gotta,178.96,No More ?'s,Eazy-E,0.935,70,88
+2022-08-01,Blue Monday,Prismo,196.78,858.14,126.35,0.623,Klick,GReeeN,80.03,Open Up Your Eyes,RIP Kenny,0.259,Tough Guy,Beastie Boys,191.33,Cool,Sadie,0.936,77,104
+2022-08-08,ERROR143,kroh,638.71,1262.16,140.41,0.647,1975,Silent Child,74.95,Back In Black,AC/DC,0.31,Back In Black,AC/DC,188.39,No Hope (The Frog Song),Robert Grace,0.939,81,102
+2022-08-15,Problems,Jake Daniels,224.95,1254.79,129.25,0.681,1975,Silent Child,74.95,I Won't,AJR,0.387,Lily Womp Womp,nihmune,203.72,No Hope (The Frog Song),Robert Grace,0.939,60,89
+2022-08-22,Problems,Jake Daniels,180.2,2029.64,125.77,0.67,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Pour Some Sugar On Me - Remastered 2017,Def Leppard,0.267,Sunset,Welyn,203.83,The Real Slim Shady,Eminem,0.949,187,249
+2022-08-29,Stella,Julien Bam,132.65,3025.67,131.99,0.688,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Freaks,Surf Curse,0.345,Sunset,Welyn,203.83,The Real Slim Shady,Eminem,0.949,219,294
+2022-09-05,Greedy (Altair Arrange),Interlunium,374.36,3089.46,129.05,0.667,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,"For Those About to Rock (We Salute You) - Live Tushino Airfield, Moscow, Sept. 28, 1991",AC/DC,0.157,Sunset,Welyn,203.83,The Real Slim Shady,Eminem,0.949,192,270
+2022-09-12,Anxiety,Julien Bam,114.67,2748.99,129.98,0.668,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Send Me An Angel,Scorpions,0.153,Sunset,Welyn,203.83,The Real Slim Shady,Eminem,0.949,241,322
+2022-09-19,W.I.T.C.H.,Devon Cole,457.31,3095.84,136.34,0.664,Street Brawling Millionaire,Adam Jensen,73.0,Suicider,Kennyoung,0.205,Sunset,Welyn,203.83,Cool,Sadie,0.936,120,172
+2022-09-26,Liar,Jake Daniels,465.22,2962.24,122.18,0.681,Street Brawling Millionaire,Adam Jensen,73.0,Scavenger Hunt,P.T. Adamczyk,0.288,Morirò da Re,Måneskin,193.79,Cool,Sadie,0.936,78,110
+2022-10-03,Bad Ones,Call Me Karizma,683.9,3600.7,127.28,0.648,Street Brawling Millionaire,Adam Jensen,73.0,Patience,Hellhills,0.309,Morirò da Re,Måneskin,193.79,GIGA MODE,Constera,0.935,61,82
+2022-10-10,Eismann,GReeeN,712.26,3386.71,145.08,0.698,Didn't You,Call Me Karizma,58.42,Death in Color,Lilac Boy,0.369,The Show,Jake Daniels,204.06,No Hope (The Frog Song),Robert Grace,0.939,142,185
+2022-10-17,SIMPLE (feat. I DONT KNOW HOW BUT THEY FOUND ME),DE'WAYNE,424.67,2975.74,124.79,0.704,Street Brawling Millionaire,Adam Jensen,73.0,Dread,Unlike Pluto,0.309,Green: SSD,Dagames,190.08,Gönn dir Parodie (Schluck Schluck),TJ_weakboy,0.945,86,128
+2022-10-24,The Dino Club,Ethan Bortnick,288.18,2013.76,118.91,0.706,Street Brawling Millionaire,Adam Jensen,73.0,12,kroh,0.283,Call Me When You Want Call Me When You Need,DJ Gotta,178.96,Gönn dir Parodie (Schluck Schluck),TJ_weakboy,0.945,73,101
+2022-10-31,SUPERHERO,Aim Vision,292.82,2037.22,118.86,0.685,Baby Queen,Gorillaz,75.01,Puppet,Silent Child,0.367,Sinking Sand,Unlike Pluto,196.18,GET USED TO ME,Aim Vision,0.961,51,70
+2022-11-07,Have You Seen The Moon Tonight?,Aim Vision,569.2,2241.35,125.43,0.691,Mothman,Joh Yoban,74.94,Poison Pop,Qbomb,0.409,Eismann,GReeeN,178.05,GET USED TO ME,Aim Vision,0.961,69,94
+2022-11-14,Serotonin,Call Me Karizma,118.26,1177.6,118.43,0.659,Fool's Gold,His Hero Is Gone,72.58,Fool's Gold,His Hero Is Gone,0.3,The Drummer,Red Hot Chili Peppers,174.9,GET USED TO ME,Aim Vision,0.961,58,89
+2022-11-21,Illuminati,ONICKS,371.55,2031.09,120.66,0.717,Serotonin,Call Me Karizma,77.76,Dread,Unlike Pluto,0.309,Sinking Sand,Unlike Pluto,196.18,Climate Crisis Love Song,Naethan Apollo,0.977,80,100
+2022-11-28,Dead Body,Call Me Karizma,243.05,1877.32,134.41,0.646,1975,Silent Child,74.95,I Really Want to Stay at Your House - Metal Version,Little V.,0.3,Sinking Sand,Unlike Pluto,196.18,Climate Crisis Love Song,Naethan Apollo,0.977,121,169
+2022-12-05,Untouchable (feat. Call Me Karizma),Futuristic,276.41,1617.79,136.97,0.596,Make Monsters Make Saints,Demi the Daredevil,77.6,Side Effect,FKA Rayne,0.376,Morirò da Re,Måneskin,193.79,No Hope (The Frog Song),Robert Grace,0.939,66,106
+2022-12-12,Die Happy,DREAMERS,201.52,1593.0,119.47,0.686,Soda,Nothing But Thieves,74.92,Hayloft II,Mother Mother,0.326,Depressing Summer,Lolnein,191.97,Climate Crisis Love Song,Naethan Apollo,0.977,116,167
+2022-12-19,SPIT IN MY FACE!,ThxSoMch,566.85,1447.39,109.08,0.729,Street Brawling Millionaire,Adam Jensen,73.0,Hayloft II,Mother Mother,0.326,Kill The Insanity,DanielFromSalem,192.13,not exactly happy.,Aim Vision,0.975,72,102
+2022-12-26,villains,PmBata,423.3,1836.35,111.43,0.72,"Hawatari Nioku Centi (From ""Chainsaw Man"")",Miura Jam,74.22,Running Blind,Hellhills,0.267,Hayloft II,Mother Mother,178.18,not exactly happy.,Aim Vision,0.975,62,93
+2023-01-02,i know,Hairu Tokyo,534.29,1503.7,109.99,0.751,villains,PmBata,81.94,It's Going Bad?,Hairu Tokyo,0.515,Losers,Aryia,178.03,Players,Coi Leray,0.948,16,34
+2023-01-09,SLEEP PARALYSIS,Cemetery Drive,320.8,976.45,102.14,0.709,touch grass,low mana,77.53,Deja Vu,Fox Stevenson,0.355,chaotic,Hairu Tokyo,172.14,Rambo,Rare Americans,0.809,21,34
+2023-01-16,The Hanging Tree,James Newton Howard,137.67,975.53,122.02,0.678,touch grass,low mana,77.53,Side Effect,FKA Rayne,0.376,Side Effect,FKA Rayne,186.44,not exactly happy.,Aim Vision,0.975,61,100
+2023-01-23,BABY SAID,Måneskin,544.41,1836.23,132.39,0.625,"Hawatari Nioku Centi (From ""Chainsaw Man"")",Miura Jam,74.22,Descent into the Rift,Kyle Dixon & Michael Stein,0.197,Sunset,Welyn,203.83,DEATH,CG5,0.965,53,76
+2023-01-30,Sunsets,Biting Elbows,508.27,1359.36,146.8,0.592,Verbatim,Mother Mother,78.01,This fffire - New Version,Franz Ferdinand,0.442,Sunset,Welyn,203.83,Climate Crisis Love Song,Naethan Apollo,0.977,70,97
+2023-02-06,Mini Golf,Puddles!,346.99,1131.03,128.98,0.726,Street Brawling Millionaire,Adam Jensen,73.0,Hey,Noisecream,0.311,Anime Dream Queen,bedfashion,194.16,Feel 4 Free,Puddles!,0.907,56,79
+2023-02-13,Bored to Death,8 Graves,130.16,1053.43,127.76,0.682,"Hawatari Nioku Centi (From ""Chainsaw Man"")",Miura Jam,74.22,Danny Break-up Bad,Orchid Porn,0.327,Depressing Summer,Lolnein,191.97,not exactly happy.,Aim Vision,0.975,117,165
+2023-02-20,ADHD,Silent Child,138.39,574.85,130.25,0.719,touch grass,low mana,77.53,HOLOGRAM,Poe the Passenger,0.367,Morirò da Re,Måneskin,193.79,DEATH,CG5,0.965,76,106
+2023-02-27,Good Luck,Abhi The Nomad,200.78,758.68,124.69,0.741,sheluvme,Tai Verdes,82.36,In My Head,Public Theatre,0.266,Depressing Summer,Lolnein,191.97,Yuck.,Jay Samuelz,0.954,65,90
+2023-03-06,Ferris Bueller,Emei,80.15,690.5,123.91,0.706,Misty,Melvin Brooke,52.3,Hayloft II,Mother Mother,0.326,Sunset,Welyn,203.83,Climate Crisis Love Song,Naethan Apollo,0.977,96,118
+2023-03-13,Hotel Sex,Call Me Karizma,47.85,727.01,126.17,0.675,1975,Silent Child,74.95,Dream On,Aerosmith,0.392,prism,monty.pk,182.11,Climate Crisis Love Song,Naethan Apollo,0.977,162,215
+2023-03-20,Toca Toca,Fly Project,60.33,860.71,131.25,0.689,1975,Silent Child,74.95,Sigh on a Hurricane,HIMALAYAS,0.292,Morirò da Re,Måneskin,193.79,Climate Crisis Love Song,Naethan Apollo,0.977,167,238
+2023-03-27,The Law - Zardonic Remix,Reach,47.75,622.93,128.59,0.706,Street Brawling Millionaire,Adam Jensen,73.0,Hayloft II,Mother Mother,0.326,Depressing Summer,Lolnein,191.97,Climate Crisis Love Song,Naethan Apollo,0.977,126,173
+2023-04-03,I AM,Hairu Tokyo,164.18,1022.12,126.9,0.728,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Digital Silence,Peter McPoland,0.312,Sunset,Welyn,203.83,Climate Crisis Love Song,Naethan Apollo,0.977,150,209
+2023-04-10,DON'T TRIP!,Atwood,77.23,680.87,121.58,0.629,1975,Silent Child,74.95,Digital Silence,Peter McPoland,0.312,Depressing Summer,Lolnein,191.97,Gönn dir Parodie (Schluck Schluck),TJ_weakboy,0.945,88,130
+2023-04-17,Nightmares,Hairu Tokyo,33.54,619.94,125.77,0.664,UNBELIEVABLE,Ethan Gander,69.99,Digital Silence,Peter McPoland,0.312,A While Ago,DaniSogen,194.58,Gönn dir Parodie (Schluck Schluck),TJ_weakboy,0.945,115,166
+2023-04-24,Drones,grandson,85.85,507.86,127.68,0.667,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Digital Silence,Peter McPoland,0.312,Sinking Sand,Unlike Pluto,196.18,not exactly happy.,Aim Vision,0.975,95,136
+2023-05-01,"Goodbye, Babe",Joachim,122.28,742.36,128.24,0.643,Get Puffer'd,Fexxeexd,74.99,Digital Silence,Peter McPoland,0.312,Butterscotch,Neutral Snap,199.93,Containment Breach,Fexxeexd,0.929,129,196
+2023-05-08,Date Myself,Your Favorite Martian,113.0,1105.67,124.26,0.702,Street Brawling Millionaire,Adam Jensen,73.0,Flujo De Ruido,Tiempo Discreto,0.143,Sunset,Welyn,203.83,Climate Crisis Love Song,Naethan Apollo,0.977,200,301
+2023-05-15,White,Hairu Tokyo,226.72,799.68,137.18,0.666,HI MY NAME IS,RAEGAN,80.96,Digital Silence,Peter McPoland,0.312,Mini Golf,Puddles!,175.94,GET USED TO ME,Aim Vision,0.961,63,95
+2023-05-22,All the Time in the World,Kiltro,10.67,406.24,125.76,0.683,1975,Silent Child,74.95,Digital Silence,Peter McPoland,0.312,Sunset,Welyn,203.83,DEATH,CG5,0.965,92,128
+2023-05-29,MONEY ON THE DASH,Elley Duhé,31.34,671.78,132.91,0.66,World A Music,iNi Kamoze,74.1,Signore dei Lupi - from Arknights,Will Stetson,0.304,Sunset,Welyn,203.83,GET USED TO ME,Aim Vision,0.961,117,181
+2023-06-05,Suic*de,Ren,149.21,829.65,132.69,0.604,Igowallah,Daniel Thrasher,79.98,golden hour,Will Stetson,0.239,Hangman Flows,Sugs,202.07,worth my weight in gold,One Hope,0.849,63,97
+2023-06-12,Every day is trash it hurts,たかやん,127.77,619.98,107.1,0.655,Sleeping On The Ceiling,Friday Pilots Club,74.96,EVAC,ONICKS,0.343,Hangman Flows,Sugs,202.07,Cool,Sadie,0.936,65,83
+2023-06-19,Nightmares,Hairu Tokyo,14.71,281.11,120.41,0.69,Street Brawling Millionaire,Adam Jensen,73.0,Monster,Lerion,0.279,Hangman Flows,Sugs,202.07,Climate Crisis Love Song,Naethan Apollo,0.977,74,97
+2023-06-26,Preacher,Roe Kapara,265.59,674.4,120.65,0.545,Sleeping On The Ceiling,Friday Pilots Club,74.96,Crazy? I Was Crazy Once...,Heavy Petter,0.286,Hangman Flows,Sugs,202.07,not exactly happy.,Aim Vision,0.975,50,74
+2023-07-03,fick dich,moi,455.61,684.51,119.19,0.623,tied up,starfall,74.99,save me,Ethan Gander,0.436,Fantasy,Hellhills,180.04,Cool,Sadie,0.936,47,69
+2023-07-10,fick dich,moi,18.12,288.61,124.3,0.687,1975,Silent Child,74.95,Signore dei Lupi - from Arknights,Will Stetson,0.304,Hangman Flows,Sugs,202.07,Climate Crisis Love Song,Naethan Apollo,0.977,82,113
+2023-07-17,Five,Fai Laci,12.71,330.88,121.42,0.685,Serotonin,Call Me Karizma,77.76,Dreamblur,Unlike Pluto,0.329,Call Me When You Want Call Me When You Need,DJ Gotta,178.96,not exactly happy.,Aim Vision,0.975,76,118
+2023-07-24,i'm so jealous of your bathroom mirror,Rudy Ayoub,16.85,313.16,122.6,0.659,Guts,Unlike Pluto,73.86,Seven Nation Army,Silent Child,0.293,Sunset,Welyn,203.83,Climate Crisis Love Song,Naethan Apollo,0.977,65,102
+2023-07-31,Alliance,Yxng Davi,175.33,518.18,138.21,0.64,Maybe,Jay Joseph,84.96,Degrade Me,TX2,0.266,a Look in,Kwite,179.91,megrim,mesq,0.894,38,64
+2023-08-07,The Cheaters Guide To The Galaxy,Warwick Smith,136.46,728.33,119.97,0.649,The Cheaters Guide To The Galaxy,Warwick Smith,75.02,Solomon Grundy,Chuxx Morris,0.188,Comatose,Saphir,177.85,ELEPHANT in the room,Llunr,0.962,48,71
+2023-08-14,ADDICTED & EXCITED,Franco Aurelio,188.85,612.82,122.48,0.677,The Cheaters Guide To The Galaxy,Warwick Smith,75.02,The Hate Man,seeeeecun,0.461,Alliance,Yxng Davi,174.13,I CAN'T WAIT,Aim Vision,0.895,40,49
+2023-08-21,Tut uns leid,Julien Bam,276.35,994.79,128.65,0.641,The Cheaters Guide To The Galaxy,Warwick Smith,75.02,Idol - Metal Version,二口魔菜 Futakuchi Mana,0.44,Hangman Flows,Sugs,202.07,Climate Crisis Love Song,Naethan Apollo,0.977,61,95
+2023-08-28,Payday,Thehiz,289.55,1040.06,118.36,0.643,cough drops,almost monday,76.51,Seven Nation Army,Silent Child,0.293,I.LIKE.IT.RAW,Changeline,174.78,Lil Bit,No-uh,0.97,42,78
+2023-09-04,Ich will,Miksu / Macloud,227.96,755.34,117.92,0.654,Call ACab,Sam Stone,75.51,Hate Thy Neighbour,Hyphen,0.428,Bounce,Oliver Tree,175.98,Hungry World,Naethan Apollo,0.919,27,51
+2023-09-11,Ich will,Miksu / Macloud,90.17,367.58,119.17,0.704,tied up,starfall,74.99,Hate Thy Neighbour,Hyphen,0.428,Feed the Machine,Poor Man's Poison,176.01,Scatterbrain,Emei,0.938,56,81
+2023-09-18,The Therapist,Foreign Air,18.4,440.01,123.46,0.66,Sleeping On The Ceiling,Friday Pilots Club,74.96,Kid Midnight,IRONTOM,0.355,Hated,YUNGBLUD,192.07,Scatterbrain,Emei,0.938,102,151
+2023-09-25,Super Smash Bros.,BABY GRAVY,30.28,355.18,120.24,0.681,cough drops,almost monday,76.51,Hate Thy Neighbour,Hyphen,0.428,Hated,YUNGBLUD,192.07,Hungry World,Naethan Apollo,0.919,46,64
+2023-10-02,Cosby Sweater,Marcapasos,38.04,529.22,127.41,0.663,The Cheaters Guide To The Galaxy,Warwick Smith,75.02,Degrade Me,TX2,0.266,Hated,YUNGBLUD,192.07,Another One Bites The Dust - Remastered 2011,Queen,0.933,106,145
+2023-10-09,Numb Little Bug,Em Beihold,58.53,649.64,133.39,0.66,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,I Won't,AJR,0.387,Hangman Flows,Sugs,202.07,No Hope (The Frog Song),Robert Grace,0.939,95,128
+2023-10-16,CITY OF ANGELS,24kGoldn,301.43,1268.44,132.85,0.653,Tongue Tied,Beyond This Afterlife,72.02,Signore dei Lupi - from Arknights,Will Stetson,0.304,Hangman Flows,Sugs,202.07,Uninvited,Ren,0.956,83,113
+2023-10-23,I Wasn't Made to Fall in Love,Koko Love,156.38,1512.38,126.37,0.666,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,A Way of Life,Hans Zimmer,0.092,Bubble Gum,Clairo,207.97,Climate Crisis Love Song,Naethan Apollo,0.977,240,345
+2023-10-30,T.V.,Call Me Karizma,122.0,813.09,133.57,0.653,Scheide,Soap Boyz,73.57,Degrade Me,TX2,0.266,Hangman Flows,Sugs,202.07,Another One Bites The Dust - Remastered 2011,Queen,0.933,124,167
+2023-11-06,AND IT SHOWS,Aim Vision,358.14,1786.6,122.05,0.698,BRN,AViVA,79.9,Diggy Diggy Hole,Wind Rose,0.311,Fire,Gavin DeGraw,180.98,not exactly happy.,Aim Vision,0.975,50,70
+2023-11-13,BITTERSWEET,LG4 Trey,258.79,1666.04,130.19,0.678,DEAD BEATS,Mori Calliope,75.43,"Soldier, Poet, King",The Oh Hellos,0.347,Morirò da Re,Måneskin,193.79,BlindLife,YDE,0.959,140,180
+2023-11-20,PSYCHO,Pertinence,990.4,2212.32,104.36,0.698,Street Brawling Millionaire,Adam Jensen,73.0,Seven Nation Army,Silent Child,0.293,Sunset,Welyn,203.83,Uninvited,Ren,0.956,190,292
+2023-11-27,Wasted,Migs718,359.6,1843.38,132.42,0.716,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Degrade Me,TX2,0.266,Don't Cut Your Hair,Baby Fisher,210.04,Climate Crisis Love Song,Naethan Apollo,0.977,215,294
+2023-12-04,guillotine,Hairu Tokyo,307.71,1779.28,132.98,0.665,Street Brawling Millionaire,Adam Jensen,73.0,Love The Day,Fox Stevenson,0.247,Lucky Bruto,Ado,197.6,BlindLife,YDE,0.959,102,134
+2023-12-11,mojo jojo,skooters,332.48,2055.01,139.64,0.686,PSYCHO,Pertinence,75.12,Digital Silence,Peter McPoland,0.312,Hated,YUNGBLUD,192.07,DEATH,CG5,0.965,146,203
+2023-12-18,Chainsaw Man,Yungmon,92.04,1024.52,125.53,0.672,Mountain Vibes,LoFi Waiter,64.9,lofi rain,a girl and a cat,0.336,Side Effect,FKA Rayne,186.44,BlindLife,YDE,0.959,141,200
+2023-12-25,Revolution,Ray Goren,305.87,1141.01,117.83,0.718,DEAD BEATS,Mori Calliope,75.43,fleabag,YUNGBLUD,0.236,Morirò da Re,Måneskin,193.79,Another One Bites The Dust - Remastered 2011,Queen,0.933,91,105
+2024-01-01,The Sheriff,Puddles!,342.63,1316.46,124.35,0.693,boy for the weekend,marc indigo,67.96,Hey Beautiful,Platinum Moon,0.457,Great Race,Marko,177.88,Be Your Own,teeawgo,0.93,109,156
+2024-01-08,LIES (REMIX),CANCEL CULTURE,134.04,1664.87,114.59,0.733,meant nothing to me,dyl dion,73.6,Nomu,Good Kid,0.319,Pretty,Meltycanon,184.1,Hoboken,"Hi, I'm Chris",0.974,133,184
+2024-01-15,Not Tonight,Follies & Vices,95.29,1046.33,119.84,0.724,tied up,starfall,74.99,September,Indio Downey,0.401,Depressing Summer,Lolnein,191.97,Stop Writing Me Love Letters,Zak James,0.979,143,197
+2024-01-22,Bang Bang,K'NAAN,408.03,1330.57,121.69,0.677,The Cheaters Guide To The Galaxy,Warwick Smith,75.02,Hayloft II,Mother Mother,0.326,Hayloft II,Mother Mother,178.18,Uninvited,Ren,0.956,102,135
+2024-01-29,LIES (REMIX),CANCEL CULTURE,182.81,1498.87,123.41,0.715,PSYCHO,Pertinence,75.12,what if it's not enough?,Lubalin,0.406,loving me is really hard,NESYA,186.92,BlindLife,YDE,0.959,85,124
+2024-02-05,Troublemaker (feat. Flo Rida),Olly Murs,649.34,2533.09,119.59,0.744,Burn,TX2,66.6,Change (In the House of Flies),Deftones,0.269,loving me is really hard,NESYA,186.92,i'll just dance,Kyuuwaii,0.9,64,97
+2024-02-12,Play,austenyo,695.71,2074.33,122.74,0.777,Mountain Ascent,Sleep Noise Island,69.83,Green Noise - Ocean Breeze,Fortuna,0.131,93 'Til Infinity,Souls Of Mischief,206.25,Gasoline,RyFy,0.936,79,119
+2024-02-19,Cocoa Butter Kisses,Su Lee,190.79,1311.32,129.71,0.651,PSYCHO,Pertinence,75.12,Free Bird,Lynyrd Skynyrd,0.249,loving me is really hard,NESYA,186.92,Cocoa Butter Kisses,Su Lee,0.946,106,132
+2024-02-26,Paranoid - 2009 Remaster,Black Sabbath,350.72,1882.33,130.08,0.689,CONTROL,CANCEL CULTURE,75.08,Paradise City,Guns N' Roses,0.268,Morirò da Re,Måneskin,193.79,Uninvited,Ren,0.956,156,207
+2024-03-04,Pressure,Ellie Dixon,386.56,1561.72,102.48,0.738,MAMBO,DIRTYXAN,76.03,Bad Moon Rising,Creedence Clearwater Revival,0.508,I'm So Excited,The Pointer Sisters,184.35,Thank You (Falettinme Be Mice Elf Agin) - Single Version,Sly & The Family Stone,0.9,54,75
+2024-03-11,White Noise Boys,Airways,197.67,821.93,126.26,0.765,Gameboy,YONAH,75.95,Landslide,The Rills,0.415,Eszett,Lolnein,179.9,Cocoa Butter Kisses,Su Lee,0.946,18,28
+2024-03-18,Moon Girl,Ark Woods,592.86,1331.41,103.43,0.708,These Words (Again),Scuare,74.9,Lonely,Nodaway,0.486,Morirò da Re,Måneskin,193.79,Cocoa Butter Kisses,Su Lee,0.946,48,60
+2024-03-25,鬼ノ宴,友成空,961.66,2117.13,139.78,0.655,Moon Girl,Ark Woods,81.0,point street,Beware the Bears,0.516,point street,Beware the Bears,165.02,Something in the Moon,Geno Samuel,0.916,15,24
+2024-04-01,Capybara,Bunny Clogs,414.44,2604.65,137.35,0.694,I Wanna Be Yours,Arctic Monkeys,67.53,Premier Inn,Good Kid,0.324,Morirò da Re,Måneskin,193.79,Cocoa Butter Kisses,Su Lee,0.946,108,151
+2024-04-08,Green Honda,BENEE,341.25,1220.24,133.24,0.743,MAMBO,DIRTYXAN,76.03,STILL TALKIN,Javi Vera,0.498,Capybara,Bunny Clogs,170.1,Something in the Moon,Geno Samuel,0.916,60,95
+2024-04-15,Black Cherri,Suzi Wu,430.74,2044.14,148.09,0.638,touch grass,low mana,77.53,Hayloft II,Mother Mother,0.326,goner,Hairu Tokyo,199.84,GET USED TO ME,Aim Vision,0.961,159,210
+2024-04-22,Anarchist - Demo,The Valla,248.28,2135.13,129.58,0.652,If I Ever Build a House,Axian,56.7,Digital Silence,Peter McPoland,0.312,Hangman Flows,Sugs,202.07,not exactly happy.,Aim Vision,0.975,276,372
+2024-04-29,Fantasy,Mitchell Zia,336.49,3057.95,131.42,0.677,"Hawatari Nioku Centi (From ""Chainsaw Man"")",Miura Jam,74.22,Kiss The Go-Goat,Ghost,0.195,Saltwater,Mitchell Zia,204.22,DEATH,CG5,0.965,312,411
+2024-05-06,Too Sweet,Hozier,280.83,3745.11,124.77,0.693,Go Fuck Yourself,Two Feet,74.93,Degrade Me,TX2,0.266,Sunset,Welyn,203.83,Uninvited,Ren,0.956,328,426
+2024-05-13,hotline,bby,277.09,2864.44,132.27,0.674,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Seven Nation Army,Silent Child,0.293,Hangman Flows,Sugs,202.07,Climate Crisis Love Song,Naethan Apollo,0.977,282,376
+2024-05-20,Guava Jelly,Royce Fisherman,242.71,2054.74,130.98,0.679,Dream On,Aerosmith,78.03,I Won't Hold My Breath,Thesaurus Rex,0.284,Wild Boy,MA55IVE THE RAMPAGE,183.86,Lottery,Fulton Lee,0.899,112,130
+2024-05-27,Hello,HEYKRIS,438.23,2658.15,127.66,0.648,My Own Summer (Shove It),Deftones,71.84,Change (In the House of Flies),Deftones,0.269,goner,Hairu Tokyo,199.84,Jamming,Bob Marley & The Wailers,0.941,151,185
+2024-06-03,Zittern,Yu,161.53,2246.98,127.53,0.67,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Degrade Me,TX2,0.266,Sunset,Welyn,203.83,GET USED TO ME,Aim Vision,0.961,381,500
+2024-06-10,Story,ghstpunk,418.21,3070.46,118.52,0.716,Mountain Vibes,LoFi Waiter,64.9,I Won't Hold My Breath,Thesaurus Rex,0.284,candyflips!,347aidan,190.2,Don't Forget the T,Josh Tenor,0.938,227,306
+2024-06-17,I Need A Break,Ryan King,191.57,2984.43,130.86,0.71,Sexist,Yu,60.6,Firestarters,Sawyer Hill,0.309,d e a d,Madelline,182.15,DO WHAT I DO,Young Orange,0.945,74,95
+2024-06-24,All For You,Kiksio,433.49,2637.84,128.23,0.7,THE PROBLEM,Tae Hauk,72.14,Degrade Me,TX2,0.266,Sinking Sand,Unlike Pluto,196.18,Climate Crisis Love Song,Naethan Apollo,0.977,314,430
+2024-07-01,Like A Bullet,Stefanie Heinzmann,107.61,1475.98,129.68,0.703,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Side Effect,FKA Rayne,0.376,Hangman Flows,Sugs,202.07,GET USED TO ME,Aim Vision,0.961,254,329
+2024-07-08,Like A Bullet,Stefanie Heinzmann,369.75,1867.55,130.42,0.744,THE PROBLEM,Tae Hauk,72.14,I Won't Hold My Breath,Thesaurus Rex,0.284,Morirò da Re,Måneskin,193.79,Climate Crisis Love Song,Naethan Apollo,0.977,207,279
+2024-07-15,Save Our Breath,Jonny Lucas,198.03,1326.9,122.76,0.695,THE PROBLEM,Tae Hauk,72.14,Autopilot,Lolnein,0.408,Sunset,Welyn,203.83,Climate Crisis Love Song,Naethan Apollo,0.977,227,310
+2024-07-22,Chronic,Levi Evans,521.76,1224.04,129.7,0.718,"Hawatari Nioku Centi (From ""Chainsaw Man"")",Miura Jam,74.22,Into The Otherside,The Listros,0.377,Sunset,Welyn,203.83,Cocoa Butter Kisses,Su Lee,0.946,79,107
+2024-07-29,little miss misogyny,audalei,177.09,1719.33,127.68,0.707,Street Brawling Millionaire,Adam Jensen,73.0,Digital Silence,Peter McPoland,0.312,Morirò da Re,Måneskin,193.79,DEATH,CG5,0.965,320,429
+2024-08-05,BACKSTEP(backstab),LeGrand,72.03,994.39,127.48,0.689,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,"Soldier, Poet, King",The Oh Hellos,0.347,Life In America,Roe Kapara,205.98,Scatterbrain,Emei,0.938,197,272
+2024-08-12,WOT?,Cody Frost,87.33,1003.98,128.47,0.682,PSYCHO,Pertinence,75.12,Degrade Me,TX2,0.266,Never Ever,Fan Club,181.93,not exactly happy.,Aim Vision,0.975,214,287
+2024-08-19,WOT?,Cody Frost,49.0,865.28,132.27,0.677,PSYCHO,Pertinence,75.12,Degrade Me,TX2,0.266,Hated,YUNGBLUD,192.07,Crazy Rap (Colt 45 & 2 Zig Zags),Afroman,0.927,183,258
+2024-08-26,Praying Mantis,Jazz Alonso,192.97,1728.61,137.3,0.664,ITLL BE OKAY,HEBER MATÜTE,75.02,I Won't Hold My Breath,Thesaurus Rex,0.284,Lay in Bed,After a Night of Unsettling Dreams,207.73,Uninvited,Ren,0.956,350,462
+2024-09-02,D.M.S,The Million,109.83,1538.17,127.86,0.664,THE PROBLEM,Tae Hauk,72.14,Hayloft II,Mother Mother,0.326,Sinking Sand,Unlike Pluto,196.18,DEATH,CG5,0.965,219,319
+2024-09-09,seeker missile,dynastic,95.84,1796.73,124.68,0.67,Street Brawling Millionaire,Adam Jensen,73.0,Poison,Alice Cooper,0.28,Sunset,Welyn,203.83,DEATH,CG5,0.965,336,470
+2024-09-16,Everywhere I Go,Hollywood Undead,93.25,1688.7,126.23,0.713,YOU HAUNT ME,Citizen,71.75,Bad Medicine,The Upstart Crows,0.243,Sunset,Welyn,203.83,BlindLife,YDE,0.959,357,479
+2024-09-23,rusty,Layto,154.58,1871.59,127.08,0.679,YOU HAUNT ME,Citizen,71.75,I Won't Hold My Breath,Thesaurus Rex,0.284,Sunset,Welyn,203.83,GET USED TO ME,Aim Vision,0.961,240,331
+2024-09-30,Dirty Harry,Gorillaz,137.28,2156.48,132.11,0.683,YOU HAUNT ME,Citizen,71.75,Degrade Me,TX2,0.266,AFTER DARK,Hairu Tokyo,201.97,Climate Crisis Love Song,Naethan Apollo,0.977,261,351
+2024-10-07,Breakdown,Archi,486.21,1948.99,139.1,0.707,Urban Downunder,Marcin Przybyłowicz,66.81,The Sacred And The Profane,Paul Leonard-Morgan,0.153,AFTER DARK,Hairu Tokyo,201.97,My Turn,New Medicine,0.97,66,77
+2024-10-14,What Am I To Do?,Oliver Malcolm,300.76,1248.96,122.48,0.611,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Enemy,Father Of Peace,0.354,My Ordinary Life,The Living Tombstone,175.95,Why's this dealer?,Niko B,0.91,62,92
+2024-10-21,I hope you hate me.,Dead Poet Society,307.7,1710.97,128.5,0.678,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Degrade Me,TX2,0.266,AFTER DARK,Hairu Tokyo,201.97,Climate Crisis Love Song,Naethan Apollo,0.977,307,412
+2024-10-28,It's Cool,First in Flight,122.74,1399.76,131.11,0.679,THE PROBLEM,Tae Hauk,72.14,Vulture Culture,Fangclub,0.293,Sunset,Welyn,203.83,Climate Crisis Love Song,Naethan Apollo,0.977,281,362
+2024-11-04,Da Da Da - 甜妹版,芊芊龍,190.64,1574.07,127.53,0.739,1975,Silent Child,74.95,Hayloft II,Mother Mother,0.326,Down The Rabbit Hole,POM,209.96,5:20AM,刀酱,0.947,207,271
+2024-11-11,I Wish U Didn't Hate Me So Much,Kit Major,118.06,1646.69,131.83,0.676,YOU HAUNT ME,Citizen,71.75,Acid Hologram,Deftones,0.151,Sunset,Welyn,203.83,not exactly happy.,Aim Vision,0.975,347,455
+2024-11-18,Beach Boulevard,London Mars,107.62,1293.97,127.67,0.676,Supernova,Taras Stanin,56.3,Seven Nation Army,Silent Child,0.293,Sunset,Welyn,203.83,Climate Crisis Love Song,Naethan Apollo,0.977,244,326
+2024-11-25,UH YEAH [WAHNSiNN 01],TJ_beastboy,264.99,1545.25,139.83,0.685,PRETTY BOI,TJ_beastboy,77.42,Digital Silence,Peter McPoland,0.312,Sunset,Welyn,203.83,The Real Slim Shady,Eminem,0.949,276,391
+2024-12-02,Luvly,Belaganas,115.23,1895.81,126.49,0.705,YOU HAUNT ME,Citizen,71.75,I Won't Hold My Breath,Thesaurus Rex,0.284,Sunset,Welyn,203.83,not exactly happy.,Aim Vision,0.975,350,469
+2024-12-09,Rosaroter Tee,bac,288.23,1193.43,119.95,0.723,Street Brawling Millionaire,Adam Jensen,73.0,Digital Silence,Peter McPoland,0.312,Hangman Flows,Sugs,202.07,DEATH,CG5,0.965,180,242
+2024-12-16,Where's Your Head At,Basement Jaxx,40.0,2184.78,131.17,0.719,THE PROBLEM,Tae Hauk,72.14,I Won't Hold My Breath,Thesaurus Rex,0.284,MUGGLE,Indigo Hush,195.97,not exactly happy.,Aim Vision,0.975,296,388
+2024-12-23,Willy Wishbone,Cody Lawless,444.97,1033.58,138.73,0.685,Hate Thy Neighbour,Hyphen,78.61,SPINE,WesGhost,0.415,HEARTSTICKY!,Cemetery Drive,195.94,not exactly happy.,Aim Vision,0.975,35,48
+2024-12-30,Rosaroter Tee,bac,41.29,1529.09,129.56,0.675,YOU HAUNT ME,Citizen,71.75,Degrade Me,TX2,0.266,HEARTSTICKY!,Cemetery Drive,195.94,Climate Crisis Love Song,Naethan Apollo,0.977,310,416
+2025-01-06,Lady Parts and Mannequins,mehro,116.25,2518.76,128.96,0.673,Superstar Sh*t,Dominic Fike,70.03,Ancient Flame,Torii Wolf,0.25,Sunset,Welyn,203.83,not exactly happy.,Aim Vision,0.975,474,636
+2025-01-13,Arbitrage,Modern Alibi,126.25,2206.33,125.34,0.691,YOU HAUNT ME,Citizen,71.75,Monopoly Money,Moon Walker,0.29,Monopoly Money,Moon Walker,207.9,Climate Crisis Love Song,Naethan Apollo,0.977,399,526
+2025-01-20,Liberate Me,DYLYN,144.41,1670.64,132.5,0.682,YOU HAUNT ME,Citizen,71.75,Degrade Me,TX2,0.266,Monopoly Money,Moon Walker,207.9,Climate Crisis Love Song,Naethan Apollo,0.977,298,376
+2025-01-27,Healthy Sex Drive,Die Shiny,303.44,1466.85,123.29,0.734,Compare Myself To You,The Listros,65.28,Compare Myself To You,The Listros,0.231,Monopoly Money,Moon Walker,207.9,GET USED TO ME,Aim Vision,0.961,206,282
+2025-02-03,ANYTHING 4 U,Naethan Apollo,155.78,837.98,123.82,0.726,Terry's Taxidermy,Teddy Hyde,62.0,Monopoly Money,Moon Walker,0.29,Monopoly Money,Moon Walker,207.9,Cocoa Butter Kisses,Su Lee,0.946,193,234
+2025-02-10,Hell Breaks Loose,Dalton Deschain & the Traveling Show,106.36,2487.36,128.38,0.673,memories we memories we share,Zupa Fitz,52.98,Monopoly Money,Moon Walker,0.29,Shades of Grey,Karen Alice,218.44,Uninvited,Ren,0.956,232,289
+2025-02-17,A N X I E T Y (feat. Doechii),Sleepy Hallow,39.3,1582.44,133.26,0.677,YOU HAUNT ME,Citizen,71.75,Monopoly Money,Moon Walker,0.29,Monopoly Money,Moon Walker,207.9,MICHELIN CLUB,MARXO,0.953,155,199
+2025-02-24,deep dream,Sick Joy,144.66,1325.29,125.62,0.654,Call Me Devil,Friends in Tokyo,62.47,Monopoly Money,Moon Walker,0.29,Monopoly Money,Moon Walker,207.9,BlindLife,YDE,0.959,205,266
+2025-03-03,You Don't Know Me (feat. RAYE),Jax Jones,52.24,1610.36,129.55,0.683,YOU HAUNT ME,Citizen,71.75,Monopoly Money,Moon Walker,0.29,Monopoly Money,Moon Walker,207.9,Climate Crisis Love Song,Naethan Apollo,0.977,304,389
+2025-03-10,Anxiety,Doechii,96.97,1255.74,127.27,0.691,I Don't Mind It,Cullah,74.96,Monopoly Money,Moon Walker,0.29,Monopoly Money,Moon Walker,207.9,My Doctor,Katerina Lomis,0.93,110,133
+2025-03-17,Running Around,Ely Oaks,306.03,1511.78,140.02,0.67,1975,Silent Child,74.95,Monopoly Money,Moon Walker,0.29,Monopoly Money,Moon Walker,207.9,Climate Crisis Love Song,Naethan Apollo,0.977,196,259
+2025-03-24,Flip The Bird,Downsyde,257.64,1116.15,120.95,0.709,THE PROBLEM,Tae Hauk,72.14,Hayloft II,Mother Mother,0.326,Hangman Flows,Sugs,202.07,GET USED TO ME,Aim Vision,0.961,201,255
+2025-03-31,Now It's Over,Dogpark,151.32,1631.61,127.31,0.684,Street Brawling Millionaire,Adam Jensen,73.0,Eternal Waltz,Pottekes,0.176,Sunset,Welyn,203.83,DEATH,CG5,0.965,289,372
+2025-04-07,Monster,YOASOBI,35.15,1343.8,126.96,0.686,YOU HAUNT ME,Citizen,71.75,Degrade Me,TX2,0.266,Sunset,Welyn,203.83,not exactly happy.,Aim Vision,0.975,296,390
+2025-04-14,Runaway,witchgang,166.55,1371.21,121.52,0.675,YOU HAUNT ME,Citizen,71.75,I Won't Hold My Breath,Thesaurus Rex,0.284,Sinking Sand,Unlike Pluto,196.18,ICON KILLER,Geordie Kieffer,0.958,257,349
+2025-04-21,No Care,Daughter,154.11,1760.16,129.52,0.7,MAMBO,DIRTYXAN,76.03,Kinda Scary,Call Me Karizma,0.426,goner,Hairu Tokyo,199.84,MICHELIN CLUB,MARXO,0.953,149,198
+2025-04-28,Get Movin' (Feet Don't Fail Me Now),Cut Capers,123.74,1534.63,126.72,0.673,I Don't Mind It,Cullah,74.96,Monopoly Money,Moon Walker,0.29,Monopoly Money,Moon Walker,207.9,Climate Crisis Love Song,Naethan Apollo,0.977,215,278
+2025-05-05,No Hat No Play,Playlunch,71.23,1244.46,128.98,0.689,1975,Silent Child,74.95,Degrade Me,TX2,0.266,Monopoly Money,Moon Walker,207.9,Me Too,Meghan Trainor,0.934,292,380
+2025-05-12,NEWSGIRL,Logan Levi,55.57,1516.18,128.22,0.665,Man Made Myth,Endless Taverns,51.06,Signore dei Lupi - from Arknights,Will Stetson,0.304,National Treasure,Barns Courtney,205.98,not exactly happy.,Aim Vision,0.975,370,461
+2025-05-19,Vaitimbora,Mariana Froes,126.23,1795.76,125.33,0.691,Sleeping On The Ceiling,Friday Pilots Club,74.96,Villain,MISSIO,0.304,Sinking Sand,Unlike Pluto,196.18,not exactly happy.,Aim Vision,0.975,317,424
+2025-05-26,Planet X,Calimossa,177.93,1322.68,127.47,0.685,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Degrade Me,TX2,0.266,goner,Hairu Tokyo,199.84,DEATH,CG5,0.965,273,362
+2025-06-02,Planet X,Calimossa,123.95,1947.6,126.42,0.67,YOU HAUNT ME,Citizen,71.75,Digital Silence,Peter McPoland,0.312,VERLASS MICH NICHT,GRELL,202.05,The Real Slim Shady,Eminem,0.949,310,409
+2025-06-09,Planet X,Calimossa,196.1,1193.45,132.79,0.662,tied up,starfall,74.99,Hayloft II,Mother Mother,0.326,goner,Hairu Tokyo,199.84,Climate Crisis Love Song,Naethan Apollo,0.977,114,136
+2025-06-16,NEWSGIRL,Logan Levi,68.07,1087.72,131.35,0.672,DEAD BEATS,Mori Calliope,75.43,Degrade Me,TX2,0.266,HEARTSTICKY!,Cemetery Drive,195.94,Temperature,Sean Paul,0.951,248,313
+2025-06-23,Church (feat. Teddy Verseti),T-Pain,95.66,1516.91,128.09,0.674,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Degrade Me,TX2,0.266,Hangman Flows,Sugs,202.07,Hot,ThatsKramer,0.978,201,278
+2025-06-30,Hey You,C.U.T.,193.55,1317.12,125.61,0.696,Street Brawling Millionaire,Adam Jensen,73.0,Monopoly Money,Moon Walker,0.29,Monopoly Money,Moon Walker,207.9,Climate Crisis Love Song,Naethan Apollo,0.977,277,362
+2025-07-07,discothèque with u,Tiavo,362.56,1324.53,144.26,0.605,"Hawatari Nioku Centi (From ""Chainsaw Man"")",Miura Jam,74.22,Degrade Me,TX2,0.266,Sunset,Welyn,203.83,DEATH,CG5,0.965,241,307
+2025-07-14,Sweet Sun,Milky Chance,160.03,2007.61,127.32,0.658,Dead Ends,Ike Dweck,74.94,Degrade Me,TX2,0.266,Monopoly Money,Moon Walker,207.9,Climate Crisis Love Song,Naethan Apollo,0.977,351,495
+2025-07-21,Sweet Sun,Milky Chance,52.95,622.89,123.15,0.702,THE PROBLEM,Tae Hauk,72.14,Monopoly Money,Moon Walker,0.29,Monopoly Money,Moon Walker,207.9,BlindLife,YDE,0.959,137,176
+2025-07-28,Grave Digger,Naethan Apollo,39.68,861.19,121.84,0.722,Oh No!!,Real Topeka People,79.99,Bad Attitude,Mattstagraham,0.385,BRAINROT,grandson,184.04,MICHELIN CLUB,MARXO,0.953,68,94
+2025-08-04,Rich Girls in Destin,Swang,313.77,1553.85,125.41,0.747,THE PROBLEM,Tae Hauk,72.14,Monopoly Money,Moon Walker,0.29,Monopoly Money,Moon Walker,207.9,Wenn du tanzt,Von Wegen Lisbeth,0.966,259,328
+2025-08-11,Rich Girls in Destin,Swang,273.67,1535.05,125.08,0.726,"Noch ein bisschen draußen (ich hoffe, das passt)",bac,77.55,Mind Mischief,Tame Impala,0.25,Let Em' Out,PERSONA 749,187.68,Haunted Juke Joint Jam,Duke Skellington,0.96,158,193
+2025-08-18,Ex Damages,Luca Malina,22.43,409.15,132.7,0.686,Daytoday,austenyo,77.48,Change (In the House of Flies),Deftones,0.269,Let Em' Out,PERSONA 749,187.68,not exactly happy.,Aim Vision,0.975,85,110
+2025-08-25,Ear to Ear,ANIMA!,176.74,1511.25,126.67,0.697,"Hawatari Nioku Centi (From ""Chainsaw Man"")",Miura Jam,74.22,violet,Ethan Bortnick,0.262,AFTER DARK,Hairu Tokyo,201.97,GET USED TO ME,Aim Vision,0.961,328,415
+2025-09-01,Roadtrim Part 1,The Dead Pirates,62.02,622.53,137.03,0.685,Exoskeleton,Dan Luke and the Raid,82.46,Toccata,Luca Sestak,0.279,Sunset,Welyn,203.83,Uninvited,Ren,0.956,67,82
+2025-09-08,Walkin' Blues,Howlin Jackson,38.35,527.04,135.07,0.665,Awakening,Christopher Larkin,73.62,Awakening,Christopher Larkin,0.271,s.w.i.m.,SOCKiTTOME,202.09,Rich Girls in Destin,Swang,0.938,89,108
+2025-09-15,Based,KAFVKA,153.89,1410.2,121.62,0.682,Street Brawling Millionaire,Adam Jensen,73.0,Animal,Red Rum Club,0.195,Morirò da Re,Måneskin,193.79,not exactly happy.,Aim Vision,0.975,211,257
+2025-09-22,Kein Bock,Tancred,61.21,1379.06,124.99,0.691,Little Wing,Jimi Hendrix,70.78,Free Bird,Lynyrd Skynyrd,0.249,Hell N Back,Bakar,209.69,The Real Slim Shady,Eminem,0.949,242,324
+2025-09-29,Kein Bock,Tancred,101.07,1975.32,125.27,0.718,Hand Me Downs,Mac Miller,68.98,Come Back to Earth,Mac Miller,0.272,s.w.i.m.,SOCKiTTOME,202.09,No Hope (The Frog Song),Robert Grace,0.939,186,223
+2025-10-06,Rock & Roll,Oliver Malcolm,226.64,2329.28,129.73,0.671,"We All Lift Together (From ""Warframe"")",Keith Power,67.18,Degrade Me,TX2,0.266,Monopoly Money,Moon Walker,207.9,The Real Slim Shady,Eminem,0.949,278,352
+2025-10-13,Guava Jelly,Royce Fisherman,452.97,3246.06,124.85,0.716,YOU HAUNT ME,Citizen,71.75,Toccata,Luca Sestak,0.279,Sunset,Welyn,203.83,not exactly happy.,Aim Vision,0.975,425,571
+2025-10-20,Wolke 4,Philipp Dittberner,63.6,1207.3,127.15,0.705,Say My Peace,Khary,74.5,Chandelier,Will Paquin,0.331,HEARTSTICKY!,Cemetery Drive,195.94,Rich Girls in Destin,Swang,0.938,198,264
+2025-10-27,Nein,MAS,120.06,1157.05,122.75,0.705,Fish on Land,Blood Red Sun,66.01,Monopoly Money,Moon Walker,0.29,Monopoly Money,Moon Walker,207.9,DOOF DOOF,PI3RC3,0.979,253,348
+2025-11-03,Fish on Land,Blood Red Sun,213.49,1316.09,113.7,0.691,Fish on Land,Blood Red Sun,66.01,Toccata,Luca Sestak,0.279,Falling Before You,Yxng Davi,205.6,BlindLife,YDE,0.959,196,267
+2025-11-10,NOBODY,ZEP,194.21,1157.29,123.8,0.713,Fish on Land,Blood Red Sun,66.01,Degrade Me,TX2,0.266,Show Me A Trick,Melodial,200.89,Hold On,Ren,0.942,176,229
+2025-11-17,OFF MY NUTTT,The Skinner Brothers,164.72,934.34,127.21,0.762,Fish on Land,Blood Red Sun,66.01,Monopoly Money,Moon Walker,0.29,Monopoly Money,Moon Walker,207.9,White Rabbit,Tame Your Fears,0.937,55,72
+2025-11-24,No More Beer,Lipka,34.91,829.41,122.62,0.723,Fish on Land,Blood Red Sun,66.01,jump the gun,jak demo,0.372,BRAINROT,grandson,184.04,Little Lucille,Karmic,0.964,77,101
+2025-12-01,MOMENTUM,Max Volante,170.12,1173.92,131.09,0.692,THE PROBLEM,Tae Hauk,72.14,jump the gun,jak demo,0.372,Depressing Summer,Lolnein,191.97,Climate Crisis Love Song,Naethan Apollo,0.977,237,315
+2025-12-08,Me No Evil,Abhi The Nomad,42.15,506.71,128.88,0.723,Fish on Land,Blood Red Sun,66.01,Toccata,Luca Sestak,0.279,Monopoly Money,Moon Walker,207.9,Lil Bit,No-uh,0.97,123,163
