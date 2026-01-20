@@ -17,6 +17,11 @@
   let currentScrollProgress = 0;
   let currentTimeWindowOffset = 0;
   
+  // Calculate opacity based on scroll - fade out as we enter equalizer view (1.0-1.5)
+  $: graphOpacity = currentScrollProgress > 1.0 
+    ? Math.max(0, 1 - (currentScrollProgress - 1.0) * 2) 
+    : 1;
+  
   const unsubscribeScroll = scrollProgress.subscribe(value => {
     currentScrollProgress = value;
   });
@@ -328,12 +333,16 @@
       unsubscribeTimeWindowOffset();
     };
   });
+  
+  // Graph is visible when in line graph view range (scroll 0.9+, but fading after 1.0)
+  $: isVisible = currentScrollProgress > 0.9 && graphOpacity > 0;
 </script>
 
 <div 
   class="line-graph-container" 
   bind:this={container}
-  class:visible={$isFlat}
+  class:visible={isVisible}
+  style="opacity: {isVisible ? graphOpacity : 0};"
   in:fly={{ y: -20, duration: 300, delay: 200 }}
   out:fade={{ duration: 200 }}
 >
@@ -349,13 +358,11 @@
     border-radius: 0px;
     box-shadow: none;
     padding: 0px;
-    opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
   }
 
   .line-graph-container.visible {
-    opacity: 1;
     pointer-events: auto;
   }
   

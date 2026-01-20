@@ -24,17 +24,21 @@ export function parseCSV(csvText) {
       lowestTempoSong: values[7],
       lowestTempoArtist: values[8],
       lowestTempo: parseFloat(values[9]) || 0,
-      lowestDanceabilitySong: values[10],
-      lowestDanceabilityArtist: values[11],
-      lowestDanceability: parseFloat(values[12]) || 0,
-      highestTempoSong: values[13],
-      highestTempoArtist: values[14],
-      highestTempo: parseFloat(values[15]) || 0,
-      highestDanceabilitySong: values[16],
-      highestDanceabilityArtist: values[17],
-      highestDanceability: parseFloat(values[18]) || 0,
-      tracksWithFeatures: parseInt(values[19]) || 0,
-      totalTracks: parseInt(values[20]) || 0
+      lowestTempoDanceability: parseFloat(values[10]) || 0,
+      lowestDanceabilitySong: values[11],
+      lowestDanceabilityArtist: values[12],
+      lowestDanceability: parseFloat(values[13]) || 0,
+      lowestDanceabilityTempo: parseFloat(values[14]) || 0,
+      highestTempoSong: values[15],
+      highestTempoArtist: values[16],
+      highestTempo: parseFloat(values[17]) || 0,
+      highestTempoDanceability: parseFloat(values[18]) || 0,
+      highestDanceabilitySong: values[19],
+      highestDanceabilityArtist: values[20],
+      highestDanceability: parseFloat(values[21]) || 0,
+      highestDanceabilityTempo: parseFloat(values[22]) || 0,
+      tracksWithFeatures: parseInt(values[23]) || 0,
+      totalTracks: parseInt(values[24]) || 0
     };
     
     data.push(row);

@@ -7,12 +7,15 @@
   import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
   import { scrollProgress, isDragging, selectedMetric, selectedCategory, hoveredPointData, timeWindowOffset, vinylRotationValue, selectedTimeframe } from '../stores/uiStore.js';
   import { rawData } from '../stores/dataStore.js';
+  import * as EqualizerRing from './EqualizerRing.js';
+  import HoverInfoCard from './HoverInfoCard.svelte';
   
   let container;
   let scene, camera, renderer;
   let composer;
   let vinylGroup;
   let dataPointsGroup;
+  let equalizerInitialized = false;
   let animationId;
   let raycaster, mouse;
   
@@ -20,6 +23,10 @@
   let tooltipData = null;
   let tooltipPosition = { x: 0, y: 0 };
   let dataPointsArray = []; // Store data points for raycasting
+  
+  // Equalizer hover state
+  let hoveredBarInfo = null;
+  let showBarInfo = false;
   
   // Drag rotation state (horizontal spin in vinyl view, vertical spin in line graph view)
   let dragStartX = 0;
@@ -34,6 +41,11 @@
   let currentMetric = 'average';
   let currentCategory = 'tempo';
   let currentTimeframe = 'all';
+  let currentTimeWindowOffset = 0;
+  let lastEqualizerUpdateOffset = 0; // Track last update to avoid redundant calls
+  let lastScrollView = 0; // Track which view we're in (0, 1, 2, or 3)
+  let lastRotationY = 0; // Track rotation for year jumps in view 3
+  let rotationAccumulator = 0; // Accumulate rotation for year detection
   
   const unsubscribeScroll = scrollProgress.subscribe(value => {
     currentScrollProgress = value;
@@ -43,18 +55,42 @@
     currentIsDragging = value;
   });
   
+  const unsubscribeTimeWindowOffset = timeWindowOffset.subscribe(value => {
+    currentTimeWindowOffset = value;
+  });
+  
   const unsubscribeMetric = selectedMetric.subscribe(value => {
     currentMetric = value;
     if (dataPointsGroup) updateDataPoints();
+    // Force equalizer update when metric changes
+    if (equalizerInitialized) {
+      lastEqualizerUpdateOffset = -999;
+    }
   });
   
   const unsubscribeCategory = selectedCategory.subscribe(value => {
     currentCategory = value;
     if (dataPointsGroup) updateDataPoints();
+    // Force equalizer update when category changes
+    if (equalizerInitialized) {
+      lastEqualizerUpdateOffset = -999;
+    }
   });
 
   const unsubscribeTimeframe = selectedTimeframe.subscribe(value => {
     currentTimeframe = value;
+    // Force equalizer update when timeframe changes
+    if (equalizerInitialized) {
+      lastEqualizerUpdateOffset = -999;
+    }
+  });
+  
+  // Update equalizer when raw data changes
+  const unsubscribeRawData = rawData.subscribe(value => {
+    if (value && value.length > 0 && equalizerInitialized) {
+      // Force update in animation loop
+      lastEqualizerUpdateOffset = -999;
+    }
   });
 
   async function loadVinylModel() {
@@ -388,6 +424,10 @@
       vinylGroup.scale.set(25, 25, 25); // Scale up the model
       vinylGroup.rotation.x = THREE.MathUtils.degToRad(-70); // Start nearly edge-on, tilted toward viewer
       scene.add(vinylGroup);
+      
+      // Create equalizer ring as child of vinyl so it inherits transforms
+      EqualizerRing.createBars(vinylGroup);
+      equalizerInitialized = true;
     } catch (error) {
       console.error('Failed to initialize vinyl scene:', error);
       return;
@@ -401,6 +441,7 @@
     // Update data points immediately if data is available
     if ($rawData && $rawData.length > 0) {
       updateDataPoints();
+      EqualizerRing.updateData($rawData);
     }
     // Handle resize
     const handleResize = () => {
@@ -447,8 +488,28 @@
         
         renderer.domElement.style.cursor = intersects.length > 0 ? 'grab' : 'default';
         
-        // Check for data point hover (only in early scroll range for 0% view)
-        if (currentScrollProgress < 0.5) {
+        // Check for equalizer bar hover (only in view 3)
+        if (currentScrollProgress >= 1.5) {
+          const equalizerBars = EqualizerRing.getBars();
+          const barIntersects = raycaster.intersectObjects(equalizerBars);
+          if (barIntersects.length > 0) {
+            const bar = barIntersects[0].object;
+            const barIndex = equalizerBars.indexOf(bar);
+            if (barIndex !== -1) {
+              hoveredBarInfo = EqualizerRing.getBarMetadata(barIndex);
+              showBarInfo = true;
+            }
+          } else {
+            showBarInfo = false;
+            hoveredBarInfo = null;
+          }
+        } else {
+          showBarInfo = false;
+          hoveredBarInfo = null;
+        }
+        
+        // Check for data point hover (only in view 2 - line graph view)
+        if (currentScrollProgress >= 0.5 && currentScrollProgress < 1.5) {
           const dataPointIntersects = raycaster.intersectObjects(dataPointsArray);
           if (dataPointIntersects.length > 0) {
             const point = dataPointIntersects[0].object;
@@ -482,10 +543,10 @@
       
       e.preventDefault(); // Prevent text selection while dragging
       
-      // Use vertical drag when in line graph view (scrolled down), horizontal otherwise
-      if (currentScrollProgress >= 0.5) {
+      // Use vertical drag when in line graph view (scroll 0.5-1.5), horizontal otherwise
+      if (currentScrollProgress >= 0.5 && currentScrollProgress < 1.5) {
         const deltaY = e.clientY - dragStartY;
-        targetRotationY += deltaY * 0.01; // Sensitivity control
+        targetRotationY -= deltaY * 0.01; // Inverted: drag down = spin down
         dragStartY = e.clientY;
       } else {
         const deltaX = e.clientX - dragStartX;
@@ -529,10 +590,10 @@
       if (!isDraggingModel) return;
       e.preventDefault(); // Prevent scrolling/selection while dragging
       
-      // Use vertical drag when in line graph view (scrolled down), horizontal otherwise
-      if (currentScrollProgress >= 0.5) {
+      // Use vertical drag when in line graph view (scroll 0.5-1.5), horizontal otherwise
+      if (currentScrollProgress >= 0.5 && currentScrollProgress < 1.5) {
         const deltaY = e.touches[0].clientY - dragStartY;
-        targetRotationY += deltaY * 0.01;
+        targetRotationY -= deltaY * 0.01; // Inverted: drag down = spin down
         dragStartY = e.touches[0].clientY;
       } else {
         const deltaX = e.touches[0].clientX - dragStartX;
@@ -571,27 +632,47 @@
         // Smooth rotation interpolation for drag spin only
         rotationY += rotationDelta;
         
-        // Update time window offset based on vinyl momentum (when scrolled down and not 'all')
-        if (currentScrollProgress > 0.8 && currentTimeframe !== 'all' && Math.abs(rotationDelta) > 0.0001) {
-          // Convert rotation delta to week offset - higher multiplier = faster scrolling
-          const weekDelta = rotationDelta * 15;
+        // In view 3, spinning the vinyl jumps through years (52-week increments)
+        if (currentScrollProgress >= 1.5 && $rawData && Math.abs(rotationDelta) > 0.0001) {
+          // Accumulate rotation changes
+          rotationAccumulator += rotationDelta;
           
-          // Calculate bounds
-          const totalWeeks = $rawData?.length || 0;
-          const timeframeWeeks = {
-            '1w': 1,
-            '1m': 4,
-            '3m': 12,
-            '6m': 26,
-            '1y': 52
-          };
-          const windowSize = timeframeWeeks[currentTimeframe] || 52;
-          const maxOffset = Math.max(0, totalWeeks - windowSize);
+          // Detect quarter rotation (jump by 1 year when accumulating ~1.57 radians)
+          const ROTATION_THRESHOLD = Math.PI / 2; // Quarter rotation for faster response
           
-          timeWindowOffset.update(current => {
-            const newOffset = current + weekDelta;
-            return Math.max(0, Math.min(maxOffset, newOffset));
-          });
+          // Debug: log accumulation
+          if (Math.abs(rotationAccumulator) > 0.5) {
+            console.log('Rotation accumulator:', rotationAccumulator.toFixed(2), '/ threshold:', ROTATION_THRESHOLD.toFixed(2));
+          }
+          
+          if (Math.abs(rotationAccumulator) >= ROTATION_THRESHOLD) {
+            const totalWeeks = $rawData?.length || 0;
+            const windowSize = 52; // Always 1 year in view 3
+            const maxOffset = Math.max(0, totalWeeks - windowSize);
+            
+            // Spinning forward (positive rotation) = go back in time (increase offset)
+            // Spinning backward (negative rotation) = go forward in time (decrease offset)
+            const direction = rotationAccumulator > 0 ? 1 : -1;
+            const newOffset = Math.max(0, Math.min(maxOffset, currentTimeWindowOffset + (direction * 52)));
+            
+            console.log('Year jump! Direction:', direction, 'New offset:', newOffset, 'Max:', maxOffset);
+            
+            // Update store and local variable
+            timeWindowOffset.set(newOffset);
+            currentTimeWindowOffset = newOffset;
+            
+            // Reset accumulator
+            rotationAccumulator = 0;
+            
+            // Update equalizer immediately with the new offset
+            if (equalizerInitialized) {
+              EqualizerRing.updateDataWithTimeWindow($rawData, newOffset, windowSize, currentMetric, currentCategory);
+              lastEqualizerUpdateOffset = newOffset;
+            }
+          }
+        } else if (currentScrollProgress < 1.5) {
+          // Reset accumulator when not in view 3
+          rotationAccumulator = 0;
         }
         
         // Model is static - tilted toward bottom of screen, only drag spin changes
@@ -602,9 +683,55 @@
         dataPointsGroup.rotation.y = rotationY;
         
         // Move data points down, back, and left as you scroll (instead of fading out)
-        dataPointsGroup.position.x = -currentScrollProgress * 3; // Move left by 3 units at full scroll
-        dataPointsGroup.position.y = -currentScrollProgress * 5; // Move down by 5 units at full scroll
-        dataPointsGroup.position.z = -currentScrollProgress * 3; // Move back by 3 units at full scroll
+        // And fade them out completely when entering equalizer view
+        const dataPointsOpacity = currentScrollProgress > 1.0 
+          ? Math.max(0, 1 - (currentScrollProgress - 1.0) * 2) 
+          : 1;
+        
+        dataPointsGroup.position.x = -currentScrollProgress * 3;
+        dataPointsGroup.position.y = -currentScrollProgress * 5;
+        dataPointsGroup.position.z = -currentScrollProgress * 3;
+        
+        // Update opacity and disable raycasting when faded
+        dataPointsGroup.visible = dataPointsOpacity > 0;
+        dataPointsArray.forEach(point => {
+          if (point.material) {
+            point.material.opacity = dataPointsOpacity;
+          }
+        });
+        
+        // Equalizer ring - appears when scrolled past line graph (after 100% scroll)
+        // Equalizer is a child of vinylGroup, so it inherits position/rotation/scale
+        if (equalizerInitialized && $rawData) {
+          EqualizerRing.setVisibility(currentScrollProgress);
+          
+          const currentView = currentScrollProgress < 1 ? 0 : currentScrollProgress < 2 ? 1 : currentScrollProgress < 3 ? 2 : 3;
+          const viewChanged = currentView !== lastScrollView;
+          const enteringView3 = viewChanged && currentView === 2;
+          
+          // In view 3, always use 1 year window and start with most recent year
+          if (currentScrollProgress >= 1.5) {
+            const windowSize = 52; // Always 1 year in view 3
+            
+            // When first entering view 3, set to most recent year (offset 0 = most recent)
+            if (enteringView3) {
+              timeWindowOffset.set(0); // 0 = most recent year
+              currentTimeWindowOffset = 0;
+              lastEqualizerUpdateOffset = -999; // Force update
+              console.log('Entering view 3, starting at most recent year, offset: 0');
+            }
+            
+            // Update if offset changed significantly OR if just entered this view
+            if (Math.abs(currentTimeWindowOffset - lastEqualizerUpdateOffset) > 0.1 || enteringView3) {
+              EqualizerRing.updateDataWithTimeWindow($rawData, currentTimeWindowOffset, windowSize, currentMetric, currentCategory);
+              lastEqualizerUpdateOffset = currentTimeWindowOffset;
+            }
+          }
+          
+          lastScrollView = currentView;
+          
+          EqualizerRing.animate();
+        }
         
         // Keep model static - only camera moves
         vinylGroup.scale.set(30, 30, 30);
@@ -612,17 +739,54 @@
         vinylGroup.position.y = -0.3;
         vinylGroup.position.z = -1;
         
-        // Camera handles all scroll-based movement
-        // X: 0 to 5 (move right)
-        // Y: 0 to 5 (move up)
-        // Z: 8 to 5 (move forward/closer)
-        const cameraX = currentScrollProgress * 8;
-        const cameraY = currentScrollProgress * 8;
-        const cameraZ = 8 - currentScrollProgress * 4.5;
-        camera.position.set(cameraX, cameraY, cameraZ);
+        // Fade out vinyl when transitioning to view 4 (Top 20)
+        if (currentScrollProgress > 2.5) {
+          const fadeProgress = Math.min((currentScrollProgress - 2.5) * 2, 1);
+          vinylGroup.traverse((child) => {
+            if (child.isMesh && child.material) {
+              child.material.opacity = 1 - fadeProgress;
+              child.material.transparent = true;
+            }
+          });
+        } else {
+          vinylGroup.traverse((child) => {
+            if (child.isMesh && child.material) {
+              child.material.opacity = 1;
+            }
+          });
+        }
         
-        // Tilt camera down as we scroll (0 to -60 degrees looking down)
-        camera.rotation.x = -currentScrollProgress * 1.05; // ~60 degrees in radians
+        // Camera handles all scroll-based movement
+        // Phase 1 (0-1): Vinyl view to Line Graph view
+        // Phase 2 (1-2): Line Graph view to Equalizer view (top-down centered)
+        // Phase 3 (2-3): Equalizer view to Top 20 view (fade out)
+        let cameraX, cameraY, cameraZ, cameraRotX;
+        
+        if (currentScrollProgress <= 1) {
+          // Phase 1: Move to line graph view
+          cameraX = currentScrollProgress * 8;
+          cameraY = currentScrollProgress * 8;
+          cameraZ = 8 - currentScrollProgress * 4.5;
+          cameraRotX = -currentScrollProgress * 1.05; // ~60 degrees
+        } else if (currentScrollProgress <= 2) {
+          // Phase 2: Transition to equalizer view (centered, looking at vinyl)
+          const phase2Progress = Math.min(currentScrollProgress - 1, 1); // 0 to 1
+          // Smoothly move back to center and reposition for a good view of vinyl + equalizer
+          cameraX = 8 * (1 - phase2Progress); // 8 -> 0 (center)
+          cameraY = 8 - phase2Progress * 7; // 8 -> 1 (lower, moved down more)
+          cameraZ = 3.5 + phase2Progress * 8; // 3.5 -> 11.5 (pull back much more)
+          cameraRotX = -1.05 + phase2Progress * 0.85; // -1.05 -> -0.2 (less tilted)
+        } else {
+          // Phase 3: Move camera down so vinyl is out of view
+          const phase3Progress = Math.min(currentScrollProgress - 2, 1); // 0 to 1
+          cameraX = 0;
+          cameraY = 1 - phase3Progress * 20; // 1 -> -19 (move down)
+          cameraZ = 11.5;
+          cameraRotX = -0.2;
+        }
+        
+        camera.position.set(cameraX, cameraY, cameraZ);
+        camera.rotation.x = cameraRotX;
         camera.rotation.y = 0;
         camera.rotation.z = 0;
       }
@@ -649,9 +813,11 @@
   onDestroy(() => {
     unsubscribeScroll();
     unsubscribeDrag();
+    unsubscribeTimeWindowOffset();
     unsubscribeMetric();
     unsubscribeCategory();
     unsubscribeTimeframe();
+    unsubscribeRawData();
     
     if (animationId) {
       cancelAnimationFrame(animationId);
@@ -684,6 +850,18 @@
     <div class="tooltip-plays">{tooltipData.totalPlays} plays</div>
   </div>
 {/if}
+
+<HoverInfoCard 
+  data={hoveredBarInfo ? {
+    date: hoveredBarInfo.dateRange,
+    category: 'Tempo',
+    value: hoveredBarInfo.tempo + ' BPM',
+    secondaryLabel: 'Danceability',
+    secondaryValue: hoveredBarInfo.danceability + '%'
+  } : null} 
+  visible={showBarInfo} 
+  position="fixed" 
+/>
 
 <style>
   .vinyl-scene {

@@ -47,9 +47,15 @@ export const timeframeWeeks = derived(selectedTimeframe, ($timeframe) => {
 });
 
 /**
- * Is the view in "flat" mode (fully scrolled, vinyl edge-on)
+ * Is the view in "flat" mode (line graph view - between vinyl and equalizer views)
+ * True when scroll is between 0.9 and 1.5 (fades out as we enter equalizer view)
  */
-export const isFlat = derived(scrollProgress, ($progress) => $progress > 0.9);
+export const isFlat = derived(scrollProgress, ($progress) => $progress > 0.9 && $progress < 1.5);
+
+/**
+ * Is the view in "equalizer" mode (past line graph view)
+ */
+export const isEqualizerView = derived(scrollProgress, ($progress) => $progress > 1.0);
 
 /**
  * Vinyl rotation angle in degrees based on scroll
