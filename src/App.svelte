@@ -12,10 +12,11 @@
   import VinylScene from './components/VinylScene.svelte';
   import LineGraph from './components/LineGraph.svelte';
   import Top20List from './components/Top20List.svelte';
-  import { scrollProgress as scrollProgressStore } from './stores/uiStore.js';
+  import { scrollProgress as scrollProgressStore, hoveredPointData } from './stores/uiStore.js';
   
   let innerHeight = 0;
   let currentView = 0; // 0 = Vinyl, 1 = Line Graph, 2 = Equalizer, 3 = Top 20
+  let lastView = 0; // Track previous view for clearing hover state
   let scrollProgress = 0;
   let targetProgress = 0;
   let isAnimating = false;
@@ -45,6 +46,13 @@
     scrollProgress += step;
     scrollProgressStore.set(scrollProgress);
     
+    // Clear hover state when view changes
+    const newView = Math.round(scrollProgress);
+    if (newView !== lastView) {
+      hoveredPointData.set(null);
+      lastView = newView;
+    }
+    
     animationFrame = requestAnimationFrame(animateToTarget);
   }
   
@@ -52,6 +60,8 @@
   function handleNavigation(view) {
     currentView = view;
     targetProgress = view;
+    // Clear hover state immediately when navigating
+    hoveredPointData.set(null);
     if (!isAnimating) {
       isAnimating = true;
       animateToTarget();
@@ -71,12 +81,14 @@
       currentView++;
       targetProgress = currentView;
       scrollCooldown = true;
+      hoveredPointData.set(null); // Clear hover state on view change
       setTimeout(() => scrollCooldown = false, 800); // Cooldown to prevent rapid switches
     } else if (scrollDelta < -20 && currentView > 0) {
       // Scrolling up - go to previous view
       currentView--;
       targetProgress = currentView;
       scrollCooldown = true;
+      hoveredPointData.set(null); // Clear hover state on view change
       setTimeout(() => scrollCooldown = false, 800);
     }
     
@@ -93,6 +105,7 @@
   function handleKeydown(event) {
     if (event.key === 'ArrowDown' || event.key === 'PageDown') {
       if (currentView < 3) {
+        hoveredPointData.set(null); // Clear hover state on view change
         currentView++;
         targetProgress = currentView;
         if (!isAnimating) {
@@ -103,6 +116,7 @@
       event.preventDefault();
     } else if (event.key === 'ArrowUp' || event.key === 'PageUp') {
       if (currentView > 0) {
+        hoveredPointData.set(null); // Clear hover state on view change
         currentView--;
         targetProgress = currentView;
         if (!isAnimating) {

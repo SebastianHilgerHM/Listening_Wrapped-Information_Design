@@ -3,7 +3,10 @@
   import { fly, fade } from 'svelte/transition';
   import * as d3 from 'd3';
   import { rawData } from '../stores/dataStore.js';
-  import { selectedMetric, selectedCategory, selectedTimeframe, scrollProgress, hoveredPointData, isFlat, currentTrack, timeWindowOffset } from '../stores/uiStore.js';
+  import { selectedMetric, selectedCategory, selectedTimeframe, scrollProgress, isFlat, currentTrack, timeWindowOffset } from '../stores/uiStore.js';
+  
+  // Local tooltip state
+  let tooltipData = null;
   
   let container;
   let svg;
@@ -53,7 +56,7 @@
     updateChart();
   }
   
-  function getFilteredData() {
+  function getFilteredDataForCategory(category) {
     if (!$rawData || $rawData.length === 0) return [];
     
     let filtered = $rawData;
@@ -70,16 +73,10 @@
       const weekCount = weeks[currentTimeframe] || 52;
       const totalWeeks = $rawData.length;
       
-      // Calculate the offset-adjusted start and end indices
-      // currentTimeWindowOffset shifts the window (positive = forward in time)
       const offsetWeeks = Math.round(currentTimeWindowOffset);
-      
-      // Default end is at the end of data (most recent)
-      // With offset, we shift the window
       let endIndex = totalWeeks - offsetWeeks;
       let startIndex = endIndex - weekCount;
       
-      // Clamp to valid range
       if (startIndex < 0) {
         startIndex = 0;
         endIndex = Math.min(weekCount, totalWeeks);
@@ -92,13 +89,13 @@
       filtered = $rawData.slice(startIndex, endIndex);
     }
     
-    // Extract metric values
+    // Extract metric values for the specified category
     const rawValues = filtered.map((week, i) => {
       let value = 0;
       let song = '';
       let artist = '';
       
-      if (currentCategory === 'tempo') {
+      if (category === 'tempo') {
         if (currentMetric === 'average') {
           value = week.avgTempo;
           song = week.topSong;
@@ -132,7 +129,7 @@
         }
       }
       
-      return { index: i, value: value || 0, date: new Date(week.weekStart), isMissing: !value || value === 0, song, artist };
+      return { index: i, value: value || 0, date: new Date(week.weekStart), isMissing: !value || value === 0, song, artist, category };
     });
     
     // Calculate average of valid values
@@ -142,48 +139,29 @@
     // Replace missing values with average + randomness
     return rawValues.map((d, i) => {
       if (d.isMissing) {
-        // Add randomness: ±10% of the range for tempo, ±0.05 for danceability
-        const randomOffset = currentCategory === 'tempo' 
-          ? (Math.random() - 0.5) * 36 // ±18 BPM
-          : (Math.random() - 0.5) * 0.1; // ±0.05 danceability
+        const randomOffset = category === 'tempo' 
+          ? (Math.random() - 0.5) * 36
+          : (Math.random() - 0.5) * 0.1;
         return { ...d, value: average + randomOffset, isMissing: true };
       }
       return d;
     });
   }
   
+  function getFilteredData() {
+    return getFilteredDataForCategory(currentCategory);
+  }
+  
   function updateChart() {
     if (!svg) return;
-    
-    const data = getFilteredData();
-    if (data.length === 0) return;
     
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
     
-    // Scales
-    const xScale = d3.scaleTime()
-      .domain([d3.min(data, d => d.date), d3.max(data, d => d.date)])
-      .range([0, innerWidth]);
-    
-    // Fixed Y-axis scales based on category
-    let yMin, yMax;
-    if (currentCategory === 'tempo') {
-      yMin = 40;
-      yMax = 240;
-    } else {
-      // danceability
-      yMin = 0;
-      yMax = 1;
-    }
-    
-    const yScale = d3.scaleLinear()
-      .domain([yMin, yMax])
-      .range([innerHeight, 0]);
-    
-    const line = d3.line()
-      .x(d => xScale(d.date))
-      .y(d => yScale(d.value));
+    // Clear previous axes
+    svg.selectAll('.y-axis').remove();
+    svg.selectAll('.y-axis-right').remove();
+    svg.selectAll('.x-axis').remove();
     
     // Select or create main group
     let mainGroup = svg.select('.main-group');
@@ -196,111 +174,304 @@
     // Clear previous content
     mainGroup.selectAll('*').remove();
     
-    // Add background - removed for transparent look
-    
-    // Add grid lines
-    const gridTickValues = currentCategory === 'tempo' 
-      ? [40, 80, 120, 160, 200, 240]  // Increments of 40 for BPM
-      : [0, 0.2, 0.4, 0.6, 0.8, 1.0];
-    mainGroup.selectAll('.grid-line')
-      .data(gridTickValues)
-      .enter()
-      .append('line')
-      .attr('class', 'grid-line')
-      .attr('x1', 0)
-      .attr('x2', innerWidth)
-      .attr('y1', d => yScale(d))
-      .attr('y2', d => yScale(d))
-      .attr('stroke', '#606467')
-      .attr('stroke-dasharray', '4')
-      .attr('opacity', '0.4');
-    
-    // Add line path
-    mainGroup.append('path')
-      .datum(data)
-      .attr('class', 'line')
-      .attr('fill', 'none')
-      .attr('stroke', '#E62815')
-      .attr('stroke-width', 2)
-      .attr('d', line);
-    
-    // Add data points
-    mainGroup.selectAll('.dot')
-      .data(data)
-      .enter()
-      .append('circle')
-      .attr('class', 'dot')
-      .attr('cx', d => xScale(d.date))
-      .attr('cy', d => yScale(d.value))
-      .attr('r', 3)
-      .attr('fill', d => d.isMissing ? '#606467' : '#E62815')
-      .attr('stroke', '#1C1D22')
-      .attr('stroke-width', 1)
-      .attr('opacity', d => d.isMissing ? 0.6 : 1)
-      .style('pointer-events', 'all')
-      .style('cursor', 'pointer')
-      .on('mouseenter', function(event, d) {
-        if (currentScrollProgress < 0.8 || currentScrollProgress >= 1.5) return;
-        d3.select(this).attr('r', 5);
-        const dateStr = d.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-        const metricStr = currentMetric.charAt(0).toUpperCase() + currentMetric.slice(1);
-        const categoryStr = currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1);
-        // Only show song/artist for highest and lowest metrics, not average
-        const showSongInfo = currentMetric !== 'average';
-        console.log('LineGraph hover:', { date: dateStr, metric: currentMetric, song: d.song, artist: d.artist, value: d.value });
-        hoveredPointData.set({
-          date: dateStr,
-          category: `${metricStr} ${categoryStr}`,
-          value: d.value.toFixed(2),
-          isMissing: d.isMissing,
-          song: showSongInfo ? d.song : null,
-          artist: showSongInfo ? d.artist : null
+    if (currentCategory === 'both') {
+      // Dual line mode
+      const tempoData = getFilteredDataForCategory('tempo');
+      const danceData = getFilteredDataForCategory('danceability');
+      
+      if (tempoData.length === 0) return;
+      
+      // X scale (shared)
+      const xScale = d3.scaleTime()
+        .domain([d3.min(tempoData, d => d.date), d3.max(tempoData, d => d.date)])
+        .range([0, innerWidth]);
+      
+      // Y scales for each category
+      const yScaleTempo = d3.scaleLinear()
+        .domain([40, 240])
+        .range([innerHeight, 0]);
+      
+      const yScaleDance = d3.scaleLinear()
+        .domain([0, 1])
+        .range([innerHeight, 0]);
+      
+      // Grid lines (use tempo scale)
+      const gridTickValues = [40, 80, 120, 160, 200, 240];
+      mainGroup.selectAll('.grid-line')
+        .data(gridTickValues)
+        .enter()
+        .append('line')
+        .attr('class', 'grid-line')
+        .attr('x1', 0)
+        .attr('x2', innerWidth)
+        .attr('y1', d => yScaleTempo(d))
+        .attr('y2', d => yScaleTempo(d))
+        .attr('stroke', '#606467')
+        .attr('stroke-dasharray', '4')
+        .attr('opacity', '0.4');
+      
+      // Tempo line (red)
+      const tempoLine = d3.line()
+        .x(d => xScale(d.date))
+        .y(d => yScaleTempo(d.value));
+      
+      mainGroup.append('path')
+        .datum(tempoData)
+        .attr('class', 'line-tempo')
+        .attr('fill', 'none')
+        .attr('stroke', '#E62815')
+        .attr('stroke-width', 2)
+        .attr('d', tempoLine);
+      
+      // Danceability line (cyan/teal)
+      const danceLine = d3.line()
+        .x(d => xScale(d.date))
+        .y(d => yScaleDance(d.value));
+      
+      mainGroup.append('path')
+        .datum(danceData)
+        .attr('class', 'line-dance')
+        .attr('fill', 'none')
+        .attr('stroke', '#00CED1')
+        .attr('stroke-width', 2)
+        .attr('d', danceLine);
+      
+      // Tempo data points (red)
+      mainGroup.selectAll('.dot-tempo')
+        .data(tempoData)
+        .enter()
+        .append('circle')
+        .attr('class', 'dot-tempo')
+        .attr('cx', d => xScale(d.date))
+        .attr('cy', d => yScaleTempo(d.value))
+        .attr('r', 3)
+        .attr('fill', d => d.isMissing ? '#606467' : '#E62815')
+        .attr('stroke', '#1C1D22')
+        .attr('stroke-width', 1)
+        .attr('opacity', d => d.isMissing ? 0.6 : 1)
+        .style('pointer-events', 'all')
+        .style('cursor', 'pointer')
+        .on('mouseenter', function(event, d) {
+          d3.select(this).attr('r', 5);
+          const dateStr = d.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+          const metricStr = currentMetric.charAt(0).toUpperCase() + currentMetric.slice(1);
+          const showSongInfo = currentMetric !== 'average';
+          tooltipData = {
+            date: dateStr,
+            category: `${metricStr} Tempo`,
+            value: d.value.toFixed(0) + ' BPM',
+            isMissing: d.isMissing,
+            song: showSongInfo ? d.song : null,
+            artist: showSongInfo ? d.artist : null
+          };
+        })
+        .on('mouseleave', function() {
+          d3.select(this).attr('r', 3);
+          tooltipData = null;
+        })
+        .on('click', function(event, d) {
+          if (d.song) {
+            currentTrack.set({ song: d.song, artist: d.artist || '' });
+          }
         });
-      })
-      .on('mouseleave', function() {
-        if (currentScrollProgress < 0.8 || currentScrollProgress >= 1.5) return;
-        d3.select(this).attr('r', 3);
-        hoveredPointData.set(null);
-      })
-      .on('click', function(event, d) {
-        if (d.song) {
-          currentTrack.set({
-            song: d.song,
-            artist: d.artist || ''
-          });
-        }
+      
+      // Danceability data points (cyan)
+      mainGroup.selectAll('.dot-dance')
+        .data(danceData)
+        .enter()
+        .append('circle')
+        .attr('class', 'dot-dance')
+        .attr('cx', d => xScale(d.date))
+        .attr('cy', d => yScaleDance(d.value))
+        .attr('r', 3)
+        .attr('fill', d => d.isMissing ? '#606467' : '#00CED1')
+        .attr('stroke', '#1C1D22')
+        .attr('stroke-width', 1)
+        .attr('opacity', d => d.isMissing ? 0.6 : 1)
+        .style('pointer-events', 'all')
+        .style('cursor', 'pointer')
+        .on('mouseenter', function(event, d) {
+          d3.select(this).attr('r', 5);
+          const dateStr = d.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+          const metricStr = currentMetric.charAt(0).toUpperCase() + currentMetric.slice(1);
+          const showSongInfo = currentMetric !== 'average';
+          tooltipData = {
+            date: dateStr,
+            category: `${metricStr} Danceability`,
+            value: d.value.toFixed(2),
+            isMissing: d.isMissing,
+            song: showSongInfo ? d.song : null,
+            artist: showSongInfo ? d.artist : null
+          };
+        })
+        .on('mouseleave', function() {
+          d3.select(this).attr('r', 3);
+          tooltipData = null;
+        })
+        .on('click', function(event, d) {
+          if (d.song) {
+            currentTrack.set({ song: d.song, artist: d.artist || '' });
+          }
+        });
+      
+      // Left Y-axis (Tempo - red)
+      const yAxisTempo = d3.axisLeft(yScaleTempo).tickValues([40, 80, 120, 160, 200, 240]);
+      svg.append('g')
+        .attr('class', 'y-axis')
+        .attr('transform', `translate(${margin.left},${margin.top})`)
+        .call(yAxisTempo)
+        .style('font-size', '12px')
+        .style('color', '#E62815');
+      
+      // Right Y-axis (Danceability - cyan)
+      const yAxisDance = d3.axisRight(yScaleDance).ticks(5).tickFormat(d3.format('.1f'));
+      svg.append('g')
+        .attr('class', 'y-axis-right')
+        .attr('transform', `translate(${margin.left + innerWidth},${margin.top})`)
+        .call(yAxisDance)
+        .style('font-size', '12px')
+        .style('color', '#00CED1');
+      
+      // X-axis
+      const minDate = d3.min(tempoData, d => d.date);
+      const maxDate = d3.max(tempoData, d => d.date);
+      const tickValues = d3.range(5).map((i) => {
+        const t = i / (5 - 1);
+        return new Date(minDate.getTime() + t * (maxDate.getTime() - minDate.getTime()));
       });
-    
-    // Y-axis - use appropriate format based on category
-    const yAxis = currentCategory === 'tempo' 
-      ? d3.axisLeft(yScale).tickValues([40, 80, 120, 160, 200, 240])
-      : d3.axisLeft(yScale).ticks(5).tickFormat(d3.format('.1f'));
-    svg.selectAll('.y-axis').remove();
-    svg.append('g')
-      .attr('class', 'y-axis')
-      .attr('transform', `translate(${margin.left},${margin.top})`)
-      .call(yAxis)
-      .style('font-size', '12px')
-      .style('color', '#AAABAD');
-    
-    // X-axis with date formatting - exactly 5 ticks
-    const minDate = d3.min(data, d => d.date);
-    const maxDate = d3.max(data, d => d.date);
-    const tickValues = d3.range(5).map((i) => {
-      const t = i / (5 - 1); // 0, 0.25, 0.5, 0.75, 1
-      return new Date(minDate.getTime() + t * (maxDate.getTime() - minDate.getTime()));
-    });
-    
-    const xAxis = d3.axisBottom(xScale)
-      .tickValues(tickValues)
-      .tickFormat(d3.timeFormat('%b %d, %Y'));
-    svg.selectAll('.x-axis').remove();
-    svg.append('g')
-      .attr('class', 'x-axis')
-      .attr('transform', `translate(${margin.left},${margin.top + innerHeight})`)
-      .call(xAxis)
-      .style('font-size', '12px')
-      .style('color', '#AAABAD');
+      
+      const xAxis = d3.axisBottom(xScale)
+        .tickValues(tickValues)
+        .tickFormat(d3.timeFormat('%b %d, %Y'));
+      svg.append('g')
+        .attr('class', 'x-axis')
+        .attr('transform', `translate(${margin.left},${margin.top + innerHeight})`)
+        .call(xAxis)
+        .style('font-size', '12px')
+        .style('color', '#AAABAD');
+      
+    } else {
+      // Single line mode (original behavior)
+      const data = getFilteredData();
+      if (data.length === 0) return;
+      
+      // Scales
+      const xScale = d3.scaleTime()
+        .domain([d3.min(data, d => d.date), d3.max(data, d => d.date)])
+        .range([0, innerWidth]);
+      
+      let yMin, yMax;
+      if (currentCategory === 'tempo') {
+        yMin = 40;
+        yMax = 240;
+      } else {
+        yMin = 0;
+        yMax = 1;
+      }
+      
+      const yScale = d3.scaleLinear()
+        .domain([yMin, yMax])
+        .range([innerHeight, 0]);
+      
+      const line = d3.line()
+        .x(d => xScale(d.date))
+        .y(d => yScale(d.value));
+      
+      // Grid lines
+      const gridTickValues = currentCategory === 'tempo' 
+        ? [40, 80, 120, 160, 200, 240]
+        : [0, 0.2, 0.4, 0.6, 0.8, 1.0];
+      mainGroup.selectAll('.grid-line')
+        .data(gridTickValues)
+        .enter()
+        .append('line')
+        .attr('class', 'grid-line')
+        .attr('x1', 0)
+        .attr('x2', innerWidth)
+        .attr('y1', d => yScale(d))
+        .attr('y2', d => yScale(d))
+        .attr('stroke', '#606467')
+        .attr('stroke-dasharray', '4')
+        .attr('opacity', '0.4');
+      
+      // Line path
+      mainGroup.append('path')
+        .datum(data)
+        .attr('class', 'line')
+        .attr('fill', 'none')
+        .attr('stroke', '#E62815')
+        .attr('stroke-width', 2)
+        .attr('d', line);
+      
+      // Data points
+      mainGroup.selectAll('.dot')
+        .data(data)
+        .enter()
+        .append('circle')
+        .attr('class', 'dot')
+        .attr('cx', d => xScale(d.date))
+        .attr('cy', d => yScale(d.value))
+        .attr('r', 3)
+        .attr('fill', d => d.isMissing ? '#606467' : '#E62815')
+        .attr('stroke', '#1C1D22')
+        .attr('stroke-width', 1)
+        .attr('opacity', d => d.isMissing ? 0.6 : 1)
+        .style('pointer-events', 'all')
+        .style('cursor', 'pointer')
+        .on('mouseenter', function(event, d) {
+          d3.select(this).attr('r', 5);
+          const dateStr = d.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+          const metricStr = currentMetric.charAt(0).toUpperCase() + currentMetric.slice(1);
+          const categoryStr = currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1);
+          const showSongInfo = currentMetric !== 'average';
+          tooltipData = {
+            date: dateStr,
+            category: `${metricStr} ${categoryStr}`,
+            value: currentCategory === 'tempo' ? d.value.toFixed(0) + ' BPM' : d.value.toFixed(2),
+            isMissing: d.isMissing,
+            song: showSongInfo ? d.song : null,
+            artist: showSongInfo ? d.artist : null
+          };
+        })
+        .on('mouseleave', function() {
+          d3.select(this).attr('r', 3);
+          tooltipData = null;
+        })
+        .on('click', function(event, d) {
+          if (d.song) {
+            currentTrack.set({ song: d.song, artist: d.artist || '' });
+          }
+        });
+      
+      // Y-axis
+      const yAxis = currentCategory === 'tempo' 
+        ? d3.axisLeft(yScale).tickValues([40, 80, 120, 160, 200, 240])
+        : d3.axisLeft(yScale).ticks(5).tickFormat(d3.format('.1f'));
+      svg.append('g')
+        .attr('class', 'y-axis')
+        .attr('transform', `translate(${margin.left},${margin.top})`)
+        .call(yAxis)
+        .style('font-size', '12px')
+        .style('color', '#AAABAD');
+      
+      // X-axis
+      const minDate = d3.min(data, d => d.date);
+      const maxDate = d3.max(data, d => d.date);
+      const tickValues = d3.range(5).map((i) => {
+        const t = i / (5 - 1);
+        return new Date(minDate.getTime() + t * (maxDate.getTime() - minDate.getTime()));
+      });
+      
+      const xAxis = d3.axisBottom(xScale)
+        .tickValues(tickValues)
+        .tickFormat(d3.timeFormat('%b %d, %Y'));
+      svg.append('g')
+        .attr('class', 'x-axis')
+        .attr('transform', `translate(${margin.left},${margin.top + innerHeight})`)
+        .call(xAxis)
+        .style('font-size', '12px')
+        .style('color', '#AAABAD');
+    }
   }
   
   function handleResize() {
@@ -334,8 +505,9 @@
     };
   });
   
-  // Graph is visible when in line graph view range (scroll 0.9+, but fading after 1.0)
-  $: isVisible = currentScrollProgress > 0.9 && graphOpacity > 0;
+  // Graph is visible when in line graph view range (scroll 0.8+, but fading after 1.0)
+  // Use store value directly for reactivity
+  $: isVisible = $scrollProgress >= 0.8 && $scrollProgress <= 1.5;
 </script>
 
 <div 
@@ -348,6 +520,23 @@
 >
   <!-- D3 chart renders here -->
 </div>
+
+{#if tooltipData && isVisible}
+  <div class="line-tooltip">
+    <p class="tooltip-date">{tooltipData.date}</p>
+    <p class="tooltip-category">{tooltipData.category}</p>
+    <p class="tooltip-value">{tooltipData.value}</p>
+    {#if tooltipData.song}
+      <p class="tooltip-song">{tooltipData.song}</p>
+    {/if}
+    {#if tooltipData.artist}
+      <p class="tooltip-artist">{tooltipData.artist}</p>
+    {/if}
+    {#if tooltipData.isMissing}
+      <p class="tooltip-missing">No data (estimated)</p>
+    {/if}
+  </div>
+{/if}
 
 <style>
   .line-graph-container {
@@ -369,6 +558,7 @@
   :global(.line-graph-container svg) {
     display: block;
     width: 100%;
+    pointer-events: auto;
   }
   
   :global(.y-axis path) {
@@ -387,5 +577,62 @@
   :global(.x-axis line) {
     stroke: #606467;
     opacity: 0.4;
+  }
+  
+  .line-tooltip {
+    position: fixed;
+    bottom: 20px;
+    right: 0;
+    background: rgba(49, 59, 68, 0.95);
+    border: 1px solid rgba(230, 40, 21, 0.3);
+    border-radius: 16px;
+    padding: 16px 20px;
+    pointer-events: none;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    width: 144px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  .tooltip-date {
+    color: #AAABAD;
+    font-size: 11px;
+    margin: 0 0 6px 0;
+  }
+  
+  .tooltip-category {
+    color: #AAABAD;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0 0 4px 0;
+  }
+  
+  .tooltip-value {
+    color: #E62815;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+  }
+  
+  .tooltip-song {
+    color: #E0E0E0;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0 0 2px 0;
+  }
+  
+  .tooltip-artist {
+    color: #AAABAD;
+    font-size: 11px;
+    font-style: italic;
+    margin: 0 0 6px 0;
+  }
+  
+  .tooltip-missing {
+    color: #606467;
+    font-size: 11px;
+    border-top: 1px solid rgba(230, 40, 21, 0.2);
+    padding-top: 6px;
+    margin: 0;
   }
 </style>

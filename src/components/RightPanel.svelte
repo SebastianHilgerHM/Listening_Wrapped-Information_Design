@@ -2,12 +2,8 @@
   import { selectedMetric, selectedCategory, hoveredPointData, scrollProgress } from '../stores/uiStore.js';
   import HoverInfoCard from './HoverInfoCard.svelte';
   
-  let currentScrollProgress = 0;
-  $: isHidden = currentScrollProgress > 2.5;
-  
-  scrollProgress.subscribe(value => {
-    currentScrollProgress = value;
-  });
+  // Use store value directly for reactivity
+  $: isHidden = $scrollProgress > 2.5;
   
   const metrics = [
     { id: 'highest', label: 'Highest' },
@@ -17,7 +13,8 @@
   
   const categories = [
     { id: 'tempo', label: 'Tempo', unit: 'BPM' },
-    { id: 'danceability', label: 'Danceability', unit: '0-1' }
+    { id: 'danceability', label: 'Danceability', unit: '0-1' },
+    { id: 'both', label: 'Both', unit: '' }
   ];
 </script>
 
@@ -57,11 +54,13 @@
     <p class="info-label">Currently Viewing</p>
     <p class="info-value">
       {metrics.find(m => m.id === $selectedMetric)?.label} 
-      {categories.find(c => c.id === $selectedCategory)?.label}
+      {$selectedCategory === 'both' ? 'Tempo & Danceability' : categories.find(c => c.id === $selectedCategory)?.label}
     </p>
+    {#if $selectedCategory !== 'both'}
     <p class="info-unit">
       {categories.find(c => c.id === $selectedCategory)?.unit}
     </p>
+    {/if}
   </div>
   </aside>
 

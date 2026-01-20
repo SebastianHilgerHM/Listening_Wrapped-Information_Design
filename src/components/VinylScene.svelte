@@ -522,8 +522,8 @@
           hoveredBarInfo = null;
         }
         
-        // Check for data point hover (only in view 2 - line graph view: 0.8-1.5)
-        if (currentScrollProgress >= 0.8 && currentScrollProgress < 1.5) {
+        // Check for data point hover (view 1: < 0.8 and view 2: 0.8-1.5)
+        if (currentScrollProgress < 1.5) {
           const dataPointIntersects = raycaster.intersectObjects(dataPointsArray);
           if (dataPointIntersects.length > 0) {
             const point = dataPointIntersects[0].object;
@@ -535,6 +535,20 @@
             const categoryStr = currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1);
             const categoryLabel = `${metricStr} ${categoryStr}`;
             
+            // Show song info only for highest/lowest, not average
+            const showSongInfo = currentMetric !== 'average';
+            
+            // Use hoveredPointData store for HoverInfoCard
+            hoveredPointData.set({
+              date: dateStr,
+              category: categoryLabel,
+              value: point.userData.metricValue.toFixed(2),
+              song: showSongInfo ? point.userData.song : null,
+              artist: showSongInfo ? point.userData.artist : null,
+              isMissing: false
+            });
+            
+            // Also set local tooltip for view 1 styling
             tooltipData = {
               date: dateStr,
               category: categoryLabel,
@@ -547,6 +561,7 @@
             tooltipPosition = { x: e.clientX + 15, y: e.clientY + 15 };
           } else {
             tooltipData = null;
+            hoveredPointData.set(null);
           }
         } else {
           tooltipData = null;
@@ -645,6 +660,25 @@
         
         // Smooth rotation interpolation for drag spin only
         rotationY += rotationDelta;
+        
+        // In view 2 (line graph), update time window offset based on rotation when not in 'all' timeframe
+        if (currentScrollProgress >= 0.5 && currentScrollProgress < 1.5 && currentTimeframe !== 'all') {
+          // Convert rotation delta to weeks offset (adjust multiplier for sensitivity)
+          const weeksPerRotation = 10; // How many weeks to scroll per full rotation
+          const weeksDelta = rotationDelta * weeksPerRotation;
+          
+          if (Math.abs(weeksDelta) > 0.01) {
+            const newOffset = currentTimeWindowOffset + weeksDelta;
+            // Clamp to valid range (0 to total weeks minus timeframe window)
+            const maxOffset = $rawData ? Math.max(0, $rawData.length - 52) : 0;
+            const clampedOffset = Math.max(0, Math.min(newOffset, maxOffset));
+            
+            if (Math.abs(clampedOffset - currentTimeWindowOffset) > 0.1) {
+              timeWindowOffset.set(clampedOffset);
+              currentTimeWindowOffset = clampedOffset;
+            }
+          }
+        }
         
         // Model is static - tilted toward bottom of screen, only drag spin changes
         vinylGroup.rotation.x = -1.22; // Fixed tilt (-70 degrees, angled toward bottom)
@@ -809,7 +843,7 @@
 
 <div class="vinyl-scene" bind:this={container}></div>
 
-{#if tooltipData && currentScrollProgress < 0.5}
+{#if false && tooltipData && currentScrollProgress < 0.8}
   <div class="tooltip" style="left: {tooltipPosition.x}px; top: {tooltipPosition.y}px;">
     <div class="tooltip-date">{tooltipData.date}</div>
     <div class="tooltip-category">{tooltipData.category}</div>
@@ -845,6 +879,7 @@
     background: #1C1D22;
     user-select: none;
     -webkit-user-select: none;
+    pointer-events: none;
   }
   
   /* Prevent selection globally when dragging */
