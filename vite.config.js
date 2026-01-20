@@ -12,10 +12,7 @@ const httpsConfig = fs.existsSync('localhost-key.pem') && fs.existsSync('localho
 
 export default defineConfig({
   plugins: [svelte()],
-  // Base path for GitHub Pages - change 'Site-Code' to your repository name
-  // Use '/' if deploying to username.github.io (user site)
-  // Use '/repository-name/' if deploying to username.github.io/repository-name (project site)
-  base: process.env.GITHUB_ACTIONS ? '/Site-Code/' : '/',
+  base: process.env.GITHUB_ACTIONS ? '/Listening_Wrapped-Information_Design/' : '/',
   server: {
     port: 5173,
     https: httpsConfig,
