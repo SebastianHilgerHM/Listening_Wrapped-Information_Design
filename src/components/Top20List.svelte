@@ -18,7 +18,7 @@
   
   onMount(async () => {
     try {
-      const response = await fetch('/top_20_tracks.csv');
+      const response = await fetch(`${import.meta.env.BASE_URL}top_20_tracks.csv`);
       const csvText = await response.text();
       tracks = parseTop20CSV(csvText);
     } catch (err) {

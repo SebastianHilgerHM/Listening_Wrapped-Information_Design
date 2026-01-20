@@ -136,7 +136,7 @@
     
     // Load CSV data
     try {
-      const data = await loadCSV('/weekly_summary.csv');
+      const data = await loadCSV(`${import.meta.env.BASE_URL}weekly_summary.csv`);
       rawData.set(data);
     } catch (err) {
       // Silent fail - data loading error

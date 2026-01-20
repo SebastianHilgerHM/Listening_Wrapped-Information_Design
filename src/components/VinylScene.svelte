@@ -103,7 +103,7 @@
     return new Promise((resolve, reject) => {
       const loader = new GLTFLoader();
       loader.load(
-        '/scene.glb',
+        `${import.meta.env.BASE_URL}scene.glb`,
         (gltf) => {
           const model = gltf.scene;
           resolve(model);
