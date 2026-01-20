@@ -55,6 +55,12 @@
   
   const unsubscribeTimeWindowOffset = timeWindowOffset.subscribe(value => {
     currentTimeWindowOffset = value;
+    // Force equalizer update when time window changes (year button clicked)
+    if (equalizerInitialized && $rawData && $rawData.length > 0) {
+      const windowSize = 52;
+      EqualizerRing.updateDataWithTimeWindow($rawData, value, windowSize, currentMetric, currentCategory);
+      lastEqualizerUpdateOffset = value;
+    }
   });
   
   const unsubscribeMetric = selectedMetric.subscribe(value => {
@@ -498,8 +504,14 @@
             const bar = barIntersects[0].object;
             const barIndex = equalizerBars.indexOf(bar);
             if (barIndex !== -1) {
-              hoveredBarInfo = EqualizerRing.getBarMetadata(barIndex);
-              showBarInfo = true;
+              const metadata = EqualizerRing.getBarMetadata(barIndex);
+              if (metadata) {
+                hoveredBarInfo = metadata;
+                showBarInfo = true;
+              } else {
+                showBarInfo = false;
+                hoveredBarInfo = null;
+              }
             }
           } else {
             showBarInfo = false;
