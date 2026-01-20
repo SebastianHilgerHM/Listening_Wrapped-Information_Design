@@ -21,9 +21,8 @@
       const response = await fetch('/top_20_tracks.csv');
       const csvText = await response.text();
       tracks = parseTop20CSV(csvText);
-      console.log('🎵 Loaded top 20 tracks:', tracks.length);
     } catch (err) {
-      console.error('Failed to load top 20 tracks:', err);
+      // Silent fail - data loading error
     }
     
     return () => {

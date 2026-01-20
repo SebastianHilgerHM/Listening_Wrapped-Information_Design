@@ -106,30 +106,10 @@
         '/scene.glb',
         (gltf) => {
           const model = gltf.scene;
-          
-          // Log model info for debugging
-          console.log('Model loaded:', model);
-          console.log('Model scale:', model.scale);
-          console.log('Model position:', model.position);
-          console.log('Model rotation:', model.rotation);
-          
-          // Traverse and log materials
-          model.traverse((child) => {
-            if (child.isMesh) {
-              console.log('Mesh:', child.name, {
-                material: child.material,
-                geometry: child.geometry,
-              });
-            }
-          });
-          
           resolve(model);
         },
-        (progress) => {
-          console.log('Loading progress:', (progress.loaded / progress.total) * 100 + '%');
-        },
+        undefined,
         (error) => {
-          console.warn('GLB file not found, using procedural vinyl:', error);
           // Fallback to procedural vinyl
           resolve(createVinylRecord());
         }
@@ -140,11 +120,8 @@
   function updateDataPoints() {
     if (!dataPointsGroup) return;
     if (!$rawData || $rawData.length === 0) {
-      console.warn('No data available for points');
       return;
     }
-    
-    console.log('Updating data points with', $rawData.length, 'weeks');
     
     // Clear existing points and array
     while (dataPointsGroup.children.length > 0) {
@@ -299,8 +276,6 @@
       const line = new THREE.Line(lineGeometry, lineMaterial);
       dataPointsGroup.add(line);
     }
-    
-    console.log('Created', dataPointsGroup.children.length, 'visual elements from', count, '4-week groups');
   }
   
   function createVinylRecord() {
@@ -435,7 +410,6 @@
       EqualizerRing.createBars(vinylGroup);
       equalizerInitialized = true;
     } catch (error) {
-      console.error('Failed to initialize vinyl scene:', error);
       return;
     }    
     // Create data points group
@@ -723,7 +697,6 @@
               timeWindowOffset.set(0); // 0 = most recent year
               currentTimeWindowOffset = 0;
               lastEqualizerUpdateOffset = -999; // Force update
-              console.log('Entering view 3, starting at most recent year, offset: 0');
             }
             
             // Update if offset changed significantly OR if just entered this view

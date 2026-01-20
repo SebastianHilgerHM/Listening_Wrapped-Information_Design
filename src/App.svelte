@@ -129,8 +129,6 @@
   }
   
   onMount(async () => {
-    console.log('🎵 Listening Wrapped initialized');
-    
     // Hide intro hint after 3 seconds (transition handles the fade)
     setTimeout(() => {
       introHintVisible = false;
@@ -140,9 +138,8 @@
     try {
       const data = await loadCSV('/weekly_summary.csv');
       rawData.set(data);
-      console.log(`📊 Loaded ${data.length} weeks of data`);
     } catch (err) {
-      console.error('Failed to load CSV:', err);
+      // Silent fail - data loading error
     }
     
     // Add wheel listener with passive: false to allow preventDefault
@@ -227,11 +224,6 @@
     color: rgba(170, 171, 173, 0.8);
     margin: 0;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  }
-  
-  /* Vinyl Container (removed, now fullscreen) */
-  .vinyl-container {
-    display: none;
   }
   
   /* Controls Row - flexbox layout for top elements */

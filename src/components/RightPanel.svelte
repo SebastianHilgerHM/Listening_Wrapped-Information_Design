@@ -4,6 +4,7 @@
   
   // Use store value directly for reactivity
   $: isHidden = $scrollProgress > 2.5;
+  $: isView2 = $scrollProgress >= 0.5 && $scrollProgress < 1.5;
   
   const metrics = [
     { id: 'highest', label: 'Highest' },
@@ -16,6 +17,14 @@
     { id: 'danceability', label: 'Danceability', unit: '0-1' },
     { id: 'both', label: 'Both', unit: '' }
   ];
+  
+  // Filter categories - "both" only visible in view 2
+  $: visibleCategories = categories.filter(c => c.id !== 'both' || isView2);
+  
+  // Reset to tempo if "both" was selected and leaving view 2
+  $: if ($selectedCategory === 'both' && !isView2) {
+    selectedCategory.set('tempo');
+  }
 </script>
 
 <div class="right-panel-wrapper" class:hidden={isHidden}>
@@ -37,7 +46,7 @@
   
   <div class="panel-section">
     <div class="category-toggle">
-      {#each categories as category}
+      {#each visibleCategories as category}
         <button
           class="category-btn"
           class:active={$selectedCategory === category.id}
@@ -104,15 +113,6 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-  }
-
-  .section-title {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #AAABAD;
-    margin: 0;
   }
 
   .metric-buttons {

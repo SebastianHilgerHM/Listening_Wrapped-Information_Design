@@ -130,16 +130,6 @@
     currentMetric = $selectedMetric;
     currentCategory = $selectedCategory;
     dataPoints = generateGraphData();
-    // Debug: log first data point to check song/artist
-    if (dataPoints.length > 0) {
-      console.log('CircleGraph data point 0:', {
-        metric: currentMetric,
-        category: currentCategory,
-        song: dataPoints[0].song,
-        artist: dataPoints[0].artist,
-        rawWeek: $rawData[0]
-      });
-    }
   }
   
   onMount(() => {

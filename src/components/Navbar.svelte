@@ -141,10 +141,6 @@
     background: rgba(230, 40, 21, 0.1);
   }
 
-  .logo-icon {
-    font-size: 24px;
-  }
-
   .logo-text {
     font-family: 'Crimson Text', serif;
     font-size: 32px;

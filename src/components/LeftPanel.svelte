@@ -37,8 +37,6 @@
       const maxOffset = Math.max(0, totalWeeks - 52);
       const clampedOffset = Math.max(0, Math.min(offset, maxOffset));
       
-      console.log(`Year ${year}: startIdx=${startIdx}, offset=${clampedOffset}, total=${totalWeeks}`);
-      
       timeWindowOffset.set(clampedOffset);
     }
   }

@@ -10,7 +10,7 @@
     
     if (audioElement) {
       if (audioElement.paused) {
-        audioElement.play().catch(err => console.error('Playback error:', err));
+        audioElement.play().catch(() => {});
         isPlaying.set(true);
       } else {
         audioElement.pause();

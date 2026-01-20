@@ -174,8 +174,6 @@ export function updateDataWithTimeWindow(data, timeWindowOffset, timeframeWeeks,
     }
   }
   
-  console.log('Year ' + targetYear + ': ' + barsWithData + '/52 bars with data');
-  
   // Position marker after the last bar of the year (bar 51), not after last data bar
   if (yearGapMarker) {
     const angleStep = (Math.PI * 2) / 52;

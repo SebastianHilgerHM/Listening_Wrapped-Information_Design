@@ -60,13 +60,6 @@ export async function getAuthURL() {
   
   const authUrl = `https://accounts.spotify.com/authorize?${params.toString()}`;
   
-  // DEBUG: Log the values being used
-  console.log('=== SPOTIFY AUTH DEBUG ===');
-  console.log('CLIENT_ID:', CLIENT_ID);
-  console.log('REDIRECT_URI:', REDIRECT_URI);
-  console.log('Full Auth URL:', authUrl);
-  console.log('==========================');
-  
   return authUrl;
 }
 
@@ -103,7 +96,6 @@ export async function exchangeCode(code) {
     }
     throw new Error(data.error_description || data.error || 'Failed to get access token');
   } catch (err) {
-    console.error('Token exchange error:', err);
     throw err;
   }
 }
@@ -145,7 +137,6 @@ async function refreshAccessToken() {
       setTokens(data.access_token, data.refresh_token || refreshToken, data.expires_in);
     }
   } catch (err) {
-    console.error('Token refresh error:', err);
     clearTokens();
   }
 }
@@ -169,7 +160,6 @@ export async function getCurrentUser() {
     });
     return await response.json();
   } catch (err) {
-    console.error('Get user error:', err);
     return null;
   }
 }
@@ -186,7 +176,6 @@ export async function searchTracks(query) {
     const data = await response.json();
     return data.tracks?.items || [];
   } catch (err) {
-    console.error('Search error:', err);
     return [];
   }
 }
@@ -209,7 +198,6 @@ export async function playTrack(trackUri, deviceId) {
     );
     return response.ok;
   } catch (err) {
-    console.error('Play track error:', err);
     return false;
   }
 }
@@ -225,7 +213,6 @@ export async function pausePlayback() {
     });
     return response.ok;
   } catch (err) {
-    console.error('Pause error:', err);
     return false;
   }
 }
@@ -241,7 +228,6 @@ export async function resumePlayback() {
     });
     return response.ok;
   } catch (err) {
-    console.error('Resume error:', err);
     return false;
   }
 }
@@ -257,7 +243,6 @@ export async function getPlaybackState() {
     if (!response.ok) return null;
     return await response.json();
   } catch (err) {
-    console.error('Get playback state error:', err);
     return null;
   }
 }
