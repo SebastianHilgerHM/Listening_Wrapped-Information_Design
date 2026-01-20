@@ -122,7 +122,7 @@ Dieses Projekt ist für automatisches GitHub Pages Deployment konfiguriert.
 - Bei jedem Push zum `main` Branch wird automatisch neu deployed
 
 **Wichtig - Repository-Name anpassen:**
-Falls dein Repository einen anderen Namen hat als `Site-Code`, ändere in `vite.config.js`:
+Falls dein Repository einen anderen Namen hat als `Listening_Wrapped-Information_Design`, ändere in `vite.config.js`:
 ```js
 base: process.env.GITHUB_ACTIONS ? '/DEIN-REPO-NAME/' : '/',
 ```
