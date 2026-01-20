@@ -1,5 +1,7 @@
 # Listening Wrapped - Spotify Visualisierung
 
+> **🌐 Live Demo:** [https://DEIN-USERNAME.github.io/Site-Code/](https://DEIN-USERNAME.github.io/Site-Code/)
+
 Eine interaktive 3D-Visualisierung meiner Spotify-Hörgeschichte, mit Fokus auf Tempo und Danceability der gehörten Songs.
 
 ## Projektbeschreibung
@@ -104,7 +106,28 @@ Site Code/
 
 ## Deployment
 
-### Option 1: Statisches Hosting
+### Option 1: GitHub Pages (Empfohlen)
+
+Dieses Projekt ist für automatisches GitHub Pages Deployment konfiguriert.
+
+**Einmalige Einrichtung in GitHub:**
+1. Repository auf GitHub erstellen/pushen
+2. Gehe zu **Settings** → **Pages**
+3. Unter "Build and deployment":
+   - **Source**: "GitHub Actions" auswählen
+4. Pushe zum `main` Branch - Deployment startet automatisch!
+
+**Nach dem Deployment:**
+- Die Website ist erreichbar unter: `https://DEIN-USERNAME.github.io/Site-Code/`
+- Bei jedem Push zum `main` Branch wird automatisch neu deployed
+
+**Wichtig - Repository-Name anpassen:**
+Falls dein Repository einen anderen Namen hat als `Site-Code`, ändere in `vite.config.js`:
+```js
+base: process.env.GITHUB_ACTIONS ? '/DEIN-REPO-NAME/' : '/',
+```
+
+### Option 2: Statisches Hosting
 
 Der `dist/` Ordner kann auf jedem statischen Webhosting-Dienst deployed werden:
 
@@ -115,7 +138,7 @@ Der `dist/` Ordner kann auf jedem statischen Webhosting-Dienst deployed werden:
    - Apache/Nginx Server
    - Beliebiger statischer Host
 
-### Option 2: Lokaler Server
+### Option 3: Lokaler Server
 
 Für lokales Hosting (z.B. Präsentation):
 ```bash
