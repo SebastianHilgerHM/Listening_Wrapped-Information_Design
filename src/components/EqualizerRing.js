@@ -91,7 +91,12 @@ export function updateDataWithTimeWindow(data, timeWindowOffset, timeframeWeeks,
   let endIdx = totalWeeks - Math.round(timeWindowOffset);
   endIdx = Math.max(52, Math.min(endIdx, totalWeeks));
   let startIdx = Math.max(0, endIdx - 52);
-  const targetYear = parseInt(data[startIdx].weekStart.split('-')[0]);
+  
+  // For recent years (small offset), use the end of window to determine year
+  // This handles years with incomplete data (like 2025 with only 49 weeks)
+  const targetYear = timeWindowOffset < 10 
+    ? parseInt(data[endIdx - 1].weekStart.split('-')[0])
+    : parseInt(data[startIdx].weekStart.split('-')[0]);
   
   const yearData = {};
   for (let i = 0; i < data.length; i++) {
