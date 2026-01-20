@@ -1,5 +1,7 @@
 <script>
   import { onMount } from 'svelte';
+  import { fade, blur } from 'svelte/transition';
+  import { cubicOut } from 'svelte/easing';
   import Navbar from './components/Navbar.svelte';
   import { loadCSV } from './utils/parseCSV.js';
   import { rawData } from './stores/dataStore.js';
@@ -20,6 +22,7 @@
   let animationFrame;
   let lastScrollTime = 0;
   let scrollCooldown = false;
+  let introHintVisible = true;
   
   // Smooth easing function (ease-in-out cubic)
   function easeInOutCubic(t) {
@@ -104,6 +107,11 @@
   onMount(async () => {
     console.log('🎵 Listening Wrapped initialized');
     
+    // Hide intro hint after 3 seconds (transition handles the fade)
+    setTimeout(() => {
+      introHintVisible = false;
+    }, 3000);
+    
     // Load CSV data
     try {
       const data = await loadCSV('/weekly_summary.csv');
@@ -163,10 +171,13 @@
     </button>
   </div>
   
-  <!-- Hero Section Hint -->
-  <section class="hero">
-    <p class="hero-hint">Scroll to explore</p>
-  </section>
+  <!-- Intro Hint (center of screen, fades out) -->
+  {#if introHintVisible}
+    <div class="intro-hint" out:blur={{ duration: 3000, amount: 10, easing: cubicOut }}>
+      <p class="intro-text">Scroll to Explore</p>
+      <p class="intro-subtext">Drag to Spin</p>
+    </div>
+  {/if}
 </main>
 
 <style>
@@ -177,32 +188,35 @@
     overflow: hidden;
   }
   
-  /* Hero Section */
-  .hero {
+  /* Intro Hint - Center screen, fades out with blur */
+  .intro-hint {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    z-index: 1;
+    gap: 8px;
+    z-index: 200;
     pointer-events: none;
   }
   
-  .hero-hint {
-    position: absolute;
-    bottom: 40px;
-    color: rgba(170, 171, 173, 0.7);
-    font-size: 14px;
-    animation: pulse 2s ease-in-out infinite;
-    pointer-events: auto;
+  .intro-text {
+    font-family: 'Crimson Text', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
   }
   
-  @keyframes pulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
+  .intro-subtext {
+    font-size: 24px;
+    font-weight: 400;
+    color: rgba(170, 171, 173, 0.8);
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   }
   
   /* Vinyl Container (removed, now fullscreen) */

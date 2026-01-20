@@ -39,8 +39,7 @@
     <div class="info-modal" on:click|stopPropagation>
       <h2>About This Visualization</h2>
       <p>
-        Explore your Spotify listening data through an interactive vinyl record visualization.
-        Scroll to transform the circular graph into a timeline view.
+        This Website features a breakdown of my Spotify Listening History since subscribing to Spotify Premium. The Visualization puts a specific focus on song Tempo and Danceability.<br><br>Transparency Notice:<br>Some of the Tempo/Danceability Data may be incorrect due to Spotify's internal data sometimes containing errors, this effect is especially prominent in the highest tempo graph (just keep that in mind).
       </p>
       
       {#if $dataStats}
@@ -111,7 +110,8 @@
   }
 
   .logo-text {
-    font-size: 18px;
+    font-family: 'Crimson Text', serif;
+    font-size: 32px;
     font-weight: 600;
     color: #E62815;
   }

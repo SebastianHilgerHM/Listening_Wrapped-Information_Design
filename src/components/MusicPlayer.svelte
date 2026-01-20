@@ -170,6 +170,7 @@
   }
   
   .song-name {
+    font-family: 'Crimson Text', serif;
     font-size: 12px;
     font-weight: 600;
     color: #E0E0E0;

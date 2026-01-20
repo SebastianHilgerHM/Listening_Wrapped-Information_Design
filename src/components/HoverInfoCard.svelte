@@ -76,6 +76,7 @@
   }
 
   .info-song {
+    font-family: 'Crimson Text', serif;
     font-size: 12px;
     font-weight: 500;
     color: #E0E0E0;

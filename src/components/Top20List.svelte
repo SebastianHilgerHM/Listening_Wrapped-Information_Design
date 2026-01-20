@@ -137,7 +137,7 @@
   
   .tracks-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 12px;
     width: 100%;
     max-width: 1600px;
@@ -195,6 +195,7 @@
   }
   
   .track-name {
+    font-family: 'Crimson Text', serif;
     font-size: 13px;
     font-weight: 600;
     color: #E0E0E0;
@@ -243,19 +244,19 @@
   /* Responsive grid */
   @media (max-width: 1400px) {
     .tracks-grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
     }
   }
   
   @media (max-width: 1100px) {
     .tracks-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
     }
   }
   
   @media (max-width: 800px) {
     .tracks-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
     }
     
     .top20-page {
