@@ -12,7 +12,7 @@ const httpsConfig = fs.existsSync('localhost-key.pem') && fs.existsSync('localho
 
 export default defineConfig({
   plugins: [svelte()],
-  base: process.env.GITHUB_ACTIONS ? '/Site-Code/' : '/',
+  base: process.env.GITHUB_ACTIONS ? '/Listening_Wrapped-Information_Design/' : '/',
   server: {
     port: 5173,
     https: httpsConfig,
