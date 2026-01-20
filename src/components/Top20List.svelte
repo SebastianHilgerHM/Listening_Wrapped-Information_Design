@@ -94,12 +94,18 @@
           class="track-card" 
           style="animation-delay: {i * 40}ms;"
         >
-          <span class="rank-badge">{track.rank}</span>
-          <div class="track-main">
-            <span class="track-name">{track.trackName}</span>
-            <span class="track-artist">{track.artistName}</span>
+          <div class="track-header">
+            <span class="rank-badge">{track.rank}</span>
+            <div class="track-main">
+              <span class="track-name">{track.trackName}</span>
+              <span class="track-artist">{track.artistName}</span>
+            </div>
           </div>
           <div class="track-stats">
+            <div class="stat">
+              <span class="stat-value">{formatMinutes(track.totalMinutes)}</span>
+              <span class="stat-label">Played</span>
+            </div>
             <div class="stat">
               <span class="stat-value">{track.tempo ? Math.round(track.tempo) : '—'}</span>
               <span class="stat-label">BPM</span>
@@ -107,10 +113,6 @@
             <div class="stat">
               <span class="stat-value">{track.danceability ? Math.round(track.danceability * 100) : '—'}</span>
               <span class="stat-label">Dance%</span>
-            </div>
-            <div class="stat">
-              <span class="stat-value">{formatMinutes(track.totalMinutes)}</span>
-              <span class="stat-label">Played</span>
             </div>
           </div>
         </div>
@@ -138,7 +140,7 @@
   .tracks-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 12px;
+    gap: 6px;
     width: 100%;
     max-width: 1600px;
   }
@@ -149,7 +151,7 @@
     padding: 12px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 2px;
     border: none;
     transition: all 0.2s ease;
     animation: fadeInUp 0.4s ease-out backwards;
@@ -172,26 +174,30 @@
   }
   
   .rank-badge {
-    position: absolute;
-    top: -6px;
-    left: -6px;
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     background: #E62815;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 11px;
+    font-family: 'Crimson Text', serif;
+    font-size: 22px;
     font-weight: 700;
     color: white;
+    flex-shrink: 0;
+  }
+  
+  .track-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
   }
   
   .track-main {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    padding-left: 12px;
   }
   
   .track-name {

@@ -7,6 +7,7 @@
   import { rawData } from './stores/dataStore.js';
   
   import RightPanel from './components/RightPanel.svelte';
+  import LeftPanel from './components/LeftPanel.svelte';
   import TimeframeButtons from './components/TimeframeButtons.svelte';
   import VinylScene from './components/VinylScene.svelte';
   import LineGraph from './components/LineGraph.svelte';
@@ -46,6 +47,16 @@
     scrollProgressStore.set(scrollProgress);
     
     animationFrame = requestAnimationFrame(animateToTarget);
+  }
+  
+  // Handle navigation from Navbar
+  function handleNavigation(view) {
+    currentView = view;
+    targetProgress = view;
+    if (!isAnimating) {
+      isAnimating = true;
+      animateToTarget();
+    }
   }
   
   // Handle wheel events for view snapping
@@ -143,7 +154,7 @@
   <Top20List />
   
   <!-- Navbar -->
-  <Navbar />
+  <Navbar {currentView} onNavigate={handleNavigation} />
   
   <!-- Top Controls Row (TimeframeButtons, LineGraph+MusicPlayer, RightPanel) -->
   <div class="controls-row">
@@ -155,21 +166,8 @@
     <RightPanel />
   </div>
   
-  <!-- View indicators -->
-  <div class="view-indicators">
-    <button class="indicator" class:active={currentView === 0} on:click={() => { currentView = 0; targetProgress = 0; if (!isAnimating) { isAnimating = true; animateToTarget(); } }}>
-      <span class="indicator-dot"></span>
-    </button>
-    <button class="indicator" class:active={currentView === 1} on:click={() => { currentView = 1; targetProgress = 1; if (!isAnimating) { isAnimating = true; animateToTarget(); } }}>
-      <span class="indicator-dot"></span>
-    </button>
-    <button class="indicator" class:active={currentView === 2} on:click={() => { currentView = 2; targetProgress = 2; if (!isAnimating) { isAnimating = true; animateToTarget(); } }}>
-      <span class="indicator-dot"></span>
-    </button>
-    <button class="indicator" class:active={currentView === 3} on:click={() => { currentView = 3; targetProgress = 3; if (!isAnimating) { isAnimating = true; animateToTarget(); } }}>
-      <span class="indicator-dot"></span>
-    </button>
-  </div>
+  <!-- Left Panel (Year selection for equalizer view) -->
+  <LeftPanel />
   
   <!-- Intro Hint (center of screen, fades out) -->
   {#if introHintVisible}
@@ -249,41 +247,5 @@
     margin-left: auto;
     margin-right: 164px;
     flex-shrink: 0;
-  }
-  
-  /* View Indicators */
-  .view-indicators {
-    position: fixed;
-    right: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    z-index: 200;
-  }
-  
-  .indicator {
-    width: 12px;
-    height: 12px;
-    padding: 0;
-    background: transparent;
-    border: 2px solid rgba(170, 171, 173, 0.5);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .indicator:hover {
-    border-color: rgba(170, 171, 173, 0.8);
-  }
-  
-  .indicator.active {
-    border-color: #1db954;
-    background: #1db954;
-  }
-  
-  .indicator-dot {
-    display: none;
   }
 </style>

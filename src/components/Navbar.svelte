@@ -1,6 +1,9 @@
 <script>
   import { dataStats } from '../stores/dataStore.js';
   
+  export let currentView = 0;
+  export let onNavigate = (view) => {};
+  
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -13,6 +16,13 @@
     <button class="logo" on:click={scrollToTop}>
       <span class="logo-text">Listening Wrapped</span>
     </button>
+  </div>
+  
+  <div class="nav-center">
+    <button class="view-dot" class:active={currentView === 0} on:click={() => onNavigate(0)}></button>
+    <button class="view-dot" class:active={currentView === 1} on:click={() => onNavigate(1)}></button>
+    <button class="view-dot" class:active={currentView === 2} on:click={() => onNavigate(2)}></button>
+    <button class="view-dot" class:active={currentView === 3} on:click={() => onNavigate(3)}></button>
   </div>
   
   <div class="nav-right">
@@ -87,6 +97,32 @@
   .nav-left {
     display: flex;
     align-items: center;
+  }
+  
+  .nav-center {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .view-dot {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    background: transparent;
+    border: 2px solid rgba(170, 171, 173, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .view-dot:hover {
+    border-color: rgba(170, 171, 173, 0.8);
+  }
+  
+  .view-dot.active {
+    border-color: #1db954;
+    background: #1db954;
   }
 
   .logo {

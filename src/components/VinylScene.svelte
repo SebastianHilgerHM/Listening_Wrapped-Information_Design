@@ -44,8 +44,6 @@
   let currentTimeWindowOffset = 0;
   let lastEqualizerUpdateOffset = 0; // Track last update to avoid redundant calls
   let lastScrollView = 0; // Track which view we're in (0, 1, 2, or 3)
-  let lastRotationY = 0; // Track rotation for year jumps in view 3
-  let rotationAccumulator = 0; // Accumulate rotation for year detection
   
   const unsubscribeScroll = scrollProgress.subscribe(value => {
     currentScrollProgress = value;
@@ -88,8 +86,10 @@
   // Update equalizer when raw data changes
   const unsubscribeRawData = rawData.subscribe(value => {
     if (value && value.length > 0 && equalizerInitialized) {
-      // Force update in animation loop
-      lastEqualizerUpdateOffset = -999;
+      // Update equalizer data immediately
+      const windowSize = 52;
+      EqualizerRing.updateDataWithTimeWindow(value, currentTimeWindowOffset, windowSize, currentMetric, currentCategory);
+      lastEqualizerUpdateOffset = currentTimeWindowOffset;
     }
   });
 
@@ -441,7 +441,9 @@
     // Update data points immediately if data is available
     if ($rawData && $rawData.length > 0) {
       updateDataPoints();
-      EqualizerRing.updateData($rawData);
+      // Use updateDataWithTimeWindow for consistent metadata format
+      const windowSize = 52;
+      EqualizerRing.updateDataWithTimeWindow($rawData, 0, windowSize, currentMetric, currentCategory);
     }
     // Handle resize
     const handleResize = () => {
@@ -632,49 +634,6 @@
         // Smooth rotation interpolation for drag spin only
         rotationY += rotationDelta;
         
-        // In view 3, spinning the vinyl jumps through years (52-week increments)
-        if (currentScrollProgress >= 1.5 && $rawData && Math.abs(rotationDelta) > 0.0001) {
-          // Accumulate rotation changes
-          rotationAccumulator += rotationDelta;
-          
-          // Detect quarter rotation (jump by 1 year when accumulating ~1.57 radians)
-          const ROTATION_THRESHOLD = Math.PI / 2; // Quarter rotation for faster response
-          
-          // Debug: log accumulation
-          if (Math.abs(rotationAccumulator) > 0.5) {
-            console.log('Rotation accumulator:', rotationAccumulator.toFixed(2), '/ threshold:', ROTATION_THRESHOLD.toFixed(2));
-          }
-          
-          if (Math.abs(rotationAccumulator) >= ROTATION_THRESHOLD) {
-            const totalWeeks = $rawData?.length || 0;
-            const windowSize = 52; // Always 1 year in view 3
-            const maxOffset = Math.max(0, totalWeeks - windowSize);
-            
-            // Spinning forward (positive rotation) = go back in time (increase offset)
-            // Spinning backward (negative rotation) = go forward in time (decrease offset)
-            const direction = rotationAccumulator > 0 ? 1 : -1;
-            const newOffset = Math.max(0, Math.min(maxOffset, currentTimeWindowOffset + (direction * 52)));
-            
-            console.log('Year jump! Direction:', direction, 'New offset:', newOffset, 'Max:', maxOffset);
-            
-            // Update store and local variable
-            timeWindowOffset.set(newOffset);
-            currentTimeWindowOffset = newOffset;
-            
-            // Reset accumulator
-            rotationAccumulator = 0;
-            
-            // Update equalizer immediately with the new offset
-            if (equalizerInitialized) {
-              EqualizerRing.updateDataWithTimeWindow($rawData, newOffset, windowSize, currentMetric, currentCategory);
-              lastEqualizerUpdateOffset = newOffset;
-            }
-          }
-        } else if (currentScrollProgress < 1.5) {
-          // Reset accumulator when not in view 3
-          rotationAccumulator = 0;
-        }
-        
         // Model is static - tilted toward bottom of screen, only drag spin changes
         vinylGroup.rotation.x = -1.22; // Fixed tilt (-70 degrees, angled toward bottom)
         vinylGroup.rotation.z = rotationY; // Drag spin only
@@ -854,10 +813,10 @@
 <HoverInfoCard 
   data={hoveredBarInfo ? {
     date: hoveredBarInfo.dateRange,
-    category: 'Tempo',
-    value: hoveredBarInfo.tempo + ' BPM',
-    secondaryLabel: 'Danceability',
-    secondaryValue: hoveredBarInfo.danceability + '%'
+    category: hoveredBarInfo.noData ? 'No Data' : 'Tempo',
+    value: hoveredBarInfo.noData ? 'No listening data' : (hoveredBarInfo.tempo + ' BPM'),
+    secondaryLabel: hoveredBarInfo.noData ? null : 'Danceability',
+    secondaryValue: hoveredBarInfo.noData ? null : (hoveredBarInfo.danceability + '%')
   } : null} 
   visible={showBarInfo} 
   position="fixed" 
