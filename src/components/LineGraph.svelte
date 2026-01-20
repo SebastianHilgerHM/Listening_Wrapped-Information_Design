@@ -240,7 +240,7 @@
       .style('pointer-events', 'all')
       .style('cursor', 'pointer')
       .on('mouseenter', function(event, d) {
-        if (currentScrollProgress < 0.8) return;
+        if (currentScrollProgress < 0.8 || currentScrollProgress >= 1.5) return;
         d3.select(this).attr('r', 5);
         const dateStr = d.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
         const metricStr = currentMetric.charAt(0).toUpperCase() + currentMetric.slice(1);
@@ -258,7 +258,7 @@
         });
       })
       .on('mouseleave', function() {
-        if (currentScrollProgress < 0.8) return;
+        if (currentScrollProgress < 0.8 || currentScrollProgress >= 1.5) return;
         d3.select(this).attr('r', 3);
         hoveredPointData.set(null);
       })

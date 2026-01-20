@@ -496,8 +496,8 @@
         
         renderer.domElement.style.cursor = intersects.length > 0 ? 'grab' : 'default';
         
-        // Check for equalizer bar hover (only in view 3)
-        if (currentScrollProgress >= 1.5) {
+        // Check for equalizer bar hover (only in view 3: 1.5-2.5)
+        if (currentScrollProgress >= 1.5 && currentScrollProgress < 2.5) {
           const equalizerBars = EqualizerRing.getBars();
           const barIntersects = raycaster.intersectObjects(equalizerBars);
           if (barIntersects.length > 0) {
@@ -522,8 +522,8 @@
           hoveredBarInfo = null;
         }
         
-        // Check for data point hover (only in view 2 - line graph view)
-        if (currentScrollProgress >= 0.5 && currentScrollProgress < 1.5) {
+        // Check for data point hover (only in view 2 - line graph view: 0.8-1.5)
+        if (currentScrollProgress >= 0.8 && currentScrollProgress < 1.5) {
           const dataPointIntersects = raycaster.intersectObjects(dataPointsArray);
           if (dataPointIntersects.length > 0) {
             const point = dataPointIntersects[0].object;

@@ -11,7 +11,6 @@
   import TimeframeButtons from './components/TimeframeButtons.svelte';
   import VinylScene from './components/VinylScene.svelte';
   import LineGraph from './components/LineGraph.svelte';
-  import MusicPlayer from './components/MusicPlayer.svelte';
   import Top20List from './components/Top20List.svelte';
   import { scrollProgress as scrollProgressStore } from './stores/uiStore.js';
   
@@ -156,12 +155,11 @@
   <!-- Navbar -->
   <Navbar {currentView} onNavigate={handleNavigation} />
   
-  <!-- Top Controls Row (TimeframeButtons, LineGraph+MusicPlayer, RightPanel) -->
+  <!-- Top Controls Row (TimeframeButtons, LineGraph, RightPanel) -->
   <div class="controls-row">
     <TimeframeButtons />
     <div class="graph-player-column">
       <LineGraph />
-      <MusicPlayer />
     </div>
     <RightPanel />
   </div>

@@ -176,16 +176,15 @@ export function updateDataWithTimeWindow(data, timeWindowOffset, timeframeWeeks,
   
   console.log('Year ' + targetYear + ': ' + barsWithData + '/52 bars with data');
   
-  if (yearGapMarker && lastDataBar >= 0) {
+  // Position marker after the last bar of the year (bar 51), not after last data bar
+  if (yearGapMarker) {
     const angleStep = (Math.PI * 2) / 52;
-    const angle = angleStep * (lastDataBar + 0.5);
+    const angle = angleStep * 51.5; // After bar 51 (the last bar)
     yearGapMarker.position.x = RADIUS * Math.cos(angle);
     yearGapMarker.position.z = RADIUS * Math.sin(angle);
     yearGapMarker.rotation.y = -angle;
-    yearGapMarker.scale.x = MAX_HEIGHT * 1.5;
+    yearGapMarker.scale.x = MAX_HEIGHT * 1.05;
     yearGapMarker.visible = true;
-  } else if (yearGapMarker) {
-    yearGapMarker.visible = false;
   }
 }
 
@@ -260,6 +259,9 @@ export function setVisibility(scrollProgress) {
   const fadeStart = 1.0;
   const fadeEnd = 1.5;
   const visibility = Math.max(0, Math.min(1, (scrollProgress - fadeStart) / (fadeEnd - fadeStart)));
+  
+  // Hide completely in view 1 (scrollProgress < 1.0) to prevent interaction
+  equalizerGroup.visible = scrollProgress >= 1.0;
   
   let behindOffset = 0;
   if (scrollProgress < 1.5) {

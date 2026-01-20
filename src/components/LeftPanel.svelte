@@ -3,7 +3,7 @@
   import { rawData } from '../stores/dataStore.js';
   
   let currentScrollProgress = 0;
-  $: isVisible = currentScrollProgress >= 1.5 && currentScrollProgress < 3;
+  $: isHidden = currentScrollProgress < 1.5 || currentScrollProgress >= 2.5;
   
   scrollProgress.subscribe(value => {
     currentScrollProgress = value;
@@ -44,25 +44,23 @@
   }
 </script>
 
-{#if isVisible}
-  <div class="left-panel-wrapper">
-    <aside class="left-panel">
-      <div class="panel-section">
-        <div class="year-buttons">
-          {#each years as year}
-            <button
-              class="year-btn"
-              class:active={selectedYear === year}
-              on:click={() => selectYear(year)}
-            >
-              {year}
-            </button>
-          {/each}
-        </div>
+<div class="left-panel-wrapper" class:hidden={isHidden}>
+  <aside class="left-panel">
+    <div class="panel-section">
+      <div class="year-buttons">
+        {#each years as year}
+          <button
+            class="year-btn"
+            class:active={selectedYear === year}
+            on:click={() => selectYear(year)}
+          >
+            {year}
+          </button>
+        {/each}
       </div>
-    </aside>
-  </div>
-{/if}
+    </div>
+  </aside>
+</div>
 
 <style>
   .left-panel-wrapper {
@@ -75,18 +73,13 @@
     align-items: flex-start;
     gap: 16px;
     z-index: 100;
-    animation: slideIn 0.3s ease-out;
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
   
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  .left-panel-wrapper.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-20px);
   }
 
   .left-panel {
